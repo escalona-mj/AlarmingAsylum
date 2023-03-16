@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/gui.rpy", line 183: invalid syntax
+    Borders(70, 0, 0, , pad_top = -100)
+                       ^
+
+Ren'Py Version: Ren'Py 8.0.1.22070801
+Sun Mar 12 20:35:30 2023
