@@ -23,7 +23,7 @@ init python:
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#cc0000'
+define gui.accent_color = '#ffffff'
 
 ## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = u'#ffffff'
@@ -54,14 +54,16 @@ define gui.interface_text_color = u'#ffffff'
 
 ## Fonts and Font Sizes ########################################################
 
+define gui.game_menu_label_font = "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+
 ## The font used for in-game text.
-define gui.text_font = "fonts/Labrada-Regular.ttf"
+define gui.text_font = "fonts/SuicideSquadron-rX0B.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "fonts/AlegreyaSC-Medium.ttf"
+define gui.name_text_font = "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "fonts/Labrada-Regular.ttf"
+define gui.interface_text_font = "fonts/SuicideSquadron-rX0B.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 32
@@ -113,8 +115,8 @@ define gui.name_xalign = 0.5
 
 ## The width, height, and borders of the box containing the character's name, or
 ## None to automatically size it.
-define gui.namebox_width = 517
-define gui.namebox_height = None
+define gui.namebox_width = 338
+define gui.namebox_height = 41
 
 ## The borders of the box containing the character's name, in left, top, right,
 ## bottom order.
@@ -146,17 +148,17 @@ define gui.dialogue_text_xalign = 0.0
 
 ## The width and height of a button, in pixels. If None, Ren'Py computes a size.
 define gui.button_width = None
-define gui.button_height = 64
+define gui.button_height = None
 
 ## The borders on each side of the button, in left, top, right, bottom order.
-define gui.button_borders = Borders(6, 6, 6, 6)
+define gui.button_borders = Borders(25, 6, 25, 6)
 
 ## If True, the background image will be tiled. If False, the background image
 ## will be linearly scaled.
 define gui.button_tile = False
 
 ## The font used by the button.
-define gui.button_text_font = gui.text_font
+define gui.button_text_font = gui.interface_text_font
 
 ## The size of the text used by the button.
 define gui.button_text_size = gui.interface_text_size
@@ -178,9 +180,9 @@ define gui.button_text_xalign = 0.0
 ##
 ## These customizations are used by the default interface:
 
-define gui.radio_button_borders = Borders(70, 0, 0, 0)
+define gui.radio_button_borders = Borders(25, 6, 25, 6)
 
-define gui.check_button_borders = Borders(70, 0, 0, 0, pad_top = -25)
+define gui.check_button_borders = Borders(75, 6, 25, 6)
 
 define gui.confirm_button_text_xalign = 0.5
 
@@ -189,7 +191,7 @@ define gui.page_button_borders = Borders(15, 6, 15, 6)
 define gui.quick_button_borders = Borders(15, 6, 15, 0)
 define gui.quick_button_text_size = 21
 define gui.quick_button_text_idle_color = gui.idle_small_color
-define gui.quick_button_text_selected_color = gui.accent_color
+define gui.quick_button_text_selected_color = gui.selected_color
 
 ## You can also add your own customizations, by adding properly-named variables.
 ## For example, you can uncomment the following line to set the width of a
@@ -418,7 +420,7 @@ init python:
     @gui.variant
     def touch():
 
-        gui.quick_button_borders = Borders(15, 6, 15, 0)
+        gui.quick_button_borders = Borders(25, 6, 25, 6)
 
     ## This changes the size and spacing of various GUI elements to ensure they
     ## are easily visible on phones.
@@ -426,7 +428,7 @@ init python:
     def small():
 
         ## Font sizes.
-        gui.text_size = 40
+        gui.text_size = 45
         gui.name_text_size = 54 #54
         gui.notify_text_size = 33
         gui.interface_text_size = 45
@@ -450,10 +452,10 @@ init python:
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15
 
-        gui.history_height = 285
+        gui.history_height = 250
         gui.history_text_width = 1035
 
-        gui.quick_button_text_size = 30
+        gui.quick_button_text_size = 40
 
         ## File button layout.
         gui.file_slot_cols = 3

@@ -1,6 +1,6 @@
 python early:
-    simple_achievement_list = (
-        # ("Achievement Name", "Description when not unlocked", "Description when unlocked"),
+    achievement_list = (
+        # ("Achievement Name", "Locked Description", "Unlocked Description"),
         ("Beginning", "???", "Start a new game."),
         ("Closure", "???", "Complete the story."),
         ("Bad Things Come To Those Who Wait.", "???", "Fail to catch up with the quick time events."),
@@ -8,30 +8,66 @@ python early:
         ("Better Luck Next Time!", "???", "Achieve a bad ending.")
     )
 
+define lockaname = "Achievement Locked."
+
 screen achievements():
 
     tag menu
     use extras_menu(_("Achievements"), scroll="viewport"):
 
-        style_prefix "about"
+        style_prefix "achievements"
         vbox:
-            for aname, lockdesc, unlockdesc in simple_achievement_list:
-                hbox:
-                    if achievement.has(aname):
-                        add "medal"
-                        vbox:
-                            label _("[aname]")
-                            text _("[unlockdesc]")
+            for aname, lockdesc, unlockdesc in achievement_list:
+                frame:
+                    xfill True
+                    hbox:
+                        yalign 0.5
 
-                    else:
-                        add "locked_medal"
-                        vbox:
-                            label _("[aname]")
-                            text _("[lockdesc]")
+                        if achievement.has(aname):
+                            add "medal" size (150, 150) yalign 0.5
 
-                null height 35
+                            vbox:
+                                yalign 0.5
+                                label _("[aname]")
+                                text _("[unlockdesc]")
+
+                        else:
+                            add "locked_medal" size (150, 150) yalign 0.5
+
+                            vbox:
+                                yalign 0.5
+                                style_prefix "locked"
+                                label _("[lockaname]")
+                                text _("[lockdesc]")
+
+                null height 25
+
+    add "gui/phone/overlay/border_bottom.png":
+        pos (461, 972)
+    add "gui/phone/overlay/border_top.png":
+        pos (476, 175)       
                     
+style achievements_vbox is vbox
+style achievements_frame is empty 
 
+style achievements_label_text:
+    yalign 0.5
+
+style locked_label_text:
+    yalign 0.5
+    color u'#FFF3'
+
+style achievements_text:
+    yalign 0.5
+
+style locked_text:
+    yalign 0.5
+    color u'#FFF3'
+
+style achievements_frame:
+    background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
+    padding (20, 20, 20, 20)
+    xfill True
 
 
 ## Extras Navigation screen ############################################################
@@ -65,11 +101,6 @@ screen extras_navigation():
             style "return_button"
             action ShowMenu("preferences")
 
-    add "gui/phone/overlay/border_bottom.png":
-        pos (461, 972)
-    add "gui/phone/overlay/border_top.png":
-        pos (476, 175)
-
 ## Extras Menu screen #######################################
 ##
 ## This is the same as the Game Menu screen, but just for the Extras.
@@ -85,7 +116,7 @@ screen extras_menu(title, scroll=None, yinitial=0.0):
         add "gui/overlay/confirm.png"
 
     frame:
-        style "extras_menu_outer_frame"
+        style "game_menu_outer_frame"
 
         hbox:
 
@@ -133,8 +164,12 @@ screen extras_menu(title, scroll=None, yinitial=0.0):
 
     use extras_navigation
 
-style extras_menu_outer_frame:
-    bottom_padding 45
-    top_padding 180
+style extras_menu_content_frame:
+    left_padding 50
+    top_margin 0
 
-    background "gui/phone/overlay/extras_menu.png"
+    left_margin 60
+    right_margin 30
+
+    xsize 1300
+    ysize 825

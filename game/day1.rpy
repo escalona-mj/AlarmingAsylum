@@ -4,7 +4,8 @@ label day1:
     show black
     with fade
     #window hide
-    show text _("{=day_font}{size=+30}{cps=3.0}Day 1{/cps}{/=day_font}{/size}") at truecenter with dissolve
+    # show text _("{=day_font}{size=+30}{cps=3.0}Day 1{/cps}{/=day_font}{/size}") at truecenter with dissolve
+    show text _("{size=+30}Day 1{/size}") at truecenter with dissolve
     pause 1.0
     hide text
     scene bg meadow blurred

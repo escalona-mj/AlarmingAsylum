@@ -1,23 +1,21 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <renpy.display.im.Image object ('…hone/extras_menu.png') at 0x00000000048f5c70>:
-  File "renpy/common/00gamemenu.rpy", line 170, in script
-    $ ui.interact()
-  File "renpy/common/00gamemenu.rpy", line 170, in <module>
-    $ ui.interact()
-OSError: Couldn't find file 'gui/overlay/phone/extras_menu.png'.
+While loading <renpy.display.im.Image object ('…_idle_background.png') at 0x00000000045ff520>:
+Exception: Could not load image 'gui/phone/button/slot_idle_background.png': OSError('Could not open \'C:\\\\Users\\\\dell\\\\Desktop\\\\MJ FILES\\\\games\\\\VNs\\\\AlarmingAsylum\\\\game\\\\gui/phone/button/slot_idle_background.png\': b"Couldn\'t open C:\\\\Users\\\\dell\\\\Desktop\\\\MJ FILES\\\\games\\\\VNs\\\\AlarmingAsylum\\\\game\\\\gui/phone/button/slot_idle_background.png"')
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00gamemenu.rpy", line 170, in script
-    $ ui.interact()
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 1131, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\python.py", line 1049, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/00gamemenu.rpy", line 170, in <module>
-    $ ui.interact()
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ui.py", line 299, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3377, in interact
@@ -32,8 +30,8 @@ Full traceback:
     surf = render(child, width, height, cst, cat)
   File "render.pyx", line 170, in renpy.display.render.render
   File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\transition.py", line 378, in render
-    top = render(self.new_widget, width, height, st, at)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\transition.py", line 542, in render
+    return render(self.new_widget, width, height, st, at)
   File "render.pyx", line 170, in renpy.display.render.render
   File "render.pyx", line 266, in renpy.display.render.render
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
@@ -52,8 +50,42 @@ Full traceback:
     surf = render(child, width, height, cst, cat)
   File "render.pyx", line 170, in renpy.display.render.render
   File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1334, in render
+    surf = render(child,
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1060, in render
+    surf = render(d, rw, height - y, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1334, in render
+    surf = render(child,
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 497, in render
+    renders = [ render(i, renwidth, renheight, st, at) for i in children ]
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 497, in <listcomp>
+    renders = [ render(i, renwidth, renheight, st, at) for i in children ]
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\behavior.py", line 876, in render
+    rv = super(Button, self).render(width, height, st, at)
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1369, in render
     back = render(style.background, bw, bh, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\imagelike.py", line 277, in render
+    crend = render(image, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\image.py", line 766, in render
+    return wrap_render(self.target, width, height, st, at)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\image.py", line 308, in wrap_render
+    rend = render(child, w, h, st, at)
   File "render.pyx", line 170, in renpy.display.render.render
   File "render.pyx", line 266, in renpy.display.render.render
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\im.py", line 627, in render
@@ -62,13 +94,13 @@ Full traceback:
     surf = image.load()
   File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\im.py", line 723, in load
     raise e
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\im.py", line 688, in load
-    filelike = renpy.loader.load(self.filename)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\loader.py", line 820, in load
-    raise IOError("Couldn't find file '%s'." % name)
-OSError: Couldn't find file 'gui/overlay/phone/extras_menu.png'.
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\im.py", line 702, in load
+    surf = renpy.display.pgrender.load_image(f, filename)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\pgrender.py", line 160, in load_image
+    raise Exception("Could not load image {!r}: {!r}".format(filename, e))
+Exception: Could not load image 'gui/phone/button/slot_idle_background.png': OSError('Could not open \'C:\\\\Users\\\\dell\\\\Desktop\\\\MJ FILES\\\\games\\\\VNs\\\\AlarmingAsylum\\\\game\\\\gui/phone/button/slot_idle_background.png\': b"Couldn\'t open C:\\\\Users\\\\dell\\\\Desktop\\\\MJ FILES\\\\games\\\\VNs\\\\AlarmingAsylum\\\\game\\\\gui/phone/button/slot_idle_background.png"')
 
 Windows-8.1-6.3.9600 AMD64
 Ren'Py 8.0.1.22070801
 Alarming Asylum 1.0
-Sun Mar 12 18:10:09 2023
+Tue Mar 21 01:00:38 2023

@@ -88,14 +88,12 @@ style gui_text:
 
 style button:
     properties gui.button_properties("button")
-    hover_sound "audio/sfx/hover.wav"
-    activate_sound "audio/sfx/select.wav"
+    activate_sound "audio/sfx/click.ogg"
+    hover_sound "audio/sfx/hover.ogg"
 
 style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
-    hover_sound "audio/sfx/hover.wav"
-    activate_sound "audio/sfx/select.wav"
 
 
 style label_text is gui_text:
@@ -450,75 +448,19 @@ screen quick_menu():
     zorder 100
     #hbox:
     if quick_menu:
-
-            #style_prefix "quick"
-
-            #xalign 0.5
-            #yalign 1.0
+        hbox:
+            style_prefix "quick"
+            xalign 0.5
+            yalign 1.0
 
             #textbutton _("Back") action Rollback()
 
-            #Right1
-            #textbutton _("History") action ShowMenu('history')
-            imagebutton auto _("gui/quickmenu/history_%s.png") action ShowMenu('history'):
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.75
-                yalign 0.75
-                xoffset 200
-                yoffset 100
-
-            #Left2
-            #textbutton _("Hide") action HideInterface()
-            imagebutton auto _("gui/quickmenu/hide_%s.png") action HideInterface():
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.25
-                yalign 0.75
-                xoffset -260
-                yoffset 162.5
-
-            #Right2
-            #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            imagebutton auto _("gui/quickmenu/skip_%s.png") action Skip() alternate Skip(fast=True, confirm=True):
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.75
-                yalign 0.75
-                xoffset 260
-                yoffset 162.5
-
-            #textbutton _("Auto") action Preference("auto-forward", "toggle")
-
-            #Left3
-            #textbutton _("Save") action ShowMenu('save')
-            imagebutton auto _("gui/quickmenu/save_%s.png") action ShowMenu('save'):
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.25
-                yalign 0.75
-                xoffset -200
-                yoffset 225
-
-            #Left1
-            #textbutton _("Load") action ShowMenu('load')
-            imagebutton auto _("gui/quickmenu/load_%s.png") action ShowMenu('load'):
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.25
-                yalign 0.75
-                xoffset -200
-                yoffset 100
-
-            #Right3
-            #textbutton _("Prefs") action ShowMenu('preferences')
-            imagebutton auto _("gui/quickmenu/prefs_%s.png") action ShowMenu('preferences'):
-                focus_mask True
-                activate_sound "audio/sfx/select.wav"
-                xalign 0.75
-                yalign 0.75
-                xoffset 200
-                yoffset 225
+            textbutton _("History") action ShowMenu('history')
+            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Save") action ShowMenu('save')
+            textbutton _("Load") action ShowMenu('load')
+            textbutton _("Settings") action ShowMenu('preferences')
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -529,14 +471,13 @@ default quick_menu = True
 style quick_button is default
 style quick_button_text is button_text
 
-style quick_button:
-    properties gui.button_properties("quick_button")
+# style quick_button:
+#     properties gui.button_properties("quick_button")
 
 style quick_button_text:
-    font "fonts/AlegreyaSC-Medium.ttf"
-    hover_color u'#aa0000'
+    font gui.interface_text_font
     properties gui.button_text_properties("quick_button")
-    outlines [ (absolute(1), "#0000002c", absolute(3), absolute(3)) ]
+    # outlines [ (absolute(0), "#000000ff", absolute(0), absolute(0)) ]
 
 
 ################################################################################
@@ -562,7 +503,7 @@ screen navigation():
 
             textbutton _("Load Game") action ShowMenu("load")
 
-            textbutton _("Options") action ShowMenu("preferences")
+            textbutton _("Settings") action ShowMenu("preferences")
 
             textbutton _("Extras") action ShowMenu("achievements")
 
@@ -592,7 +533,7 @@ screen navigation():
 
             textbutton _("Load Game") action ShowMenu("load")
 
-            textbutton _("Options") action ShowMenu("preferences")
+            textbutton _("Settings") action ShowMenu("preferences")
 
             textbutton _("Extras") action ShowMenu("achievements")
 
@@ -699,10 +640,10 @@ screen main_menu():
     #     yoffset -500
     #     zoom 1.5
     
-    # add "gui/logo.png" at logoease:
-    #     xalign 0.5
-    #     yalign 0.5
-    #     zoom 0.5
+    add "gui/logo.png" at logoease:
+        xalign 0.5
+        yalign 0.25
+        zoom 0.5
 
     # add gui.main_menu_background
 
@@ -860,7 +801,7 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 60
+    left_margin 75
     right_margin 30
     top_margin 15
     xsize 1300
@@ -877,12 +818,13 @@ style game_menu_side:
 
 style game_menu_label:
     xpos 75
-    ysize 180
+    ysize 250
 
 style game_menu_label_text:
     size gui.title_text_size
     color gui.accent_color
     yalign 0.5
+    font gui.game_menu_label_font
 
 style return_button:
     xpos gui.navigation_xpos
@@ -1012,7 +954,7 @@ screen file_slots(title):
 
                 spacing gui.page_spacing
 
-                textbutton _("<") action FilePagePrevious()
+                textbutton _("Prev") action FilePagePrevious()
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A") action FilePage("auto")
@@ -1024,7 +966,7 @@ screen file_slots(title):
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
 
-                textbutton _(">") action FilePageNext()
+                textbutton _("Next") action FilePageNext()
 
 
 style page_label is gui_label
@@ -1070,20 +1012,20 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Options"), scroll="viewport"):
+    use game_menu(_("Settings"), scroll="viewport"):
         
         vbox:
 
             hbox:
                 box_wrap True
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                # if renpy.variant("pc") or renpy.variant("web"):
 
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                vbox:
+                    style_prefix "radio"
+                    label _("Display")
+                    textbutton _("Window") action Preference("display", "window")
+                    textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 # vbox:
                 #     style_prefix "radio"
@@ -1175,12 +1117,18 @@ style radio_vbox is pref_vbox
 
 style check_label is pref_label
 style check_label_text is pref_label_text
-style check_button is gui_button
+style check_text:
+    font gui.interface_text_font
+    size 30
+style check_button is empty
 style check_button_text is gui_button_text
 style check_vbox is pref_vbox
 
 style slider_label is pref_label
 style slider_label_text is pref_label_text
+style slider_text:
+    font gui.interface_text_font
+    size 30
 style slider_slider is gui_slider
 style slider_button is gui_button
 style slider_button_text is gui_button_text
@@ -1213,11 +1161,15 @@ style check_vbox:
     spacing gui.pref_button_spacing
 
 style check_button:
-    properties gui.button_properties("check_button")
+    left_padding 75
+    # properties gui.button_properties("check_button")
     foreground "gui/button/check_[prefix_]foreground.png"
 
 style check_button_text:
-    properties gui.button_text_properties("check_button")
+    idle_color u'#929292'
+    hover_color u'#fff'
+    selected_color u'#fff'
+    # properties gui.button_text_properties("check_button")
 
 style slider_slider:
     xsize 525
@@ -1392,22 +1344,22 @@ style history_window:
     ysize gui.history_height
 
 style history_name:
-    xpos gui.history_name_xpos
-    xanchor gui.history_name_xalign
+    xpos 0.5
+    xanchor 0.5
     ypos gui.history_name_ypos
     xsize gui.history_name_width
 
 style history_name_text:
     min_width gui.history_name_width
-    text_align gui.history_name_xalign
+    text_align 0.5
 
 style history_text:
-    xpos gui.history_text_xpos
-    ypos gui.history_text_ypos
-    xanchor gui.history_text_xalign
+    xpos 0.5
+    ypos 75
+    xanchor 0.5
     xsize gui.history_text_width
     min_width gui.history_text_width
-    text_align gui.history_text_xalign
+    text_align 0.5
     layout ("subtitle" if gui.history_text_xalign else "tex")
 
 style history_label:
@@ -1890,34 +1842,33 @@ screen quick_menu():
 
             xalign 0.95
             yalign 0.05
+            spacing 20
 
         #     textbutton _("Back") action Rollback()
         #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         #     textbutton _("Auto") action Preference("auto-forward", "toggle")
         #     textbutton _("Menu") action ShowMenu()
 
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
-            textbutton _("Options") action ShowMenu('preferences')
+            textbutton _("HISTORY") action ShowMenu('history')
+            textbutton _("AUTO") action Preference("auto-forward", "toggle")
+            textbutton _("SKIP") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("SAVE") action ShowMenu('save')
+            textbutton _("LOAD") action ShowMenu('load')
+            textbutton _("SETTINGS") action ShowMenu('preferences')
 
             # imagebutton auto _("gui/quickmenu/history_%s.png") action ShowMenu('history'):
             #     focus_mask True
-            #     activate_sound "audio/sfx/select.wav"
-            # imagebutton auto _("gui/quickmenu/load_%s.png") action Preference("auto-forward", "toggle"):
-            #     activate_sound "audio/sfx/select.wav"
-            #     selected_idle "gui/quickmenu/load_hover.png"
             # imagebutton auto _("gui/quickmenu/skip_%s.png") action Skip() alternate Skip(fast=True, confirm=True):
             #     focus_mask True
-            #     activate_sound "audio/sfx/select.wav"
             # imagebutton auto _("gui/quickmenu/save_%s.png") action ShowMenu('save'):
             #     focus_mask True
-            #     activate_sound "audio/sfx/select.wav"
-            # imagebutton auto _("gui/quickmenu/prefs_%s.png") action ShowMenu('preferences'):
+            # imagebutton auto _("gui/quickmenu/load_%s.png") action ShowMenu('load'):
             #     focus_mask True
-            #     activate_sound "audio/sfx/select.wav"
+            # imagebutton auto _("gui/quickmenu/settings_%s.png") action ShowMenu('preferences'):
+            #     focus_mask True
+                
+
+
 
 
 style window:
@@ -1928,7 +1879,7 @@ style namebox:
     variant "small"
     xanchor 0.5
     xsize gui.namebox_width
-    ypos 50
+    ypos 75
     ysize gui.namebox_height
 
     background Frame("gui/namebox/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)

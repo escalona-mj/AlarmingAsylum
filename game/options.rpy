@@ -13,7 +13,7 @@
 ## The _() surrounding the string marks it as eligible for translation.
 
 define config.name = _("Alarming Asylum")
-define config.end_splash_transition = Dissolve(1.0)
+define config.end_splash_transition = noise
 define config.rollback_enabled = False
 define config.has_autosave = False
 define config.autosave_on_quit = False
@@ -71,7 +71,7 @@ define config.has_voice = False
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = titlescreen
+define config.main_menu_music = "audio/titlescreen.ogg"
 
 
 ## Transitions #################################################################
@@ -82,23 +82,23 @@ define config.has_voice = False
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = Dissolve(0.5)
-define config.exit_transition = Dissolve(0.5)
+define config.enter_transition = noise
+define config.exit_transition = noise
 
 
 ## Between screens of the game menu.
 
-define config.intra_transition = Dissolve(0.5)
+define config.intra_transition = noise
 
 
 ## A transition that is used after a game has been loaded.
 
-define config.after_load_transition = fade
+define config.after_load_transition = noise_scene
 
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = fade
+define config.end_game_transition = noise_scene
 
 
 ## A variable to set the transition used when the game starts does not exist.
@@ -120,8 +120,8 @@ define config.window = "auto"
 
 ## Transitions used to show and hide the dialogue window
 
-define config.window_show_transition = Dissolve(.2)
-define config.window_hide_transition = Dissolve(.2)
+define config.window_show_transition = noise_window
+define config.window_hide_transition = noise_window
 
 
 ## Preference defaults #########################################################

@@ -32,6 +32,19 @@ define wipeleft_scene = MultipleTransition([
     Solid("#000"), ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64),
     True])
 
+define eyeopen = ImageDissolve("images/transitions/eyes.png", 1.5, 100)
+define eyeclose = ImageDissolve("images/transitions/eyes.png", 1.5, 100, reverse=True)
+
+define noise = ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64)
+
+define noise_scene = MultipleTransition([
+    False, ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64),
+    Solid("#000"), Pause(0.25),
+    Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64),
+    True])
+
+define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)
+
 #############################
 #           IMAGES          #
 #############################
@@ -83,10 +96,6 @@ image bg schoolhallway blurred:
 #############################
 #            FONT           #
 #############################
-
-style day_font:
-    font "fonts/CardenioModern-Bold.otf"
-    color "#ffffff"
 
 style partner_handwriting:
     font "fonts/NaomisHand-Regular.ttf"
