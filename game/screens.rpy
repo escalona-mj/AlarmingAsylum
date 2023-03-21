@@ -406,11 +406,12 @@ screen choice(items):
 
 
 transform choice_transform:
-    alpha 0.0
-    easein 0.5 alpha 1.0
+    alpha 0.0 xoffset 25
+    easein 1.0 alpha 1.0 xoffset 0
 
     on hide:
-        easein 0.5 alpha 0.0
+        alpha 1.0 xoffset 0
+        easein 1.0 alpha 0.0 xoffset 25
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -422,7 +423,7 @@ style choice_button is button
 style choice_button_text is button_text
 
 style choice_vbox:
-    xalign 0.95
+    xalign 0.5
     yalign 0.75
     #ypos 405
     yanchor 1.0
@@ -434,7 +435,7 @@ style choice_button is default:
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
-    outlines [ (3, "#00000049", 2, 2) ]
+    # outlines [ (3, "#00000049", 2, 2) ]
 
 
 ## Quick Menu screen ###########################################################
@@ -475,9 +476,11 @@ style quick_button_text is button_text
 #     properties gui.button_properties("quick_button")
 
 style quick_button_text:
+    activate_sound "audio/sfx/click.ogg"
+    hover_sound "audio/sfx/hover.ogg"
     font gui.interface_text_font
     properties gui.button_text_properties("quick_button")
-    # outlines [ (absolute(0), "#000000ff", absolute(0), absolute(0)) ]
+    outlines [ (absolute(1.5), "#0000007c", absolute(0), absolute(0)) ]
 
 
 ################################################################################
@@ -937,7 +940,7 @@ screen file_slots(title):
 
                         add FileScreenshot(slot) xalign 0.5
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
+                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y\n%H:%M"), empty=_("empty slot")):
                             style "slot_time_text"
 
                         text FileSaveName(slot):
@@ -1119,7 +1122,7 @@ style check_label is pref_label
 style check_label_text is pref_label_text
 style check_text:
     font gui.interface_text_font
-    size 30
+    size 35
 style check_button is empty
 style check_button_text is gui_button_text
 style check_vbox is pref_vbox
@@ -1128,7 +1131,7 @@ style slider_label is pref_label
 style slider_label_text is pref_label_text
 style slider_text:
     font gui.interface_text_font
-    size 30
+    size 35
 style slider_slider is gui_slider
 style slider_button is gui_button
 style slider_button_text is gui_button_text
@@ -1162,6 +1165,8 @@ style check_vbox:
 
 style check_button:
     left_padding 75
+    activate_sound "audio/sfx/click.ogg"
+    hover_sound "audio/sfx/hover.ogg"
     # properties gui.button_properties("check_button")
     foreground "gui/button/check_[prefix_]foreground.png"
 
@@ -1836,25 +1841,30 @@ screen quick_menu():
 
         hbox:
             style_prefix "quick"
-
+            #middle
             # xalign 0.5
             # yalign 0.99
 
+            #upper right
             xalign 0.95
             yalign 0.05
-            spacing 20
+            spacing 25
+
+            # xalign 0.99
+            # yalign 0.99
+            # spacing 25
 
         #     textbutton _("Back") action Rollback()
         #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         #     textbutton _("Auto") action Preference("auto-forward", "toggle")
         #     textbutton _("Menu") action ShowMenu()
 
-            textbutton _("HISTORY") action ShowMenu('history')
-            textbutton _("AUTO") action Preference("auto-forward", "toggle")
-            textbutton _("SKIP") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("SAVE") action ShowMenu('save')
-            textbutton _("LOAD") action ShowMenu('load')
-            textbutton _("SETTINGS") action ShowMenu('preferences')
+            textbutton _("History") action ShowMenu('history')
+            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Save") action ShowMenu('save')
+            textbutton _("Load") action ShowMenu('load')
+            textbutton _("Settings") action ShowMenu('preferences')
 
             # imagebutton auto _("gui/quickmenu/history_%s.png") action ShowMenu('history'):
             #     focus_mask True

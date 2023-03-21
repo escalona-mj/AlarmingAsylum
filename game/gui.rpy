@@ -207,7 +207,7 @@ define gui.quick_button_text_selected_color = gui.selected_color
 define gui.choice_button_width = 640
 define gui.choice_button_height = 95
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(90, 15, 0, 0)
+define gui.choice_button_borders = Borders(120, 23, 0, 20)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.0
@@ -226,9 +226,9 @@ define gui.choice_button_text_insensitive_color = "#444444"
 define gui.slot_button_width = 414
 define gui.slot_button_height = 309
 define gui.slot_button_borders = Borders(15, 15, 15, 15)
-define gui.slot_button_text_size = 21
+define gui.slot_button_text_size = 30
 define gui.slot_button_text_xalign = 0.5
-define gui.slot_button_text_idle_color = gui.idle_small_color
+define gui.slot_button_text_idle_color = gui.selected_color
 define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
@@ -257,7 +257,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = -20
+define gui.choice_spacing = 15
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6
@@ -428,12 +428,12 @@ init python:
     def small():
 
         ## Font sizes.
-        gui.text_size = 45
-        gui.name_text_size = 54 #54
-        gui.notify_text_size = 33
-        gui.interface_text_size = 45
-        gui.button_text_size = 45
-        gui.label_text_size = 51
+        gui.text_size = 50
+        gui.name_text_size = 55 #54
+        gui.notify_text_size = 45
+        gui.interface_text_size = 50
+        gui.button_text_size = 50
+        gui.label_text_size = 50
 
         ## Adjust the location of the textbox.
         gui.textbox_height = 368
@@ -447,7 +447,7 @@ init python:
         ## Change the size and spacing of various things.
         gui.slider_size = 54
 
-        gui.choice_button_text_size = 35
+        gui.choice_button_text_size = 45
 
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15

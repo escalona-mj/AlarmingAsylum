@@ -21,7 +21,7 @@ define config.autosave_slots = 0
 define config.has_quicksave = False
 define config.quicksave_slots = 0
 define _dismiss_pause = False
-define config.menu_include_disabled = True
+define config.menu_include_disabled = False
 define config.gl2 = True
 
 ## Determines if the title given above is shown on the main menu screen. Set
