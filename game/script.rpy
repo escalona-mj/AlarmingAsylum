@@ -20,9 +20,9 @@ label start:
     show text _("{i}...{/i}") at truecenter with wipeleft
     "{i}\"Hello? Earth to [Main]?\"{/i}"
     "{i}\"This sleepyhead...\"{/i}"
-    show text _("{size=+500}WAKE UP{/size}") at truecenter
-    "{size=+35}WAKE UP {/size}{nw}"
-    extend "{size=+35}[Main!u]{/size}{fast}{nw}"
+    show text _("{sc=10}{size=+500}WAKE UP{/size}{/sc}") at truecenter  
+    window hide(None)
+    pause 0.2
     stop music
     hide text 
     window show(None)
@@ -60,19 +60,34 @@ label start:
     show merah neutral 
     i "Wh-wha?"
     "Something hard hit my forehead, causing me to jerk out."
+    $ a1_name = "???" 
     a1 "[Main], wake up! You sleepyhead."
-    a1 "And here I thought I was the sleepy one."
+    a1 "And I thought I was the sleepy one..."
     "My eyes start to dart around to look at what's familiar and what isn't."
-    i "Sorry, I must have dozed off."
+    $ a1_name = "Alonso" 
+    i "Sorry [a1_name], I must have dozed off."
     "Stretching to gain energy, I stare blankly at the window, looking for an ounce of motivation."
-    a1 "Man... why do we have to go to an abandoned asylum?"
-    a1 "Doesn't it feel weird?"
-    a1 "Like,{w=0.1} why us?"
-    a1 "I-it's not like I'm afraid or anything..."
+    a1 "Why are you sleeping here alone?"
+    a1 "There's plenty of space to sleep from the other side."
+    i "I don't like people watching me sleep."
+    a1 "{cps=9}Oh...{/cps}{w=0.5} {sc=2}U-understandable.{/sc}"
+    "I know [a1_name]'s a great friend, but he shouldn't just wake some random stranger up."
+    "I give him a disapproval look."
+    a1 "{cps=5}Err...{/cps}"
+    "He advertedly rolled his eyes down to avoid my gaze."
+    "He isn't that bad, he just looks after my wellbeing."
+    "I mean, that's what friends do, right?"
+    "He looks strong and independent on the outside, but deep down that's not what he really is."
+    a1 "Man... why do we have to go to an {sc=2}a-abandoned asylum?{/sc}"
+    "There it is."
+    a1 "{sc=2}I-it's not like I'm afraid or anything...{/sc}"
     i "We're only there to discover the history of the asylum as per the coordinator's request."
-    i "Nothing else."
+    i "Nothing else, as far as I know."
     a1 "Yeah, you're right."
-    "..."
+    a1 "What am I getting scared of?"
+    a1 "I'm the bravest among the group!"
+    "He says that while proudly keeping his chest up."
+    pause 3.0
     a1 "Anyway, we're almost there."
     "I try to yawn discreetly into my hand, but I guess it doesn't look discreet enough."
     a1 "Man, I keep telling you to take your vitamins."
@@ -96,21 +111,21 @@ label start:
     "Right, first-aid...{w=0.5} check."
     "And then my supplements...{w=0.5} check."
     i "I guess I have everything right here."
-    a1 "Alright, I'll go with the others. Care to join me?"
+    a1 "Alright, I'll go with the others. Care to join us?"
     menu:
-        "Sure, I'll come with you.":
+        "\"Sure.\"":
             a1 "Okay. Come with me."
-            "We left the current railroad car onto the other one."
+            "We left the current passenger wagon onto the other one."
             $ hungry_flag = True
             hide merah
             window hide
             show black with wipeleft_scene
             window auto
             jump char_intro
-        "No thanks, I need some more time alone.":
+        "\"No thanks, I need some more time alone.\"":
             a1 "Take care."
             hide merah
-            "[a1_name] leaves the scene, giving the railroad car to myself all alone."
+            "[a1_name] leaves the scene, giving the passenger wagon to myself all alone."
             "The sound of the train ambience is so soothing, it's giving me enough focus on what matters."
             "Speaking on what matters..."
             "Oh right! The dream!"
@@ -150,9 +165,8 @@ label start:
             # "This transportation costed us more than my entire savings in a month!"
             # "Luckily my money accumulated, so I think I won't be dealing with running out of money anytime soon."
             window hide
-            pause 3.0
+            pause 5.0
             window auto
-            ".{w=0.5}.{w=0.5}.{w=0.5}"
             "Well, this is boring."
             "I should've brought my book to pass the time."
             "I think I'll snooze off again..."
@@ -166,33 +180,40 @@ label start:
             window show(None)
             a1 "{size=+50}[Main!u]!{/size}{fast}" with vpunch
             window auto
-            i "!!!"
-            "Like a cat with a cucumber on its behind, I pounced out of my seat."
             i "Gah! What the fu-{w=0.5}{nw}" with vpunch
             i "Don't sneak behind me like that..."
+            "Like a cat with a cucumber on its behind, I pounced out of my seat."
+            
         else:
             a1 "Hey everyone! [Main]'s awake!" with vpunch
             i "Jeez, you didn't have to announce my awakening."
             
         a1 "Hehe, sorry."
+        $ m1_name = "???" 
         m1 "Greetings, [Main]."
-        i "Hi, [m1_name]."
+        $ m1_name = "Lucy" 
+        i "Oh, [m1_name]."
         if hungry_flag == True:
             "[m1_name] approaches me and offered to join at her table."
             "As I approach the table, she goes back to the kitchen."
             "Wait, do trains have kitchens?"
-            "I lightly shake my head."
+            pause 2.0
+            window auto
+            "I lightly shake my head." with hpunch
             "That's not important! I'm more invested on what [m1_name] has in store for me."
             "The scent alone from the kitchen swiftly made its way to my nose which made me drool."
             "Soon after, [m1_name] comes out of the kitchen as she brings my plate."
             m1 "I noticed that you look off today..."
             m1 "So I prepared you some breakfast."
-            "..."
+            ".{w=0.5}.{w=0.5}.{w=0.5}{nw}"
+            pause 2.0
+            window auto
             m1 "Hello? Earth to [Main]?"
             "I look at her with a bewildered expression."
+            "[m1_name] chuckles back."
             m1 "What are you waiting for? Eat."
             menu:
-                "T-thank you for the food!":
+                "\"T-thank you for the food!\"":
                     m1 "My pleasure."
                 "Eat.":
                     pass
@@ -203,13 +224,16 @@ label start:
             "I give it a sniff. It smells kind of fruity."
             m1 "Go ahead, you look thirsty."
             i "Thanks."
+            "I take a sip on the carbonated water."
+            "The fizzing sensation of the water soothes my dried mouth."
+            "I am refreshed!"
+            pause 1.0
 
-        "I am in awe on how she always looks after us even if conflict stirs up in the group."
+        "Though I am quite surprised, she always looks after us even if conflict stirs up in the group."
         "I have to say, where does she even get the determination to deal with our stupidity?"
         "She's quite an amazing woman. She has never shown any vulnerabilities since we've met her."
         "She's an all-in-one-package! Matured, independent... I can never be as good as her."
-        "It's as if she was made to serve us."
-        "Like a butler..."
+        "It's as if she's like a butler..."
         "On second thought..."
         i "How do you do it?"
         m1 "Do what?"
@@ -225,9 +249,9 @@ label start:
         i "Thanks [m1_name]."
         extend " For everything."
         i "Seeing where you are now, I guess you needed a single thank you from us."
-        "[m1_name] smiled back to me and went down to her business."
+        "[m1_name] smiled back to me and went back to cleaning."
         "So, where are they?"
-        "I walked across the long hallway of this railroad car to find the others."
+        "I walked across the long hallway of this passenger wagon to find the others."
         "Soon, I heard faint voices growing stronger."
 
         a1 "...How's the situation, [m2_name]? Got any updates?"
@@ -263,10 +287,20 @@ label start:
         a1 "Not so fast!"
         a1 "[m2_name], surely we won't be staying there for too long right?"
         m2 "3 days."
-        a1 "3 d-days?!"
+        a1 "{sc}3 d-days?!{/sc}"
         "Wait what?!"
         "My eyes grew wide."
+        "I thought we're only investigating the asylum?"
+        "I smell trouble..."
         m2 "There's still the reward money after all of this."
+        m2 "It's worth it."
+        camera
+        scene bg trainstation blurred with wipeleft_scene
+        
+        i "We're here."
+
+
+
         
 
 return

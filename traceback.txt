@@ -1,38 +1,67 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "renpy/common/00start.rpy", line 314, in script call
-    call expression "before_main_menu"
-  File "game/splash.rpy", line 22, in script
-    call screen title_screen
-  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-Exception: Screen title_screen is not known.
-
+Executing ATL code at game/script.rpy:50
+  File "game/script.rpy", line 61, in script
+    i "Wh-wha?"
+Exception: ATL appears to be in an infinite loop.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 314, in script call
-    call expression "before_main_menu"
-  File "game/splash.rpy", line 22, in script
-    call screen title_screen
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 2232, in execute
-    self.call("execute")
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 2220, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\statements.py", line 281, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\exports.py", line 3147, in call_screen
-    show_screen(_screen_name, _transient=True, *args, **kwargs)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 1185, in show_screen
-    raise Exception("Screen %s is not known.\n" % (name[0],))
-Exception: Screen title_screen is not known.
+  File "game/script.rpy", line 61, in script
+    i "Wh-wha?"
+  File "C:\renpy-8.0.3-sdk\renpy\ast.py", line 921, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "C:\renpy-8.0.3-sdk\renpy\exports.py", line 1373, in say
+    who(what, *args, **kwargs)
+  File "C:\renpy-8.0.3-sdk\renpy\character.py", line 1266, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "C:\renpy-8.0.3-sdk\renpy\character.py", line 927, in do_display
+    display_say(who,
+  File "C:\renpy-8.0.3-sdk\renpy\character.py", line 666, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\renpy-8.0.3-sdk\renpy\display\core.py", line 3912, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "C:\renpy-8.0.3-sdk\renpy\display\core.py", line 2602, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 495, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\transform.py", line 747, in render
+    return transform_render(self, width, height, st, at)
+  File "accelerator.pyx", line 187, in renpy.display.accelerator.transform_render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\renpy-8.0.3-sdk\renpy\display\transform.py", line 747, in render
+    return transform_render(self, width, height, st, at)
+  File "accelerator.pyx", line 148, in renpy.display.accelerator.transform_render
+  File "C:\renpy-8.0.3-sdk\renpy\display\transform.py", line 926, in update_state
+    fr = self.execute(self, self.st, self.at)
+  File "C:\renpy-8.0.3-sdk\renpy\atl.py", line 596, in execute
+    action, arg, pause = block.execute(trans, timebase, self.atl_state, events)
+  File "C:\renpy-8.0.3-sdk\renpy\atl.py", line 867, in execute
+    raise Exception("ATL appears to be in an infinite loop.")
+Exception: ATL appears to be in an infinite loop.
 
-
-Windows-8.1-6.3.9600 AMD64
-Ren'Py 8.0.1.22070801
+Windows-10-10.0.19044 AMD64
+Ren'Py 8.0.3.22090809
 Alarming Asylum 1.0
-Mon Mar 27 02:01:40 2023
+Mon Mar 27 17:32:15 2023

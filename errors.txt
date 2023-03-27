@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/splash.rpy", line 18: else clause expects a non-empty block.
-    else:
-         ^
+File "game/script.rpy", line 89: expected statement.
+    Here is some {=test_style}scared{/b} shakey{/i}{/=test_style} text
+                 ^
 
-Ren'Py Version: Ren'Py 8.0.1.22070801
-Mon Mar 27 02:00:57 2023
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Mon Mar 27 16:50:20 2023

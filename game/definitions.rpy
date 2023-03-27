@@ -19,12 +19,12 @@ define a1 = DynamicCharacter(
     'a1_name',
     kind=i)
 
-default m1_name = "Marissa"
+default m1_name = "Lucy"
 define m1 = DynamicCharacter(
     'm1_name',
     kind=i)
 
-default m2_name = "Mark"
+default m2_name = "Raymon"
 define m2 = DynamicCharacter(
     'm2_name',
     kind=i)
@@ -63,10 +63,7 @@ define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, rample
 #      DYNAMIC SCENES       #
 #############################
 image train1:
-    im.Blur("images/bgs/train/train1.png", 5.0)
-
-image train2:
-    im.Blur("images/bgs/train/train2.png", 5.0)
+    im.Blur("images/bgs/train/train1.png", 3.0)
 
 image forestbackground:
     im.Blur("images/bgs/train/forestbackground.png", 5.0)
@@ -109,17 +106,9 @@ image vigenette = Composite(
 image asylum:
     im.Blur("gui/menu/asylum.jpg", 3.0)
 
-image bg meadow blurred:
-    im.Blur("images/bgs/bg meadow.jpg", 5.0)
+image bg trainstation blurred:
+    im.Blur("images/bgs/bg trainstation.jpg", 5.0)
 
-image bg uni blurred:
-    im.Blur("images/bgs/bg uni.jpg", 5.0)
-
-image bg lecturehall blurred:
-    im.Blur("images/bgs/bg lecturehall.jpg", 5.0)
-
-image bg schoolhallway blurred:
-    im.Blur("images/bgs/bg schoolhallway.jpg", 5.0)
 
 #############################
 #            FONT           #
