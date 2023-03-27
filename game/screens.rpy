@@ -2,70 +2,6 @@
 ## Initialization
 ################################################################################
 
-init offset = -1
-#Parallax Mouse Tracker
-init python:
-    import pygame
-    import math
-
-
-    class TrackCursor(renpy.Displayable):
-
-        def __init__(self, child, paramod, **kwargs):
-
-            super(TrackCursor, self).__init__()
-
-            self.child = renpy.displayable(child)
-            self.x = 0
-            self.y = 0
-            self.actual_x = 0
-            self.actual_y = 0
-
-            self.paramod = paramod
-            self.last_st = 0
-
-
-
-        def render(self, width, height, st, at):
-
-            rv = renpy.Render(width, height)
-            minimum_speed = 0.5
-            maximum_speed = 3
-            speed = 1 + minimum_speed
-            mouse_distance_x = min(maximum_speed, max(minimum_speed, (self.x - self.actual_x)))
-            mouse_distance_y = (self.y - self.actual_y)
-            if self.x is not None:
-                st_change = st - self.last_st
-
-                self.last_st = st
-                self.actual_x = self.x
-                self.actual_y = self.y
-
-
-                if mouse_distance_y <= minimum_speed:
-                    mouse_distance_y = minimum_speed
-                elif mouse_distance_y >= maximum_speed:
-                    mouse_distance_y = maximum_speed
-
-                cr = renpy.render(self.child, width, height, st, at)
-                cw, ch = cr.get_size()
-                rv.blit(cr, (self.actual_x, self.actual_y))
-
-
-
-            renpy.redraw(self, 0)
-            return rv
-
-        def event(self, ev, x, y, st):
-            hover = ev.type == pygame.MOUSEMOTION
-            click = ev.type == pygame.MOUSEBUTTONDOWN
-            mousefocus = pygame.mouse.get_focused()
-            if hover:
-
-                if (x != self.x) or (y != self.y) or click:
-                    self.x = -x /self.paramod
-                    self.y = -y /self.paramod
-
 ################################################################################
 ## Styles
 ################################################################################
@@ -144,7 +80,8 @@ style frame:
 ################################################################################
 ## In-game screens
 ################################################################################
-default player = ""
+default Main = persistent.playername
+define persistent.playername = ''
 
 #custom name input
 screen name_input(message, ok_action):
@@ -157,22 +94,24 @@ screen name_input(message, ok_action):
 
     add "gui/overlay/confirm.png"
     key "K_RETURN" action [ok_action]
-
+    
     frame:
-        if renpy.mobile:
-                yoffset -300
+        # if renpy.mobile:
+        #         yoffset -325
+                
         has vbox:
             xalign .5
             yalign .5
             spacing 30
-            
+            xfill True
+        
 
         label _(message):
             style "confirm_prompt"
             xalign 0.5
             yalign 0.5
 
-        input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
+        input default "" value VariableInputValue("Main") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
             xalign 0.5
             yalign 0.5
 
@@ -182,23 +121,14 @@ screen name_input(message, ok_action):
             spacing 100
 
             textbutton _("OK") action ok_action
+    textbutton _("X") action Hide(screen='name_input'):
+        xalign 0.97
+        yalign 0.08
 
 init python:
     def FinishEnterName():
-        if not persistent.complete == 1:
-            if player.lower().strip() == "merah":
-                renpy.show_screen("error_notify", message="Please choose another.")
-                renpy.play("audio/sfx/error.wav")
-                return
-            elif not player:
-                renpy.show_screen("error_notify", message="Please input a name.")
-                renpy.play("audio/sfx/error.wav")    
-                return
-        else:
-            if not player:
-                renpy.show_screen("error_notify", message="Please input a name.")
-                renpy.play("audio/sfx/error.wav")
-                return
+        if not Main: return
+        persistent.playername = Main
         renpy.hide_screen("name_input")
         renpy.jump_out_of_context("start")
 
@@ -229,25 +159,6 @@ screen dialog(message, ok_action):
             spacing 100
 
             textbutton _("OK") action ok_action
-
-screen error_notify(message):
-    zorder 200
-
-    label _(message) at error_notify_appear:
-        xalign 0.5
-        yalign 0.20
-
-    timer 3.25 action Hide('error_notify')
-
-
-transform error_notify_appear:
-    on show:
-        alpha 0 yoffset 10
-        linear .5 alpha .5 yoffset 0
-    on hide:
-        alpha .5 yoffset 0
-        linear .5 alpha 0 yoffset 10
-
 
 ## Say screen ##################################################################
 ##
@@ -300,11 +211,10 @@ style namebox_label is say_label
 
 style window:
     xalign 0.5
-    xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -313,7 +223,7 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
@@ -332,7 +242,7 @@ style say_dialogue:
     line_spacing 10
 
 image ctc:
-    xalign 0.95 yalign 0.95 xoffset -75 alpha 0.0 subpixel True
+    xalign 0.95 yalign 0.95 alpha 0.0 subpixel True
     "gui/ctc/ctc.png"
     block:
         easeout 0.75 alpha 1.0 yoffset 0
@@ -340,7 +250,7 @@ image ctc:
         repeat
 
 image ctc_pause:
-    xalign 0.95 yalign 0.95 xoffset -75 alpha 0.0 subpixel True
+    xalign 0.95 yalign 0.95 alpha 0.0 subpixel True
     "gui/ctc/ctc_pause.png"
     block:
         easeout 0.25 alpha 1.0
@@ -406,12 +316,12 @@ screen choice(items):
 
 
 transform choice_transform:
-    alpha 0.0 xoffset 25
-    easein 1.0 alpha 1.0 xoffset 0
+    alpha 0.0 xoffset 100
+    easein 0.5 alpha 1.0 xoffset 0
 
     on hide:
         alpha 1.0 xoffset 0
-        easein 1.0 alpha 0.0 xoffset 25
+        easeout 0.5 alpha 0.0 xoffset 100
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -432,6 +342,8 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    activate_sound "audio/sfx/click.ogg"
+    hover_sound "audio/sfx/hover.ogg"
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -466,21 +378,19 @@ screen quick_menu():
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
 
-
 default quick_menu = True
 
 style quick_button is default
 style quick_button_text is button_text
 
-# style quick_button:
-#     properties gui.button_properties("quick_button")
+style quick_button:
+    # properties gui.button_properties("quick_button")
+    activate_sound "audio/sfx/click.ogg"
 
 style quick_button_text:
-    activate_sound "audio/sfx/click.ogg"
-    hover_sound "audio/sfx/hover.ogg"
     font gui.interface_text_font
     properties gui.button_text_properties("quick_button")
-    outlines [ (absolute(1.5), "#0000007c", absolute(0), absolute(0)) ]
+    # outlines [ (absolute(1.5), "#0000007c", absolute(0), absolute(0)) ]
 
 
 ################################################################################
@@ -492,17 +402,21 @@ style quick_button_text:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
+transform menu_appear:
+    on show:
+        alpha 0 yoffset 500
+        easein 1.5 alpha 1 yoffset 0
+        
 screen navigation():
-
     if renpy.get_screen("main_menu"):
-        hbox:
+        hbox at menu_appear:
             style_prefix "hnavigation"
 
             xalign 0.5
             yalign 0.96
             spacing 70
 
-            textbutton _("New Game") action (Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+            textbutton _("New Game") action (Show(screen='name_input', message="What is your name?", ok_action=Function(FinishEnterName)))
 
             textbutton _("Load Game") action ShowMenu("load")
 
@@ -511,6 +425,11 @@ screen navigation():
             textbutton _("Extras") action ShowMenu("achievements")
 
             textbutton _("About") action ShowMenu("about")
+
+            if config.developer == True:
+                textbutton _("Debug") action Start("debug")
+            else:
+                pass
 
             if renpy.variant("pc"):
 
@@ -525,8 +444,8 @@ screen navigation():
             yalign 0.5
 
             spacing 5
-            if main_menu:
-                textbutton _("New Game") action (Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+            # if main_menu:
+            #     textbutton _("New Game") action (Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
 
             # if not main_menu:
             #     textbutton _("History") action ShowMenu("history")
@@ -586,63 +505,28 @@ style hnavigation_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
-transform cloud_loop1:
-        xalign 1.0
-        linear 50 xalign 0.0
-        repeat
-
-transform cloud_loop2:
-        xalign 1.0
-        linear 200 xalign 0.0
-        repeat
-
-transform basicfade:
-        alpha 0.0
-        linear 1.0 alpha 1.0
 
 transform logoease:
     on show:
         yoffset -50 alpha 0.0
-        easein 2.0 alpha 1.0 yoffset 0
+        linear 0.7 alpha 1.0 yoffset 0
+        linear 0.3 yoffset 15
+        easeout 0.5 yoffset 0
 
 screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     
     tag menu
-    # add "gui/menu/sky1.png"
-    # add "gui/menu/clouds2.png" at cloud_loop2:
-    #     pos (0, 0)
-
-    # add "gui/menu/clouds1.png" at cloud_loop1:
-    #     pos (0, -170)
-
-    # if renpy.variant("pc"):
-    #     add TrackCursor("gui/menu/grasshill.png", 150):
-    #         pos (0, 700)
-    #         zoom 1.1
-    # else:
-    #     add "gui/menu/grasshill.png":
-    #         pos (0, 700)
-    #         zoom 1.1
-
-    # if renpy.variant("pc"):
-    #     add TrackCursor("gui/menu/grassblur.png", 50) at basicfade:
-    #         pos (0, 750)
-    #         zoom 1.5
-    # else:
-    #     add "gui/menu/grassblur.png" at basicfade:
-    #         pos (0, 750)
-    #         zoom 1.5
     
-    add "asylum"
+    add "asylum" at bg_title_screen:
+        xalign 0.5
+        yalign 0.5
+
     add "particle"
     add "particle_blur"
     add "vigenette"
-    # add "gui/menu/vigenette.png":
-    #     yoffset -500
-    #     zoom 1.5
-    
+ 
     add "gui/logo.png" at logoease:
         xalign 0.5
         yalign 0.25
@@ -716,7 +600,6 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         add "asylum"
         add "particle"
         add "particle_blur"
-
 
     else:
         add "gui/overlay/confirm.png"
@@ -1011,6 +894,9 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
+init python:
+    renpy.music.register_channel("ambient", mixer="ambient", loop=True, tight=False)
+
 screen preferences():
 
     tag menu
@@ -1024,11 +910,11 @@ screen preferences():
 
                 # if renpy.variant("pc") or renpy.variant("web"):
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Display")
-                    textbutton _("Window") action Preference("display", "window")
-                    textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Display")
+                #     textbutton _("Window") action Preference("display", "window")
+                #     textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 # vbox:
                 #     style_prefix "radio"
@@ -1061,9 +947,9 @@ screen preferences():
                     bar value Preference("text speed")
 
                     label _("Auto-Forward Time")
-                    text _("The speed of the automation of the in-game text per dialogue.")
+                    text _("The speed of the automation per dialogue.")
                     bar value Preference("auto-forward time")
-
+               
                 vbox:
 
                     if config.has_music:
@@ -1072,6 +958,12 @@ screen preferences():
                         vbox:
                             text _("The loudness of background music throughout the game.")
                             bar value Preference("music volume")
+
+                        label _("Ambient Volume")
+
+                        vbox:
+                            text _("The loudness of ambient music throughout the game.")
+                            bar value Preference("ambient volume")
 
                     if config.has_sound:
 
@@ -1236,7 +1128,6 @@ screen history():
         ## ypadding essentially combines the top_padding and bottom_padding properties
         ## and sets them to the same value
         ypadding 150
-
         vpgrid:
 
             cols 1
@@ -1247,7 +1138,6 @@ screen history():
             scrollbars "vertical"
 
             vbox:
-
                 for h in _history_list:
 
                     window:
@@ -1255,6 +1145,7 @@ screen history():
                         ## This lays things out properly if history_height is None.
                         has fixed:
                             yfit True
+                            yalign 0.5
 
                         if h.who:
 
@@ -1271,23 +1162,30 @@ screen history():
                         text what:
                             line_spacing 5
                             substitute False
-
+                    
                     ## This puts some space between entries so it's easier to read
-                    null height 15
+                    null height 100
 
                 if not _history_list:
 
-                    text "The dialogue history is empty." line_spacing 10
+                    text "The text log is empty.":
+                        xpos 700
+                        ypos 10
+                        line_spacing 10
                     ## Adding line_spacing prevents the bottom of the text
                     ## from getting cut off. Adjust when replacing the
                     ## default fonts.
+            
 
         textbutton "Return":
             style "history_return_button"
             action Return()
             alt _("Return")
-            xalign 0.5
             yoffset 100
+    add "gui/phone/overlay/border_bottom.png":
+        pos (250, 850)
+    add "gui/phone/overlay/border_top.png":
+        pos (250, 195)       
 
 
 # screen history():
@@ -1336,13 +1234,14 @@ define gui.history_allow_tags = { "alt", "noalt" }
 style history_window is empty
 
 style history_name is gui_label
-style history_name_text is gui_label_text
+style history_name_text:
+    font gui.name_text_font
 style history_text is gui_text
 
 style history_text is gui_text
 
 style history_label is gui_label
-style history_label_text is gui_label_text
+style history_label_text is game_menu_label_text
 
 style history_window:
     xfill True
@@ -1361,10 +1260,10 @@ style history_name_text:
 style history_text:
     xpos 0.5
     ypos 75
-    xanchor 0.5
+    xanchor gui.history_text_xalign
     xsize gui.history_text_width
     min_width gui.history_text_width
-    text_align 0.5
+    text_align gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
 
 style history_label:
@@ -1374,6 +1273,9 @@ style history_label:
 style history_label_text:
     xalign 0.5
 
+style history_return_button:
+    align(0.5,1.0)
+    yoffset 100
 
 ## Help screen #################################################################
 ##
@@ -1682,10 +1584,10 @@ screen notify(message):
 
 transform notify_appear:
     on show:
-        alpha 0
-        linear .25 alpha 1.0
+        alpha 0 xoffset -100
+        easein .5 alpha 1.0 xoffset 0
     on hide:
-        linear .5 alpha 0.0
+        easeout .5 alpha 0.0 xoffset -100
 
 
 style notify_frame is empty
@@ -1841,15 +1743,18 @@ screen quick_menu():
 
         hbox:
             style_prefix "quick"
-            #middle
-            # xalign 0.5
-            # yalign 0.99
 
-            #upper right
-            xalign 0.95
-            yalign 0.05
+            #middle
+            xalign 0.5
+            yalign 0.99
             spacing 25
 
+            #upper right
+            # xalign 0.95
+            # yalign 0.05
+            # spacing 25
+
+            #bottom right
             # xalign 0.99
             # yalign 0.99
             # spacing 25
@@ -1858,32 +1763,20 @@ screen quick_menu():
         #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         #     textbutton _("Auto") action Preference("auto-forward", "toggle")
         #     textbutton _("Menu") action ShowMenu()
-
+            if config.developer == True:
+                textbutton _("Back") action Rollback()
+            else:
+                pass
             textbutton _("History") action ShowMenu('history')
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Load") action ShowMenu('load')
             textbutton _("Settings") action ShowMenu('preferences')
-
-            # imagebutton auto _("gui/quickmenu/history_%s.png") action ShowMenu('history'):
-            #     focus_mask True
-            # imagebutton auto _("gui/quickmenu/skip_%s.png") action Skip() alternate Skip(fast=True, confirm=True):
-            #     focus_mask True
-            # imagebutton auto _("gui/quickmenu/save_%s.png") action ShowMenu('save'):
-            #     focus_mask True
-            # imagebutton auto _("gui/quickmenu/load_%s.png") action ShowMenu('load'):
-            #     focus_mask True
-            # imagebutton auto _("gui/quickmenu/settings_%s.png") action ShowMenu('preferences'):
-            #     focus_mask True
-                
-
-
-
-
+ 
 style window:
     variant "small"
-    background "gui/textbox/textbox.png"
+    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     variant "small"
@@ -1891,8 +1784,7 @@ style namebox:
     xsize gui.namebox_width
     ypos 75
     ysize gui.namebox_height
-
-    background Frame("gui/namebox/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
 
 style say_label:
     variant "small"
@@ -1912,7 +1804,7 @@ style say_dialogue:
 style choice_vbox:
     variant "small"
     xalign 0.95
-    yalign 0.70
+    yalign 0.65
     #ypos 405
     yanchor 1.0
 

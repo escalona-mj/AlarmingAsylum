@@ -1,55 +1,38 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/day1.rpy", line 119, in script
-    menu:
-  File "game/screens.rpy", line 400, in execute
-    screen choice(items):
-  File "game/screens.rpy", line 400, in execute
-    screen choice(items):
-TypeError: __init__() got multiple values for argument 'ramplen'
+  File "renpy/common/00start.rpy", line 314, in script call
+    call expression "before_main_menu"
+  File "game/splash.rpy", line 22, in script
+    call screen title_screen
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+Exception: Screen title_screen is not known.
+
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/day1.rpy", line 119, in script
-    menu:
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 1903, in execute
-    choice = renpy.exports.menu(choices, self.set, args, kwargs, item_arguments)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\exports.py", line 1010, in menu
-    rv = renpy.store.menu(new_items)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\exports.py", line 1250, in display_menu
-    rv = renpy.ui.interact(mouse='menu', type=type, roll_forward=roll_forward)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs) # type: ignore
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3804, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  [Previous line repeated 2 more times]
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 451, in visit_all
-    callback(self)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3804, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 462, in per_interact
-    self.update()
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 653, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 400, in execute
-    screen choice(items):
-  File "game/screens.rpy", line 400, in execute
-    screen choice(items):
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\sl2\slast.py", line 1177, in execute
-    d = transform(d)
-TypeError: __init__() got multiple values for argument 'ramplen'
+  File "renpy/common/00start.rpy", line 314, in script call
+    call expression "before_main_menu"
+  File "game/splash.rpy", line 22, in script
+    call screen title_screen
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 2232, in execute
+    self.call("execute")
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 2220, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\statements.py", line 281, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\exports.py", line 3147, in call_screen
+    show_screen(_screen_name, _transient=True, *args, **kwargs)
+  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 1185, in show_screen
+    raise Exception("Screen %s is not known.\n" % (name[0],))
+Exception: Screen title_screen is not known.
+
 
 Windows-8.1-6.3.9600 AMD64
 Ren'Py 8.0.1.22070801
 Alarming Asylum 1.0
-Tue Mar 21 23:46:13 2023
+Mon Mar 27 02:01:40 2023

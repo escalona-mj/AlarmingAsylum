@@ -1,23 +1,37 @@
 #############################
 #         CHARCTERS         #
 #############################
-define narrator = Character(window_background = Image("gui/textbox/textbox.png", xalign=0.5, yalign=1.0),ctc="ctc", ctc_position="fixed")
 
-default m_name = "Merah"
-define m = DynamicCharacter('m_name', window_background = Image("gui/textbox/textbox.png", xalign=0.5, yalign=1.0), what_prefix='"', what_suffix='"', ctc="ctc", ctc_pause="ctc_pause", ctc_position="fixed")
+define narrator = Character(
+    ctc="ctc",
+    ctc_position="fixed")
 
-define mc = DynamicCharacter('player', window_background = Image("gui/textbox/textbox.png", xalign=0.5, yalign=1.0), what_prefix='"', what_suffix='"', ctc="ctc", ctc_pause="ctc_pause", ctc_position="fixed")
-define mc_pov = DynamicCharacter('player', window_background = Image("gui/textbox/textbox.png", xalign=0.5, yalign=1.0), what_prefix='{i}', what_suffix='{/i}', ctc="ctc", ctc_pause="ctc_pause", ctc_position="fixed")
+define i = Character(
+    '[Main]',
+    what_prefix='"',
+    what_suffix='"',
+    ctc="ctc",
+    ctc_pause="ctc_pause",
+    ctc_position="fixed")
 
-default love_affection = 0
+default a1_name = "Alonso"
+define a1 = DynamicCharacter(
+    'a1_name',
+    kind=i)
 
+default m1_name = "Marissa"
+define m1 = DynamicCharacter(
+    'm1_name',
+    kind=i)
+
+default m2_name = "Mark"
+define m2 = DynamicCharacter(
+    'm2_name',
+    kind=i)
 
 #############################
 #        TRANSITIONS        #
 #############################
-
-define flash = Fade(0.1, 0.5, 0.5, color="#fff")
-
 define wipeleft = ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64)
 
 define dissolve_scene_full = MultipleTransition([
@@ -44,6 +58,20 @@ define noise_scene = MultipleTransition([
     True])
 
 define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)
+
+#############################
+#      DYNAMIC SCENES       #
+#############################
+image train1:
+    im.Blur("images/bgs/train/train1.png", 5.0)
+
+image train2:
+    im.Blur("images/bgs/train/train2.png", 5.0)
+
+image forestbackground:
+    im.Blur("images/bgs/train/forestbackground.png", 5.0)
+    yoffset -250
+    
 
 #############################
 #           IMAGES          #
@@ -100,8 +128,13 @@ image bg schoolhallway blurred:
 style partner_handwriting:
     font "fonts/NaomisHand-Regular.ttf"
 
-style author_font:
+style disclaimer_font:
     color "#ffffff"
-    font "fonts/DFG W5.ttf"
+    font "fonts/Astonished-KMrD.ttf"
 
-# define titlescreen = "<loop 3>audio/bgm/1.ogg"
+#############################
+#           AUDIO           #
+#############################
+define audio.titlescreen = "audio/bgm/titlescreen.ogg"
+
+define audio.train = "audio/ambient/train.ogg"

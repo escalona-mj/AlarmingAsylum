@@ -97,11 +97,11 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## time.
 
 ## The height of the textbox containing dialogue.
-define gui.textbox_height = 368
+define gui.textbox_height = 364
 
 ## The placement of the textbox vertically on the screen. 0.0 is the top, 0.5 is
 ## center, and 1.0 is the bottom.
-define gui.textbox_yalign = 1.01
+define gui.textbox_yalign = 1.0
 
 
 ## The placement of the speaking character's name, relative to the textbox.
@@ -120,7 +120,7 @@ define gui.namebox_height = 41
 
 ## The borders of the box containing the character's name, in left, top, right,
 ## bottom order.
-define gui.namebox_borders = Borders(5, 5, 5, 5)
+define gui.namebox_borders = Borders(25, 5, 25, 5)
 
 ## If True, the background of the namebox will be tiled, if False, the
 ## background of the namebox will be scaled.
@@ -205,13 +205,13 @@ define gui.quick_button_text_selected_color = gui.selected_color
 ## Choice buttons are used in the in-game menus.
 
 define gui.choice_button_width = 640
-define gui.choice_button_height = 95
+define gui.choice_button_height = None
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(120, 23, 0, 20)
+define gui.choice_button_borders = Borders(40, 20, 0, 20)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.0
-define gui.choice_button_text_idle_color = "#cccccc"
+define gui.choice_button_text_idle_color = "#e9e9e9"
 define gui.choice_button_text_hover_color = "#ffffff"
 define gui.choice_button_text_insensitive_color = "#444444"
 
@@ -257,7 +257,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 15
+define gui.choice_spacing = 10
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6
@@ -293,7 +293,7 @@ define gui.confirm_frame_borders = Borders(60, 60, 60, 60)
 define gui.skip_frame_borders = Borders(24, 8, 75, 8)
 
 ## The frame that is used as part of the notify screen.
-define gui.notify_frame_borders = Borders(24, 8, 60, 8)
+define gui.notify_frame_borders = Borders(24, 8, 75, 8)
 
 ## Should frame backgrounds be tiled?
 define gui.frame_tile = False
@@ -348,13 +348,13 @@ define gui.history_height = None
 define gui.history_name_xpos = 233
 define gui.history_name_ypos = 0
 define gui.history_name_width = 233
-define gui.history_name_xalign = 1.0
+define gui.history_name_xalign = 0.5
 
 ## The position, width, and alignment of the dialogue text.
 define gui.history_text_xpos = 255
 define gui.history_text_ypos = 3
 define gui.history_text_width = 1110
-define gui.history_text_xalign = 0.0
+define gui.history_text_xalign = 0.5
 
 
 ## NVL-Mode ####################################################################
@@ -420,7 +420,7 @@ init python:
     @gui.variant
     def touch():
 
-        gui.quick_button_borders = Borders(25, 6, 25, 6)
+        gui.quick_button_borders = Borders(6, 6, 6, 6)
 
     ## This changes the size and spacing of various GUI elements to ensure they
     ## are easily visible on phones.
@@ -431,23 +431,24 @@ init python:
         gui.text_size = 50
         gui.name_text_size = 55 #54
         gui.notify_text_size = 45
-        gui.interface_text_size = 50
-        gui.button_text_size = 50
-        gui.label_text_size = 50
+        gui.interface_text_size = 55
+        gui.button_text_size = 55
+        gui.label_text_size = 55
 
         ## Adjust the location of the textbox.
-        gui.textbox_height = 368
+        gui.textbox_yalign = 1.0
         gui.dialogue_width = 1600
         gui.dialogue_text_xalign = 0.5
-        gui.dialogue_xpos = 0.5
+        gui.dialogue_xpos = 0.25
         gui.dialogue_ypos = 0.5
         gui.name_xalign = 0.5
         gui.name_xpos = 0.5
+        gui.namebox_width = None
 
         ## Change the size and spacing of various things.
         gui.slider_size = 54
 
-        gui.choice_button_text_size = 45
+        gui.choice_button_text_size = 50
 
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15
@@ -455,7 +456,7 @@ init python:
         gui.history_height = 250
         gui.history_text_width = 1035
 
-        gui.quick_button_text_size = 40
+        gui.quick_button_text_size = 35
 
         ## File button layout.
         gui.file_slot_cols = 3

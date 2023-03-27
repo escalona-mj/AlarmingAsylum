@@ -13,8 +13,8 @@
 ## The _() surrounding the string marks it as eligible for translation.
 
 define config.name = _("Alarming Asylum")
-define config.end_splash_transition = noise
-define config.rollback_enabled = False
+define config.rollback_enabled = config.developer
+define config.developer = "auto"
 define config.has_autosave = False
 define config.autosave_on_quit = False
 define config.autosave_slots = 0
@@ -71,7 +71,7 @@ define config.has_voice = False
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-define config.main_menu_music = "audio/titlescreen.ogg"
+define config.main_menu_music = audio.titlescreen
 
 
 ## Transitions #################################################################
@@ -85,6 +85,11 @@ define config.main_menu_music = "audio/titlescreen.ogg"
 define config.enter_transition = noise
 define config.exit_transition = noise
 
+define config.end_splash_transition = noise
+
+define config.enter_yesno_transition = noise
+define config.exit_yesno_transition = noise
+define config.game_main_transition = noise
 
 ## Between screens of the game menu.
 
@@ -98,7 +103,7 @@ define config.after_load_transition = noise_scene
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = noise_scene
+define config.end_game_transition = noise
 
 
 ## A variable to set the transition used when the game starts does not exist.

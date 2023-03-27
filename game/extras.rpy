@@ -11,8 +11,7 @@ python early:
 define lockaname = "Achievement Locked."
 
 screen achievements():
-
-    tag menu
+    modal True
     use extras_menu(_("Achievements"), scroll="viewport"):
 
         style_prefix "achievements"
@@ -52,23 +51,25 @@ style achievements_frame is empty
 
 style achievements_label_text:
     yalign 0.5
+    color u'#ffcf00'
 
 style locked_label_text:
     yalign 0.5
-    color u'#FFF3'
+    color u'#404040'
 
 style achievements_text:
     yalign 0.5
+    size 35
 
 style locked_text:
     yalign 0.5
-    color u'#FFF3'
+    color u'#404040'
+    size 35
 
 style achievements_frame:
     background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
     padding (20, 20, 20, 20)
     xfill True
-
 
 ## Extras Navigation screen ############################################################
 ##
@@ -91,15 +92,11 @@ screen extras_navigation():
         else:
 
             textbutton _("???") action None alt "Locked Option"
-        
-    if main_menu:
-        textbutton _("Return"):
-            style "return_button"
-            action Return()
-    else:
-        textbutton _("Return"):
-            style "return_button"
-            action ShowMenu("preferences")
+
+    textbutton _("Return"):
+        style "return_button"
+        action Hide(screen='achievements', transition=noise)
+
 
 ## Extras Menu screen #######################################
 ##
@@ -107,13 +104,6 @@ screen extras_navigation():
 screen extras_menu(title, scroll=None, yinitial=0.0):
 
     style_prefix "game_menu"
-
-    if main_menu:
-        add "asylum"
-        add "particle"
-        add "particle_blur"
-    else:
-        add "gui/overlay/confirm.png"
 
     frame:
         style "game_menu_outer_frame"

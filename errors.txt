@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 1164: style property Border is not known.
-    Border(25, 6, 25, 6)
-          ^
+File "game/splash.rpy", line 18: else clause expects a non-empty block.
+    else:
+         ^
 
 Ren'Py Version: Ren'Py 8.0.1.22070801
-Tue Mar 21 00:01:08 2023
+Mon Mar 27 02:00:57 2023
