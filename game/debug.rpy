@@ -10,8 +10,8 @@ label debug:
             jump choosing
         "Persistent name test":
             jump naming
-        "Message box":
-            jump message_box
+        # "Message box":
+        #     jump message_box
         "{color=#c41f1f}Delete persistent data{/color}":
             menu:
                 "Are you sure you want to delete the persistent data including achievements?\n{color=#c41f1f}(WARNING: This will close the game.){fast}{/color}"
@@ -58,17 +58,50 @@ label choosing:
     $ choice_b = False
     $ choice_c = False
     $ menuchoice = 0
-
+    
     menu:
         i "Which choice selection would you like to try?"
-        "Able to pick all and display a hidden choice":
+        "Pick all and display a hidden choice":
             jump choices_abc
-        "Only able to pick less than the max choices":
+        "Pick less than the max choices":
             jump pick_2_choices
-        "Only able to pick less than the max choices and choose the required choices":
+        "Pick less than the max choices and choose the required choices":
             jump pick_2_choices_required
+        "Pick less than the max choices, choose the required choices, and display a hidden choice":
+            jump pick_2_choices_required_secret
         "Go back":
             jump debug
+
+    label pick_2_choices_required_secret:
+        if choice_a == True and choice_c == True and menuchoice == 2:
+            $ choice_b = True #hides choice B after selecting two required choices
+        elif menuchoice == 2:
+            jump choice_not #same outcome with the other one
+        menu:
+            i "Choose an option."
+            "Required Choice A" if choice_a == False:
+                $ menuchoice += 1
+                i "Choice A is selected."
+                $ choice_a = True
+                jump pick_2_choices_required_secret
+
+            "Choice B" if choice_b == False:
+                $ menuchoice += 1
+                i "Choice B is selected."
+                $ choice_b = True
+                jump pick_2_choices_required_secret
+
+            "Required Choice C" if choice_c == False:
+                $ menuchoice += 1
+                i "Choice C is selected."
+                $ choice_c = True
+                jump pick_2_choices_required_secret
+
+            "Hidden choice: Choice D" if choice_a == True and choice_c == True and menuchoice == 2:
+                i "Choice D will only appear if 2 required choices are met."
+
+        i "You will arrive here once you got 2 required choices, and have selected the hidden choice."
+        jump choosing
 
     label pick_2_choices_required:
         if choice_a == True and choice_c == True and menuchoice == 2:
@@ -94,17 +127,17 @@ label choosing:
                 i "Choice C is selected."
                 $ choice_c = True
                 jump pick_2_choices_required
-        jump debug
+        jump choosing
 
 label choice_ac:
     i "Choice A and Choice C have been selected."
     i "You will arrive here once you chose the required choices no matter the order."
-    jump debug
+    jump choosing
 
 label choice_not:
     i"Two required choices weren't selected."
     i "You will arrive here once you did not choose the required choices."
-    jump debug
+    jump choosing
 
     label pick_2_choices:
         menu:
@@ -136,7 +169,7 @@ label choice_not:
                 else:
                     jump pick_2_choices
         i "You will arrive here once you chose 2 choices no matter the order are."
-        jump debug
+        jump choosing
 
     label choices_abc:
         menu:
@@ -164,9 +197,9 @@ label choice_not:
                 i "Choice D will only appear if all of the other choices have been picked."
                 
         i "You will arrive here once you got all the choices no matter the order are."
-        jump debug
+        jump choosing
 
-    label message_box:
-        call screen dialog(message="This is test message using the screen dialog.\n{size=35}(This is our custom-made message box.){/size}", ok_action=Return())
-        call screen confirm(message="This is test message using the screen confirm.\n{size=35}(This message box is made by Ren'Py itself.)\n(Choosing {b}Yes{/b} will return to the custom message box. Choosing {b}No{/b} will close the message box.){/size}", yes_action=Jump("message_box"), no_action=Return())
-        jump debug
+    # label message_box:
+    #     call screen dialog(message="This is test message using the screen dialog.\n{size=35}(This is our custom-made message box.){/size}", ok_action=Return())
+    #     call screen confirm(message="This is test message using the screen confirm.\n{size=35}(This message box is made by Ren'Py itself.)\n(Choosing {b}Yes{/b} will return to the custom message box. Choosing {b}No{/b} will close the message box.){/size}", yes_action=Jump("message_box"), no_action=Return())
+    #     jump debug

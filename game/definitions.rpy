@@ -65,13 +65,16 @@ define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, rample
 image train1:
     im.Blur("images/bgs/train/train1.png", 3.0)
 
+image train2:
+    im.Blur("images/bgs/train/train2.png", 3.0)
+
 image forestbackground:
     im.Blur("images/bgs/train/forestbackground.png", 5.0)
     yoffset -250
     
 
 #############################
-#           IMAGES          #
+#        MAIN MENU          #
 #############################
 
 transform blink_blur:
@@ -87,14 +90,9 @@ transform blink:
     repeat
 
 image particle_blur = SnowBlossom(At("gui/menu/particle_small.png", blink_blur), border=150, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -80),  xspeed=(-200,200), horizontal=True)
-
 image particle = SnowBlossom(At("gui/menu/particle_small.png", blink), count=10, border=150, xspeed=(0, -10), start=10, fast=False, horizontal=False)
 
-
-image merah neutral = ("images/characters/merah neutral.png")
-
 image medal = ("gui/achievements/medal.png")
-
 image locked_medal = ("gui/achievements/locked_medal.png")
 
 image vigenette = Composite(
@@ -109,6 +107,13 @@ image asylum:
 image bg trainstation blurred:
     im.Blur("images/bgs/bg trainstation.jpg", 5.0)
 
+#############################
+#      CHARACTER IMAGES     #
+#############################
+
+image merah neutral = Composite(
+    (980,980),
+    (0,25), "images/characters/merah neutral.png")
 
 #############################
 #            FONT           #

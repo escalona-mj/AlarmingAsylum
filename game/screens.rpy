@@ -995,10 +995,10 @@ screen preferences():
                             style "mute_all_button"
                 
             null height 25
-    add "gui/phone/overlay/border_bottom.png":
-        pos (461, 972)
-    add "gui/phone/overlay/border_top.png":
-        pos (476, 155)
+    # add "gui/phone/overlay/border_bottom.png":
+    #     pos (461, 972)
+    # add "gui/phone/overlay/border_top.png":
+    #     pos (476, 155)
 
 
 style pref_label is gui_label
@@ -1183,10 +1183,10 @@ screen history():
             action Return()
             alt _("Return")
             yoffset 100
-    add "gui/phone/overlay/border_bottom.png":
-        pos (250, 850)
-    add "gui/phone/overlay/border_top.png":
-        pos (250, 195)       
+    # add "gui/phone/overlay/border_bottom.png":
+    #     pos (250, 850)
+    # add "gui/phone/overlay/border_top.png":
+    #     pos (250, 195)       
 
 
 # screen history():

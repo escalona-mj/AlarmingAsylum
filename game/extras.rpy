@@ -41,10 +41,10 @@ screen achievements():
 
                 null height 25
 
-    add "gui/phone/overlay/border_bottom.png":
-        pos (461, 972)
-    add "gui/phone/overlay/border_top.png":
-        pos (476, 175)       
+    # add "gui/phone/overlay/border_bottom.png":
+    #     pos (461, 972)
+    # add "gui/phone/overlay/border_top.png":
+    #     pos (476, 175)       
                     
 style achievements_vbox is vbox
 style achievements_frame is empty 

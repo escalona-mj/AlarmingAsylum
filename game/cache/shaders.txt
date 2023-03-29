@@ -1,17 +1,17 @@
-renpy.geometry renpy.matrixcolor renpy.texture
-renpy.geometry renpy.imagedissolve
-renpy.dissolve renpy.geometry
-renpy.ftl
-renpy.geometry renpy.texture
-renpy.blur renpy.geometry
-renpy.geometry renpy.solid
-renpy.dissolve renpy.dissolve
-renpy.alpha renpy.texture
-renpy.alpha renpy.texture -renpy.texture renpy.blur renpy.texture -renpy.texture renpy.blur
-renpy.matrixcolor renpy.texture
-renpy.imagedissolve renpy.imagedissolve
-renpy.texture
-renpy.alpha renpy.geometry renpy.texture
 renpy.texture -renpy.texture renpy.blur renpy.texture -renpy.texture renpy.blur
-renpy.solid
+renpy.dissolve renpy.dissolve
+renpy.geometry renpy.imagedissolve
+renpy.texture
+renpy.alpha renpy.texture -renpy.texture renpy.blur renpy.texture -renpy.texture renpy.blur
+renpy.ftl
 renpy.alpha renpy.blur renpy.geometry
+renpy.imagedissolve renpy.imagedissolve
+renpy.alpha renpy.geometry renpy.texture
+renpy.geometry renpy.solid
+renpy.geometry renpy.matrixcolor renpy.texture
+renpy.dissolve renpy.geometry
+renpy.blur renpy.geometry
+renpy.geometry renpy.texture
+renpy.alpha renpy.texture
+renpy.matrixcolor renpy.texture
+renpy.solid

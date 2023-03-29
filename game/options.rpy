@@ -14,7 +14,7 @@
 
 define config.name = _("Alarming Asylum")
 define config.rollback_enabled = config.developer
-define config.developer = "auto"
+# define config.developer = "auto"
 define config.has_autosave = False
 define config.autosave_on_quit = False
 define config.autosave_slots = 0
@@ -99,7 +99,7 @@ define config.intra_transition = noise
 
 ## A transition that is used after a game has been loaded.
 
-define config.after_load_transition = noise_scene
+define config.after_load_transition = noise
 
 
 ## Used when entering the main menu after the game has ended.

@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 89: expected statement.
-    Here is some {=test_style}scared{/b} shakey{/i}{/=test_style} text
-                 ^
+File "game/script.rpy", line 195: expected python_expression
+    elif: window_scene == False:
+        ^
 
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Mon Mar 27 16:50:20 2023
+File "game/script.rpy", line 200: expected statement.
+    else:
+        ^
+
+Ren'Py Version: Ren'Py 8.0.1.22070801
+Tue Mar 28 22:42:45 2023
