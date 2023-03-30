@@ -132,6 +132,10 @@ init python:
         renpy.hide_screen("name_input")
         renpy.jump_out_of_context("start")
 
+screen slow_text_center(txt):
+    fixed:
+        add Text(txt, slow_cps=2, text_align=0.5) xalign 0.5 yalign 0.5
+
 screen dialog(message, ok_action):
 
     modal True
@@ -1795,8 +1799,8 @@ screen quick_menu():
                 action Skip() alternate Skip(fast=True, confirm=True)
             imagebutton auto _("gui/quickmenu/save_%s.png"):
                 action ShowMenu('save')
-            imagebutton auto _("gui/quickmenu/load_%s.png"):
-                action ShowMenu('load')
+            # imagebutton auto _("gui/quickmenu/load_%s.png"):
+            #     action ShowMenu('load')
             imagebutton auto _("gui/quickmenu/settings_%s.png"):
                 action ShowMenu('preferences')
 

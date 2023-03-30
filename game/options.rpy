@@ -14,7 +14,7 @@
 
 define config.name = _("Alarming Asylum")
 define config.rollback_enabled = config.developer
-# define config.developer = "auto"
+define config.developer = "auto"
 define config.has_autosave = False
 define config.autosave_on_quit = False
 define config.autosave_slots = 0

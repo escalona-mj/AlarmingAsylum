@@ -76,14 +76,13 @@ label start:
     "Unless it's an emergency."
     "Stretching to gain energy, I stare blankly at the window, looking for an ounce of motivation."
     a1 "Why are you sleeping here alone?"
-    a1 "There's plenty of space to sleep from our side though."
+    a1 "There's plenty of seats to sleep from our side though."
     i "I don't like people watching me sleep."
     i "Even if we're the only ones here."
-    window hide
-    pause 2.0
-    window auto
+    "..."
     "There's an awkward silence."
     "I think there's something we both wanted to say."
+    "I don't have the courage to, not yet."
     "Thankfully, [a1_name] breaks the silence."
     a1 "Well...{w=0.2} aren't you excited?"
     i "I'm excited to leave once everything is over."
@@ -92,10 +91,11 @@ label start:
     "I scoffed then gave him a disapproval look."
     "He isn't that bad, he just looks after my wellbeing."
     "I mean, that's what friends do, right?"
-    a1 "Man... why do we have to go to an {sc=2}a-abandoned asylum?{/sc}"
+    a1 "Man... why do we have to go to an {sc=2}a-abandoned{/sc} asylum?"
     i "What? Are you scared?"
     i "You're the one to tell that we'll be fine."
     a1 "N-no!{w=0.3} I mean yes! {w=0.4}{sc=2}I-it's not like that or anything...{/sc}"
+    "I can see right through him. Typical [a1_name]."
     i "We're only there to discover the history of the asylum as per the coordinator's request."
     i "Nothing else."
     a1 "Yeah, you're right."
@@ -131,6 +131,7 @@ label start:
 
     "Right, first-aid...{w=0.5} check."
     "And then my supplements...{w=0.5} check."
+    "I leave my warm seat in a haste and drag all of my belongings with me."
     i "I guess I have everything right here."
     a1 "Alright, I'll go with the others. Care to join us?"
     menu:
@@ -170,7 +171,7 @@ label start:
             menu:
                 i "Should I...?"
                 "Peek outside.":
-                    "I peek myself a bit outside the window frame."
+                    "I peek a bit outside the window frame."
                     hide train1
                     show forestbackground:
                         yoffset 250
@@ -179,9 +180,10 @@ label start:
                         repeat
                     with dissolve
                     "It's a bit chilly, but in a good way. I feel myself waking up even more."
-                    i "{cps=5}Ahhh...{/cps}"
                     window hide
+                    show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}Ahhh...{/bt}")
                     pause 5.0
+                    hide screen slow_text_center with Dissolve(3.0)
                     $ window_scene = True
                 "Stay in.":
                     "I don't think I should. I might fall."
@@ -203,34 +205,36 @@ label start:
             a1 "{size=+50}[Main!u]!{/size}{fast}" with vpunch
             window auto
             i "Gah! What th-{w=0.5}{nw}" with vpunch
-            i "Don't sneak behind me like that..."
+            i "Don't sneak behind me like that!"
             a1 "Hehe, sorry."
-            "I come to my senses. The whole gang seems to be here."
+            "I find myself still gazing into the distance."
+            a1 "By the way, my assistant wants to talk to you."
+            a1 "I don't know what it is, but I'll leave the two of you alone."
+            i "Oh, alright."
         elif window_scene == False:
             window auto
-            a1 "[Main], we're here."
-            i "Oh, sorry. I didn't see you guys."
-            "I really need to pay attention to my surroundings."
+            "I wonder if..."
+            "The asylum is truly haunted."
+            "It's not something I should be worried of... right?"
         else:
             window auto
             a1 "Stay here while I look for [m2_name]."
             i "Okay."
             hide merah
             "I scanned the whole area."
-            "In a corner, I see a lady reading a book."
 
+        "In the corner of my eye, I see a lady suited well approaching me."
         $ l1_name = "???"
         l1 "Greetings, [Main]."
         $ l1_name = "Lucy" 
         i "Oh. Hello Ms. [l1_name]."
         l1 "Please,{w=0.2} [l1_name] is fine."
+        "We head on an empty train seat that comes along with a table."
 
         if hungry_flag == True:
-            "[l1_name] approaches me and offered to join at her table."
             "As I approach the table, she goes back to the kitchen."
             "Wait, do trains have kitchens?"
-            pause 2.0
-            window auto
+            "..."
             "I lightly shake my head." with hpunch
             "That's not important! I'm more invested on what [l1_name] has in store for me."
             "The scent alone coming from the kitchen swiftly made its way to my nose."
@@ -238,9 +242,9 @@ label start:
             "Soon after, [l1_name] comes out of the kitchen as she brings my plate."
             l1 "I noticed that you look off today..."
             l1 "So I prepared you some food."
-            ".{w=0.5}.{w=0.5}.{w=0.5}"
+            "..."
             "I struggle to come up with any words. My mind is focused entirely on [l1_name]'s plate."
-            l1 "Hello? Earth to [Main]?"
+            l1 "Hello? Are you still there, [Main]?"
             i "O-oh. Sorry."
             "[l1_name] chuckles back as she offers the plate in front of me."
 
@@ -266,11 +270,12 @@ label start:
             i "Thanks. I've been needing it."
             "I take a sip on the water."
             "The fizzing sensation of the water soothes my dried mouth."
-            window hide
-            pause 3.0
-            window auto
-            "There's an awkward silence between us."
-            i "So [l1_name], how are you?"
+            "..."
+            "Not being sure what to say to her, I stay silent, hoping that she would say something else soon."
+            "To which, an awkward silence formed between us."
+            "I feel so hopeless that I can't come up with anything to say."
+            "..."
+            i "So [l1_name], h-how are you?"
             "Wow [Main], what a great start."
             l1 "I am doing fine."
             l1 "I do find the train ambience quite calming."
@@ -302,7 +307,7 @@ label start:
 
         "I've always wondered why she's always looking after us."
         "I mean she IS [a1_name]'s butler."
-        "I have to say, where does she even get the determination to deal with our stupidity?"
+        "Where does she even get the determination to deal with our stupidity?"
         "She's quite an amazing woman. Matured, independent..."
         "I can never be as good as her."
         "She has also never shown any vulnerabilities since we've met her."
@@ -311,7 +316,6 @@ label start:
         l1 "Do what?"
         i "You know, deal with us. Our group is vast, each with their own unique personalities."
         i "I'm surprised that you can manage to adjust according to our interests."
-        i "Specifically [a1_name]. How do you deal him?"
         "[l1_name] giggles from my compliment."
         l1 "I have seen the world far more than you know."
         i "Really? What of it?"
@@ -324,14 +328,18 @@ label start:
             l1 "Maybe share someone with a drink and enjoy the scenes unfold from the window."
             l1 "That would be nice..."
 
-        l1 "But right now, why don't you go with the others?"
-        i "Oh, okay."
+        i "I see. Why do you also look after us?"
+        i "Shouldn't you only serve [a1_name]?"
+        l1 "A friend of [a1_name] is also my responsibility."
+        l1 "It is something that we, servants, should also serve."
+        l1 "Now, why don't you go with the others?"
+        i "Oh, I see."
         "Just as I leave [l1_name], I looked back at her with sincerity."
         i "By the way..."
         i "Thanks [l1_name]."
         extend "\nFor everything."
-        i "Seeing where you are now, I guess you needed a single thank you from us."
-        "[l1_name] smiled back to me genuinely."
+        i "Realizing your state, I guess you we should thank you for looking after us."
+        "[l1_name] smiles genuinely at me as she continues cleaning up. I smile back naturally, leaving her."
         "I let out another yawn and start to glance around the room."
         "So, where are they?"
         "I walked across the long hallway of the passenger wagon to find [a1_name]."
@@ -346,7 +354,8 @@ label start:
         m2 "We're essentially making history here by unraveling the secrets of the asylum."
         m2 "Isn't it fun?"
         "Of course, that's something he likes."
-        "This guy is probably the most questionable history buff person I have encountered."
+        "This guy is probably the most questionable person I have encountered."
+        ""
         "I sometimes couldn't even comprehend his usage of words."
         "Does he think lowly of us?"
         "I mean, he tries his best to make it comprehensible for us..."
