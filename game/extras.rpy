@@ -104,7 +104,7 @@ screen extras_navigation():
 screen extras_menu(title, scroll=None, yinitial=0.0):
 
     style_prefix "game_menu"
-
+    add "gui/phone/overlay/game_menu.png"
     frame:
         style "game_menu_outer_frame"
 
@@ -115,7 +115,7 @@ screen extras_menu(title, scroll=None, yinitial=0.0):
                 style "game_menu_navigation_frame"
 
             frame:
-                style "game_menu_content_frame"
+                style "extras_menu_content_frame"
 
                 if scroll == "viewport":
 
@@ -153,6 +153,7 @@ screen extras_menu(title, scroll=None, yinitial=0.0):
     label title
 
     use extras_navigation
+    
 
 style extras_menu_content_frame:
     left_padding 50

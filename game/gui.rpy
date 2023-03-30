@@ -446,7 +446,7 @@ init python:
         gui.namebox_width = None
 
         ## Change the size and spacing of various things.
-        gui.slider_size = 54
+        gui.slider_size = 57
 
         gui.choice_button_text_size = 50
 

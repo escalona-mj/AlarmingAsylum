@@ -19,9 +19,9 @@ define a1 = DynamicCharacter(
     'a1_name',
     kind=i)
 
-default m1_name = "Lucy"
-define m1 = DynamicCharacter(
-    'm1_name',
+default l1_name = "Lucy"
+define l1 = DynamicCharacter(
+    'l1_name',
     kind=i)
 
 default m2_name = "Raymon"

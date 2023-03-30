@@ -186,15 +186,18 @@ screen say(who, what):
                 id "namebox"
                 style "namebox"
                 text who id "who"
-
+            
         text what id "what"
+    use quick_menu
+    
+    
 
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
-    use quick_menu
+    
 
 ## Make the namebox available for styling through the Character object.
 init python:
@@ -323,6 +326,7 @@ transform choice_transform:
         alpha 1.0 xoffset 0
         easeout 0.5 alpha 0.0 xoffset 100
 
+
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
@@ -377,6 +381,8 @@ screen quick_menu():
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
+# init python:
+#     config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
 
@@ -416,9 +422,9 @@ screen navigation():
             yalign 0.96
             spacing 70
 
-            textbutton _("New Game") action (Show(screen='name_input', message="What is your name?", ok_action=Function(FinishEnterName)))
+            textbutton _("Start") action (Show(screen='name_input', message="What is your name?", ok_action=Function(FinishEnterName)))
 
-            textbutton _("Load Game") action ShowMenu("load")
+            textbutton _("Load") action ShowMenu("load")
 
             textbutton _("Settings") action ShowMenu("preferences")
 
@@ -600,10 +606,10 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         add "asylum"
         add "particle"
         add "particle_blur"
+        add "gui/overlay/confirm.png"
 
     else:
         add "gui/overlay/confirm.png"
-        pass
 
     frame:
         style "game_menu_outer_frame"
@@ -1736,19 +1742,25 @@ style pref_vbox:
 
 screen quick_menu():
     variant "touch"
-
+    imagebutton auto _("gui/quickmenu/menu_%s.png"):
+            action ToggleVariable("quick_menu", True, False)
+            xalign 0.97
+            yalign 0.745
     zorder 100
 
     if quick_menu:
-        
 
         hbox:
             style_prefix "quick"
 
             #middle
-            xalign 0.5
-            yalign 0.99
-            spacing 25
+            # xalign 0.5
+            # yalign 0.99
+            # spacing 25
+
+            xalign 0.90
+            yalign 0.74
+            spacing 15
 
             #upper right
             # xalign 0.95
@@ -1768,12 +1780,28 @@ screen quick_menu():
                 textbutton _("Back") action Rollback()
             else:
                 pass
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
-            textbutton _("Settings") action ShowMenu('preferences')
+            # textbutton _("History") action ShowMenu('history')
+            # textbutton _("Auto") action Preference("auto-forward", "toggle")
+            # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            # textbutton _("Save") action ShowMenu('save')
+            # textbutton _("Load") action ShowMenu('load')
+            # textbutton _("Settings") action ShowMenu('preferences')
+
+            imagebutton auto _("gui/quickmenu/history_%s.png"):
+                action ShowMenu('history')
+            imagebutton auto _("gui/quickmenu/auto_%s.png"):
+                action Preference("auto-forward", "toggle")
+            imagebutton auto _("gui/quickmenu/skip_%s.png"):
+                action Skip() alternate Skip(fast=True, confirm=True)
+            imagebutton auto _("gui/quickmenu/save_%s.png"):
+                action ShowMenu('save')
+            imagebutton auto _("gui/quickmenu/load_%s.png"):
+                action ShowMenu('load')
+            imagebutton auto _("gui/quickmenu/settings_%s.png"):
+                action ShowMenu('preferences')
+
+            
+            
  
 style window:
     variant "small"
@@ -1829,7 +1857,8 @@ style main_menu_frame:
 
 style game_menu_outer_frame:
     variant "small"
-    background "gui/phone/overlay/game_menu.png"
+    # background "gui/phone/overlay/game_menu.png"
+    background None
 
 style game_menu_navigation_frame:
     variant "small"

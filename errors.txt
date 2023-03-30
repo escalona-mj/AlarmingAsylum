@@ -2,13 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 195: expected python_expression
-    elif: window_scene == False:
-        ^
+File "game/screens.rpy", line 1757: Indentation mismatch.
 
-File "game/script.rpy", line 200: expected statement.
-    else:
-        ^
-
-Ren'Py Version: Ren'Py 8.0.1.22070801
-Tue Mar 28 22:42:45 2023
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Thu Mar 30 17:00:07 2023

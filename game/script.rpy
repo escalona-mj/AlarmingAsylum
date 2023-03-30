@@ -87,22 +87,24 @@ label start:
     "Thankfully, [a1_name] breaks the silence."
     a1 "Well...{w=0.2} aren't you excited?"
     i "I'm excited to leave once everything is over."
-    a1 "You'll be fine. We'll take great care of you."
+    a1 "We'll be fine. We'll take great care of you."
+    i "You mean YOUR butler will take care of us."
     "I scoffed then gave him a disapproval look."
     "He isn't that bad, he just looks after my wellbeing."
     "I mean, that's what friends do, right?"
     a1 "Man... why do we have to go to an {sc=2}a-abandoned asylum?{/sc}"
     i "What? Are you scared?"
-    i "Don't tell me you're scared?"
-    a1 "No! {sc=2}I-it's not like that or anything...{/sc}"
+    i "You're the one to tell that we'll be fine."
+    a1 "N-no!{w=0.3} I mean yes! {w=0.4}{sc=2}I-it's not like that or anything...{/sc}"
     i "We're only there to discover the history of the asylum as per the coordinator's request."
-    i "Nothing else, as far as I know."
+    i "Nothing else."
     a1 "Yeah, you're right."
     a1 "But I just can't help but wonder, what will happen to us?"
     a1 "What if something bad happens to us?"
     a1 "Just the thought of it scares me."
     i "Pfft, you've been watching too many horror documentaries."
-    i "We're going to be fine."
+    i "We're going to be fine. Didn't you said that before?"
+    i "Or are you going to leave everything to your butler?"
     i "Whether if we encounter something paranormal or not, we've got each other."
     a1 "Yeah, you're right..."
     a1 "{sc=1}W-w{/sc}hat am I getting scared of?"
@@ -145,13 +147,16 @@ label start:
             a1 "I see. Take care."
             hide merah
             "[a1_name] leaves the scene, giving the passenger wagon to myself all alone."
-            "Dammit. I forgot to eat this morning."
+            "Dammit. I forgot to eat lunch."
             "I was hoping they'd at least offer some food here."
             "Should I eat the food I brought along now?"
             menu:
                 "Yes.":
-                    "Can't start my day with an empty stomach... am I right?"
+                    "Can't start the day with an empty stomach, right?"
                     "*munch*{w=1.5} *munch*{w=1.5} *munch*"
+                    window hide
+                    pause 1.0
+                    window auto
                     
                 "No.":
                     "Keep it together, [Main]."
@@ -163,8 +168,9 @@ label start:
             "I open the window."
             "Suprisingly, the wind against my face is actually rather pleasant."
             menu:
-                "Lean outside.":
-                    "I lean myself a bit outside the window frame."
+                i "Should I...?"
+                "Peek outside.":
+                    "I peek myself a bit outside the window frame."
                     hide train1
                     show forestbackground:
                         yoffset 250
@@ -199,10 +205,12 @@ label start:
             i "Gah! What th-{w=0.5}{nw}" with vpunch
             i "Don't sneak behind me like that..."
             a1 "Hehe, sorry."
+            "I come to my senses. The whole gang seems to be here."
         elif window_scene == False:
             window auto
             a1 "[Main], we're here."
             i "Oh, sorry. I didn't see you guys."
+            "I really need to pay attention to my surroundings."
         else:
             window auto
             a1 "Stay here while I look for [m2_name]."
@@ -211,55 +219,50 @@ label start:
             "I scanned the whole area."
             "In a corner, I see a lady reading a book."
 
-        $ m1_name = "???"
-        m1 "Greetings, [Main]."
-        $ m1_name = "Lucy" 
-        i "Oh, hello [m1_name]."
+        $ l1_name = "???"
+        l1 "Greetings, [Main]."
+        $ l1_name = "Lucy" 
+        i "Oh. Hello Ms. [l1_name]."
+        l1 "Please,{w=0.2} [l1_name] is fine."
 
         if hungry_flag == True:
-            "[m1_name] approaches me and offered to join at her table."
+            "[l1_name] approaches me and offered to join at her table."
             "As I approach the table, she goes back to the kitchen."
             "Wait, do trains have kitchens?"
             pause 2.0
             window auto
             "I lightly shake my head." with hpunch
-            "That's not important! I'm more invested on what [m1_name] has in store for me."
+            "That's not important! I'm more invested on what [l1_name] has in store for me."
             "The scent alone coming from the kitchen swiftly made its way to my nose."
-            "My goodness, what is this woman cooking?"
             "It smells so good that the scent alone makes me drool."
-            "Soon after, [m1_name] comes out of the kitchen as she brings my plate."
-            m1 "I noticed that you look off today..."
-            m1 "So I prepared you some lunch."
+            "Soon after, [l1_name] comes out of the kitchen as she brings my plate."
+            l1 "I noticed that you look off today..."
+            l1 "So I prepared you some food."
             ".{w=0.5}.{w=0.5}.{w=0.5}"
-            "I struggle to come up with any words. My mind is focused entirely on [m1_name]'s plate."
-            m1 "Hello? Earth to [Main]?"
+            "I struggle to come up with any words. My mind is focused entirely on [l1_name]'s plate."
+            l1 "Hello? Earth to [Main]?"
             i "O-oh. Sorry."
-            "[m1_name] chuckles back as she offers the plate in front of me."
+            "[l1_name] chuckles back as she offers the plate in front of me."
 
-            m1 "What are you waiting for? Eat."
-            menu:
-                "\"T-thank you for the food!\"":
-                    m1 "My pleasure."
-                "Eat.":
-                    pass
-
+            l1 "What are you waiting for? Eat."
+            i "T-thank you for the food!"
             "Surprisingly, the food tastes pretty good."
             "I can't tell what some of the spices are, but they blend together nicely."
 
             if window_scene == True:
                 i "It would be nice if the window was open."
-                m1 "Is that so?"
+                l1 "Is that so?"
                 i "I did something like that earlier."
-                m1 "I too would have loved it."
-                m1 "But your food would easily get cold, so I would not recommend it."
+                l1 "I too would have loved it."
+                l1 "But your food would easily get cold, so I would not recommend it."
                 i "Oh, okay."
             else:
                 pass
 
         else:
-            "[m1_name] pours a glass of what it seems to be water and offers it to me. It's fizzing a bit, and almost looks carbonated."
+            "[l1_name] pours a glass of what it seems to be water and offers it to me. It's fizzing a bit, and almost looks carbonated."
             "I give it a sniff. It smells kind of fruity."
-            m1 "Go ahead, you look thirsty."
+            l1 "Go ahead, you look thirsty."
             i "Thanks. I've been needing it."
             "I take a sip on the water."
             "The fizzing sensation of the water soothes my dried mouth."
@@ -267,30 +270,30 @@ label start:
             pause 3.0
             window auto
             "There's an awkward silence between us."
-            i "So [m1_name], how are you?"
+            i "So [l1_name], how are you?"
             "Wow [Main], what a great start."
-            m1 "I am doing fine."
-            m1 "I do find the train ambience quite calming."
+            l1 "I am doing fine."
+            l1 "I do find the train ambience quite calming."
 
             if window_scene == True:
                 i "Not as calm as opening a window. I did something like that earlier."
-                m1 "Is that so?"
-                m1 "I would probably do something so carefree like that..."
-                m1 "If you didn't do it earlier."
-                m1 "You were having your moment."
-                m1 "And I would not want it to be ruined so I left you alone."
+                l1 "Is that so?"
+                l1 "I would probably do something so carefree like that..."
+                l1 "If you didn't do it earlier."
+                l1 "You were sightseeing."
+                l1 "And I would not want it to be ruined so I left you alone."
                 i "O-oh. I see..."
                 i "Thanks for letting me have a moment for myself."
-                m1 "My pleasure."
+                l1 "My pleasure."
             else:
                 "I focus my hearing on the surroundings."
                 "She's right. It does feel relaxing."
                 "I look at myself in the window..."
                 "...just to see the scene at the distance nearing towards us."
-                m1 "Do you want me to open the window?"
-                m1 "Surely the breeze would make you feel a bit better."
+                l1 "Do you want me to open the window?"
+                l1 "Surely the breeze would make you feel a bit better."
                 i "Oh, sure. Go ahead."
-                "[m1_name] opens the window."
+                "[l1_name] opens the window."
                 "Suprisingly, the wind against my face is actually rather pleasant."
 
         window hide
@@ -298,35 +301,37 @@ label start:
         window auto
 
         "I've always wondered why she's always looking after us."
-        "Even if conflict stirs up in the group."
+        "I mean she IS [a1_name]'s butler."
         "I have to say, where does she even get the determination to deal with our stupidity?"
         "She's quite an amazing woman. Matured, independent..."
         "I can never be as good as her."
-        "She has never shown any vulnerabilities since we've met her."
-        "It's as if she's very cautious of her actions..."
+        "She has also never shown any vulnerabilities since we've met her."
         "On second thought..."
         i "How do you do it?"
-        m1 "Do what?"
+        l1 "Do what?"
         i "You know, deal with us. Our group is vast, each with their own unique personalities."
         i "I'm surprised that you can manage to adjust according to our interests."
-        "[m1_name] giggles from my compliment."
-        m1 "I have seen the world far more than you know."
+        i "Specifically [a1_name]. How do you deal him?"
+        "[l1_name] giggles from my compliment."
+        l1 "I have seen the world far more than you know."
         i "Really? What of it?"
-        m1 "Oh, a lot. You will be surprised at what I can do."
+        l1 "Oh, a lot. You will be surprised at what I can do."
 
         if hungry_flag == False:
-            m1 "Maybe cook, I suppose?"
+            l1 "Maybe cook, I suppose?"
+            l1 "Ahaha."
         else:
-            m1 "Maybe share someone with a drink and enjoy the scenes unfold from the window."
+            l1 "Maybe share someone with a drink and enjoy the scenes unfold from the window."
+            l1 "That would be nice..."
 
-        m1 "But right now, why don't you go with the others?"
+        l1 "But right now, why don't you go with the others?"
         i "Oh, okay."
-        "Just as I leave [m1_name], I looked back at her with sincerity."
+        "Just as I leave [l1_name], I looked back at her with sincerity."
         i "By the way..."
-        i "Thanks [m1_name]."
-        extend " For everything."
+        i "Thanks [l1_name]."
+        extend "\nFor everything."
         i "Seeing where you are now, I guess you needed a single thank you from us."
-        "[m1_name] smiled back to me genuinely."
+        "[l1_name] smiled back to me genuinely."
         "I let out another yawn and start to glance around the room."
         "So, where are they?"
         "I walked across the long hallway of the passenger wagon to find [a1_name]."
@@ -351,6 +356,9 @@ label start:
         "He reminds me of a person who uses sugarcoating on his essa{nw}"
         $ _history_list[-1].what = "I find his words hard to describe."
 
+
+
+
         m2 "I have always wanted to embark in an abandoned haven..."
         m2 "That is, if you can still label it like that..."
         a1 "I'm not really liking the concept of us going through a haunted house."
@@ -361,7 +369,7 @@ label start:
         a1 "They must be expecting that something bad might to happen to us."
         a1 "So them offering a huge asset would mean anyone would be willing to explore it in exchange for money."
         a1 "They don't want their hands to get dirty so they just leave it to some random group of friends."
-        m1 "That could be true."
+        l1 "That could be true."
         "What the hell!"
         i "Is that so?"
         i "If it's offering more money than we initially agreed on, then I'm in."
