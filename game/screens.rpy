@@ -324,11 +324,11 @@ screen choice(items):
 
 transform choice_transform:
     alpha 0.0 xoffset 100
-    easein 0.5 alpha 1.0 xoffset 0
+    easein 0.25 alpha 1.0 xoffset 0
 
     on hide:
         alpha 1.0 xoffset 0
-        easeout 0.5 alpha 0.0 xoffset 100
+        easeout 0.25 alpha 0.0 xoffset 100
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
@@ -914,18 +914,19 @@ screen preferences():
     use game_menu(_("Settings"), scroll="viewport"):
         
         vbox:
-
+            text _("{size=+15}Text Settings{/size}"):
+                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
             hbox:
                 box_wrap True
 
                 # if renpy.variant("pc") or renpy.variant("web"):
                 
-                if config.developer == True:
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                # if config.developer == True:
+                #     vbox:
+                #         style_prefix "radio"
+                #         label _("Display")
+                #         textbutton _("Window") action Preference("display", "window")
+                #         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 # vbox:
                 #     style_prefix "radio"
@@ -960,11 +961,15 @@ screen preferences():
                     label _("Auto-Forward Time")
                     text _("The speed of the automation per dialogue.")
                     bar value Preference("auto-forward time")
-               
+
+                null height 400
+
                 vbox:
+                    text _("{size=+15}Music Settings{/size}"):
+                        font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("BGM Volume")
 
                         vbox:
                             text _("The loudness of background music throughout the game.")
@@ -1753,59 +1758,69 @@ screen quick_menu():
     zorder 100
 
     if quick_menu:
-
-        hbox:
-            style_prefix "quick"
-
-            #middle
-            # xalign 0.5
-            # yalign 0.99
-            # spacing 25
-
+        frame:
+            background None
             xalign 0.90
             yalign 0.74
-            spacing 15
-
-            #upper right
-            # xalign 0.95
-            # yalign 0.05
-            # spacing 25
-
-            #bottom right
-            # xalign 0.99
-            # yalign 0.99
-            # spacing 25
-
-        #     textbutton _("Back") action Rollback()
-        #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        #     textbutton _("Auto") action Preference("auto-forward", "toggle")
-        #     textbutton _("Menu") action ShowMenu()
-            if config.developer == True:
-                textbutton _("Back") action Rollback()
-            else:
-                pass
-            # textbutton _("History") action ShowMenu('history')
-            # textbutton _("Auto") action Preference("auto-forward", "toggle")
-            # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            # textbutton _("Save") action ShowMenu('save')
-            # textbutton _("Load") action ShowMenu('load')
-            # textbutton _("Settings") action ShowMenu('preferences')
-
-            imagebutton auto _("gui/quickmenu/history_%s.png"):
-                action ShowMenu('history')
-            imagebutton auto _("gui/quickmenu/auto_%s.png"):
-                action Preference("auto-forward", "toggle")
-            imagebutton auto _("gui/quickmenu/skip_%s.png"):
-                action Skip() alternate Skip(fast=True, confirm=True)
-            imagebutton auto _("gui/quickmenu/save_%s.png"):
-                action ShowMenu('save')
-            # imagebutton auto _("gui/quickmenu/load_%s.png"):
-            #     action ShowMenu('load')
-            imagebutton auto _("gui/quickmenu/settings_%s.png"):
-                action ShowMenu('preferences')
-
+            xpadding 10
+            ypadding 10
             
-            
+            hbox:
+                style_prefix "quick"
+
+                #middle
+                # xalign 0.5
+                # yalign 0.99
+                # spacing 25
+                
+                spacing 15
+
+                #upper right
+                # xalign 0.95
+                # yalign 0.05
+                # spacing 25
+
+                #bottom right
+                # xalign 0.99
+                # yalign 0.99
+                # spacing 25
+
+            #     textbutton _("Back") action Rollback()
+            #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            #     textbutton _("Auto") action Preference("auto-forward", "toggle")
+            #     textbutton _("Menu") action ShowMenu()
+                if config.developer == True:
+                    textbutton _("Back") action Rollback()
+                    textbutton _("Hide") action HideInterface()
+                else:
+                    pass
+                # textbutton _("History") action ShowMenu('history')
+                # textbutton _("Auto") action Preference("auto-forward", "toggle")
+                # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+                # textbutton _("Save") action ShowMenu('save')
+                # textbutton _("Load") action ShowMenu('load')
+                # textbutton _("Settings") action ShowMenu('preferences')
+
+                imagebutton auto _("gui/quickmenu/history_%s.png"):
+                    action ShowMenu('history')
+                    activate_sound "audio/sfx/click.ogg"
+                imagebutton auto _("gui/quickmenu/auto_%s.png"):
+                    action Preference("auto-forward", "toggle")
+                    activate_sound "audio/sfx/click.ogg"
+                imagebutton auto _("gui/quickmenu/skip_%s.png"):
+                    action Skip() alternate Skip(fast=True, confirm=True)
+                    activate_sound "audio/sfx/click.ogg"
+                imagebutton auto _("gui/quickmenu/save_%s.png"):
+                    action ShowMenu('save')
+                    activate_sound "audio/sfx/click.ogg"
+                # imagebutton auto _("gui/quickmenu/load_%s.png"):
+                #     action ShowMenu('load')
+                imagebutton auto _("gui/quickmenu/settings_%s.png"):
+                    action ShowMenu('preferences')
+                    activate_sound "audio/sfx/click.ogg"
+
+                
+                
  
 style window:
     variant "small"

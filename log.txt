@@ -1,42 +1,48 @@
-Fri Mar 31 04:29:35 2023
+Sun Apr  2 19:00:56 2023
 Windows-8.1-6.3.9600
 Ren'Py 8.0.1.22070801
  
 
-Bootstrap to the start of init.init took 0.32s
+Bootstrap to the start of init.init took 0.28s
 Early init took 0.02s
-Loader init took 0.21s
-Loading error handling took 0.92s
-game/kinetic_text_tags.rpy:188: SyntaxWarning: "is not" with a literal. Did you mean "!="?
-  if preferences.text_cps is not 0: # Avoid division by 0.0
-game/kinetic_text_tags.rpy:760: SyntaxWarning: "is not" with a literal. Did you mean "!="?
-  if value is not "":
-game/kinetic_text_tags.rpy:765: SyntaxWarning: "is not" with a literal. Did you mean "!="?
-  if value is not "":
-Loading script took 9.50s
-Loading save slot metadata. took 0.23s
+Loader init took 0.23s
+Loading error handling took 0.17s
+Loading script took 1.88s
+Loading save slot metadata. took 0.44s
 Loading persistent took 0.00s
-Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\dell\\Desktop\\MJ FILES\\games\\renpy-7.4.11-sdk\\lib\\py3-windows-x86_64\\steam_api64.dll' (or one of its dependencies). Try using the full path with constructor syntax.")
- - Init at renpy/common/00library.rpy:403 took 0.35729 s.
-Running init code took 0.76s
-Loading analysis data took 0.00s
-Analyze and compile ATL took 0.05s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\dell\\Desktop\\MJ FILES\\games\\renpy-7.4.11-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.45s
+Loading analysis data took 0.08s
+Analyze and compile ATL took 0.02s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\dell\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.31s
+Dump and make backups. took 0.42s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc. took 0.09s
+Initial gc. took 0.08s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.04s
+Creating interface object took 0.13s
 Cleaning stores took 0.00s
-Init translation took 0.19s
-Build styles took 0.03s
+Init translation took 0.49s
+Build styles took 0.10s
 Load screen analysis took 0.00s
-Analyze screens took 0.22s
-Save screen analysis took 0.21s
-Prepare screens took 1.04s
-Save pyanalysis. took 0.15s
-Save bytecode. took 0.25s
+Analyze screens took 0.17s
+Save screen analysis took 0.23s
+Prepare screens took 0.57s
+Save pyanalysis. took 0.13s
+Save bytecode. took 0.18s
+Running _start took 0.01s
+Interface start took 1.63s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1366, 768)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'Intel'"
+Renderer: b'Intel(R) HD Graphics 4000'
+Version: b'4.0.0 - Build 10.18.10.4276'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1184, 666) drawable=(1184, 666)
+Maximum texture size: 4096x4096

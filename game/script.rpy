@@ -2,6 +2,9 @@ define persistent.Beginning = False
 define dream_flag = False
 define hungry_flag = False
 define window_scene = None
+
+$ ann = 'Announcer'
+
 label start:
     show black
     with dissolve_scene_full
@@ -25,7 +28,8 @@ label start:
     show text _("{i}...{/i}") at truecenter
     "{i}\"Hello? Earth to [Main]?\"{/i}"
     "{i}\"This sleepyhead...\"{/i}"
-    show text _("{sc=10}{size=+500}WAKE UP{/size}{/sc}") at truecenter  
+    show text _("{sc=10}{size=+500}WAKE UP{/size}{/sc}") at truecenter 
+
     window hide(None)
     pause 0.2
     stop music
@@ -56,7 +60,7 @@ label start:
         repeat
     window auto
 
-    $ achievement.grant("Beginning")
+    $ achievement.grant("start")
     if persistent.Beginning == False:
         $ renpy.display_notify("Achievement Get:\n\"Beginning\"")
         play sound "audio/sfx/notify.ogg"
@@ -180,6 +184,7 @@ label start:
                         repeat
                     with dissolve
                     "It's a bit chilly, but in a good way. I feel myself waking up even more."
+                    "As much as I hate going to this stupid assignment, the wind does make me feel a bit safer."
                     window hide
                     show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}Ahhh...{/bt}")
                     pause 5.0
@@ -207,10 +212,10 @@ label start:
             i "Gah! What th-{w=0.5}{nw}" with vpunch
             i "Don't sneak behind me like that!"
             a1 "Hehe, sorry."
-            "I find myself still gazing into the distance."
+            "Flabbergastered, I went back gazing into the distance."
             a1 "By the way, my assistant wants to talk to you."
             a1 "I don't know what it is, but I'll leave the two of you alone."
-            i "Oh, alright."
+            i "Is that so?"
         elif window_scene == False:
             window auto
             "I wonder if..."
@@ -344,20 +349,40 @@ label start:
         "So, where are they?"
         "I walked across the long hallway of the passenger wagon to find [a1_name]."
         "Though I seem to pass along a person busy with their phone."
+
         $ m2_name = '???'
         m2 "Oh, hi [Main]."
         $ m2_name = 'Raymon'
         i "Hey, [m2_name]."
-        m2 "Oh, there's [a1_name]. Just in time."
-        m2 "Anyway, one of the coordinators got in touch with me a while ago."
-        m2 "As far as we know, we're going to rendezvous in a forgotten asylum deep within the forest to dig up the tragic history behind it."
-        m2 "We're essentially making history here by unraveling the secrets of the asylum."
-        m2 "Isn't it fun?"
-        "Of course, that's something he likes."
-        "This guy is probably the most questionable person I have encountered."
-        ""
+        "[m2_name] had always been a bookworm with a twist."
+        "He loved the way books transported him to other worlds, filled his mind with new ideas, and gave him a sense of purpose."
+        m2 "Would you like to read some books with me?"
+        i "Sure."
+        "His seat is filled with books ranging from literature to...{w=0.5} manga?"
+        "He surely has everything."
+        m2 "Sorry about that, all the seats been taken by my books."
+        "[m2_name] whips out a foldable chair out from his bag."
+        "That's the twist."
+        "He always comes prepared."
+        "Where did that even come from?"
+        m2 "I know, I've come prepared for this moment."
+        "[m2_name] showed me some of his favorite books, from classic novels to modern memoirs."
+        m2 "I'm actually eager to learn about the asylum's past."
+        m2 "So that's why I'm reading a lot of novels that include about charcaters interacting with an asylum."
+        i "I-is that so?"
+        i "I never thought you'd come prepared."
+        m2 "Of course! I'm always prepared."
+        i "Unlike the other one."
+        "We exchanged laughs."
+        m2 "I find reading a bit mesmerizing. I always imagine myself being at the shoes of the main character."
+        m2 "Ooh, about that..."
+        "A certain book caught my attention yesterday and I was hoping to read it with someone here."
+        m2 "It's about a group of friends traveling in an abandoned mansion."
+        m2 "Where... you guessed it, someone had to die."
+        m2 "If only he had accepted that her death was inevitable. I always think of different ways on how the story could have gone to."
+        m2 "The way of he enunciated their feelings to other characters..."
+        "I could see the excitement in his eyes and the way his voice became animated when he talked about his favorite books."
         "I sometimes couldn't even comprehend his usage of words."
-        "Does he think lowly of us?"
         "I mean, he tries his best to make it comprehensible for us..."
         "Which...{w=0.5} ends up poorly executed."
         "I have to search my phone to find the definitions of his words."
@@ -365,14 +390,38 @@ label start:
         "He reminds me of a person who uses sugarcoating on his essa{nw}"
         $ _history_list[-1].what = "I find his words hard to describe."
 
+        m2 "... then left all alone in the world with nothing but himself because he did not follow the order."
+        m2 "..."
+        "He paused for a moment, realizing he had been talking alone."
+        m2 "Sorry,{w=0.5} I must be rambling again..."
+        i "No no, it's fine!"
+        i "I like the way..."
+        i "The uhh..."
+        i "Uhm..."
+        i "..."
+        "Oh crap, I was lost in thought!"
 
-
-
+        m2 "It's fine anyway. The book was too much for you, wasn't it?"
+        m2 "You wouldn't like it anyway."
+        "He gives me a disappointing look."
+        i "I-I mean, why don't we take lessons from that book of yours?"
+        i "Surely if that happens to us, we can prevent someone else's death?"
+        m2 "Ahaha. You're funny."
+        m2 "This is fiction. It wouldn't happen to us."
+        "This is some foreboding moment."
         m2 "I have always wanted to embark in an abandoned haven..."
-        m2 "That is, if you can still label it like that..."
-        a1 "I'm not really liking the concept of us going through a haunted house."
+        m2 "That is, if you can still label it that..."
+        i "I'm not really liking the concept of us going through a haunted house."
         m2 "It's not a haunted house. It's an abandoned sanctuary."
-        m2 "I mean, we're getting paid to do this for them."
+        m2 "We're essentially making history here by unraveling the secrets of the asylum."
+        m2 "Isn't that fun?"
+        i "Of course, that's something that you like."
+        "I can already see the determination from his eyes."
+        "Your attention please. The train leaving for Farfetch will close its doors in four minutes."
+        m2 "Oh,{w=0.3} there's [a1_name]. Just in time."
+        ann "\"Your attention please. The train leaving for Farfetch will close its doors in four minutes.\""
+        # a1 "Hey guys, one of the coordinators got in touch with me a while ago."
+        # a1 "As far as we know, we're going to rendezvous in a forgotten asylum deep within the forest to dig up the tragic history behind it."
         a1 "I don't know... The coordinators offering a huge amount of money for just exploring the abandoned place?"
         a1 "I don't think so."
         a1 "They must be expecting that something bad might to happen to us."
@@ -394,7 +443,7 @@ label start:
         m2 "There's still the reward money after all of this."
         m2 "It's worth it."
         camera
-        scene bg trainstation blurred with wipeleft_scene
+        scene bg trainstation blurred with noise_scene
         
         i "We're here."
 

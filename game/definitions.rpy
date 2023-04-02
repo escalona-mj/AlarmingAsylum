@@ -54,7 +54,7 @@ define noise = ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64)
 define noise_scene = MultipleTransition([
     False, ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64),
     Solid("#000"), Pause(0.25),
-    Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64),
+    Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.75, reverse=True, ramplen=64),
     True])
 
 define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)

@@ -2,7 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 1757: Indentation mismatch.
+File "game/screens.rpy", line 968: 'font' is not a keyword argument or valid child for the label statement.
+    font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+        ^
 
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Mar 30 17:00:07 2023
+Ren'Py Version: Ren'Py 8.0.1.22070801
+Sun Apr  2 16:01:07 2023

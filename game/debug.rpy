@@ -4,6 +4,8 @@ label debug:
     scene bg gray
     menu:
         i "This is only to test certain screens and functions."
+        "Achievement test":
+            jump achievement_test
         "Notify screen":
             jump notifying
         "Choice selection":
@@ -16,7 +18,7 @@ label debug:
             menu:
                 "Are you sure you want to delete the persistent data including achievements?\n{color=#c41f1f}(WARNING: This will close the game.){fast}{/color}"
                 "{color=#c41f1f}Yes.{/color}":
-                    "Deleting persistent data...{nw=3.0}"
+                    "Deleting persistent data...{nw}"
                     $ persistent._clear(progress=False)
                     $ achievement.clear_all()
                     $ renpy.quit(relaunch=True)
@@ -25,6 +27,24 @@ label debug:
             jump debug
         "Exit debug":
             return
+
+label achievement_test:
+    menu:
+        i "You may check the achievement list to see the changes."
+        "Grant achievement (Normal)":
+            i "Granted.{nw}"
+            $ achievement.grant("normal")
+            jump achievement_test
+        "Grant achievement (Hidden)":
+            i "Granted.{nw}"
+            $ achievement.grant("secret")
+            jump achievement_test
+        "Clear achievements":
+            i "Cleared.{nw}"
+            $ achievement.clear_all()
+            jump achievement_test
+        "Go back":
+            jump debug
 
 label notifying:
     $ renpy.notify("This is a really really long notify message using the renpy.notify() function.")
