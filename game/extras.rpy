@@ -2,15 +2,26 @@ python early:
     achievement_list = {
         # "KeyName": [_("Achievement Name"), _("Achievement Description"), Achievement Type],
         "start": [_("Beginning"), _("Start the game for the very first time."), None],
+
         "end": [_("Closure"), _("Complete the story."), None],
+        
         "no_time": [_("Bad Things Come To Those Who Wait."), _("Fail to catch up with the quick time events."), None],
-        "rps_game": [_("Rock, Paper, Scissors, Champion!"), _("Get 3 consecutive points against someone."), None],
+        
+        "rps_game": [_("Lizard, Spock!"), _("Win against [a1_name] in a game of Rock, Paper, Scissors."), None],
+        
+        "rps_game_rock": [_("Rock Solid"), _("Win and only use \"rock\" in a game of Rock, Paper, Scissors."), 'secret'],
+        
+        "rps_game_scissors": [_("Twin Blades"), _("Win and only use \"scissors\" in a game of Rock, Paper, Scissors."), 'secret'],
+        
+        "rps_game_paper": [_("Wrap It Up "), _("Win and only use \"paper\" in a game of Rock, Paper, Scissors."), 'secret'],
+        
         "bad_end": [_("Better Luck Next Time!"), _("Achieve a bad ending."), None],
+        
         "black_cat": [_("The Black Cat Loves You"), _("Achieve all bad endings."), 'secret'],
 
         #test
-        "normal": [_("Normal Achievement"), _("Can be acquired using normal means."), None],
-        "secret": [_("Secret Achievement"), _("Can only be acquired under specific circumstances."), 'secret'],
+        "normal": [_("Normal Test Achievement"), _("Can be acquired using normal means."), None],
+        "secret": [_("Secret Test Achievement"), _("Can only be acquired under specific circumstances."), 'secret'],
     }
 
 define lockaname = "Achievement Locked."
@@ -51,6 +62,7 @@ screen achievements():
                 else:
                     if achievement.has(k):
                         frame:
+                            background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
                             hbox:
                                 yalign 0.5
                                 add "medal" size (150, 150) yalign 0.5

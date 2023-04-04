@@ -1,7 +1,18 @@
 define persistent.Beginning = False
+define persistent.LizardSpock = False
+define persistent.RockSolid = False
+define persistent.TwinBlades = False
+define persistent.WrapItUp = False
 define dream_flag = False
 define hungry_flag = False
 define window_scene = None
+
+default player_score = 0
+default computer_score = 0
+default rps_win = False
+default only_rock = 0
+default only_paper = 0
+default only_scissors = 0
 
 $ ann = 'Announcer'
 
@@ -119,84 +130,198 @@ label start:
     a1 "You won't last long in trips like these."
     i "Sorry, I keep forgetting it."
     "[a1_name] scoffs at me with worry."
-    a1 "Yeah yeah, typical behavior of yours."
-    a1 "You should probably start packing up."
-    i "Good idea. I can see our destination."
-    "I rummaged through my bag to see if I already have the necessities."
-    "Do I have everything in here?"
-    "Flashlight,{w=0.5} check."
-    "Phone,{w=0.5} check."
-    "Food,{w=0.5} check."
-    "Notebook,{w=0.5} check."
-    
-    "Gun,{w=0.5} chec{nw}"
-    $ _history_list[-1].what = "Self-defense items, check."
-    "Wait, what?{fast}"
+    a1 "Why don't we play rock, paper, scissors for a while? Best of 3?"
+    i "Alright."
 
-    "Right, first-aid...{w=0.5} check."
-    "And then my supplements...{w=0.5} check."
-    "I leave my warm seat in a haste and drag all of my belongings with me."
-    i "I guess I have everything right here."
-    a1 "Alright, I'll go with the others. Care to join us?"
-    menu:
-        "\"Sure.\"":
-            a1 "Okay. Right this way."
-            "We left the current passenger wagon onto the other one."
-            window hide
-            hide train1
-            show train2 behind merah
-            with wipeleft_scene
-            window auto
-            jump char_intro
-        "\"No thanks, I need some more time alone.\"":
-            a1 "I see. Take care."
-            hide merah
-            "[a1_name] leaves the scene, giving the passenger wagon to myself all alone."
-            "Dammit. I forgot to eat lunch."
-            "I was hoping they'd at least offer some food here."
-            "Should I eat the food I brought along now?"
-            menu:
-                "Yes.":
-                    "Can't start the day with an empty stomach, right?"
-                    "*munch*{w=1.5} *munch*{w=1.5} *munch*"
-                    window hide
-                    pause 1.0
-                    window auto
-                    
-                "No.":
-                    "Keep it together, [Main]."
-                    "Just a few more minutes and this trip will be over."
-                    "I have to save my food for the worst."
-                    $ hungry_flag = True
+    label rps:
+        if player_score == 3:
+            $ rps_win = True
+            jump results
+        elif computer_score == 3:
+            jump results
+        else:
+            pass
+        show screen scoring with noise_window
+        call screen rps_screen with noise_window
+        $ player_selection = _return
+        $ computer_selection = renpy.random.choice(['rock', 'paper', 'scissors'])
+        pause 0.5
+        show text _("{size=+100}ROCK...{/size}")
+        pause 0.5
+        show text _("{size=+100}PAPER...{/size}")
+        pause 0.5
+        show text _("{size=+100}SCISSORS...{/size}")
+        pause 0.5
+        show text _("{sc=10}{size=+500}GO!!!{/size}{/sc}")
+        pause 0.5
+        hide text with Dissolve(0.1)
+        "I chose [player_selection] and [a1_name] whips out [computer_selection]."
 
-            "I think getting some fresh air would ease me off."
-            "I open the window."
-            "Suprisingly, the wind against my face is actually rather pleasant."
-            menu:
-                i "Should I...?"
-                "Peek outside.":
-                    "I peek a bit outside the window frame."
-                    hide train1
-                    show forestbackground:
-                        yoffset 250
-                        xalign 1.0
-                        linear 1 xalign 0.0
-                        repeat
-                    with dissolve
-                    "It's a bit chilly, but in a good way. I feel myself waking up even more."
-                    "As much as I hate going to this stupid assignment, the wind does make me feel a bit safer."
-                    window hide
-                    show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}Ahhh...{/bt}")
-                    pause 5.0
-                    hide screen slow_text_center with Dissolve(3.0)
-                    $ window_scene = True
-                "Stay in.":
-                    "I don't think I should. I might fall."
-                    "I'll just look at the scenery."
-                    window hide
-                    pause 5.0
-                    $ window_scene = False
-    
+        if player_selection == computer_selection:
+            "It's a tie."
+            a1 "Ooh, I'll get ya!"
+            jump rps
+
+        elif player_selection == 'rock':
+            $ only_rock += 1
+            if computer_selection == 'scissors':
+                "Rock beats scissors! I win!"
+                $ player_score +=1
+                jump rps
+            else:
+                "Paper beats rock! I lost!"
+                $ computer_score +=1
+                jump rps
+
+        elif player_selection == 'paper':
+            $ only_paper += 1
+            if computer_selection == 'rock':
+                "Paper beats rock! I win!"
+                $ player_score +=1
+                jump rps
+            else:
+                "Scissors beats paper! I lost!"
+                $ computer_score +=1
+                jump rps
+
+        elif player_selection == 'scissors':
+            $ only_scissors += 1
+            if computer_selection == 'paper':
+                "Scissors beats paper! I win!"
+                $ player_score +=1
+                jump rps
+            else:
+                "Rocks beats scissors! I lost!"
+                $ computer_score +=1
+                jump rps
+        
+    label results:
+        if rps_win:
+            $ achievement.grant("rps_game")
+            if persistent.LizardSpock == False:
+                $ renpy.display_notify("Achievement Get:\n\"Lizard, Spock!\"")
+                play sound "audio/sfx/notify.ogg"
+                $ persistent.LizardSpock = True
+            i "I win."
+
+            if only_scissors >= 3:
+                $ achievement.grant("rps_game_scissors")
+                if persistent.TwinBlades == False:
+                    $ renpy.display_notify("Hidden Achievement Get:\n\"Twin Blades\"")
+                    play sound "audio/sfx/notify.ogg"
+                    $ persistent.TwinBlades = True
+                i "And I only used [player_selection] against you!"
+            
+            elif only_rock >= 3:
+                $ achievement.grant("rps_game_rock")
+                if persistent.RockSolid == False:
+                    $ renpy.display_notify("Hidden Achievement Get:\n\"Rock Solid\"")
+                    play sound "audio/sfx/notify.ogg"
+                    $ persistent.RockSolid = True
+                i "And I only used [player_selection] against you!"
+            
+            elif only_paper >= 3:
+                $ achievement.grant("rps_game_paper")
+                if persistent.WrapItUp == False:
+                    $ renpy.display_notify("Hidden Achievement Get:\n\"Wrap It Up!\"")
+                    play sound "audio/sfx/notify.ogg"
+                    $ persistent.WrapItUp = True
+                i "And I only used [player_selection] against you!"
+            
+            i "Take that!"
+            if only_paper >=3 or only_rock >=3 or only_scissors >=3:
+                a1 "Yeah yeah, rub it in. That was pure luck."
+            jump afterwards
+        else:
+            i "Aww, I lost."
+            a1 "You'll never take my title as the legendary Rock, Paper, Scissors King!"
+            jump afterwards
+
+    label afterwards:
+        a1 "Surely you're fully awake now?"
+        if rps_win:
+            i "A bit. Thanks for the game though, I feel replenished."
+            a1 "Awesome!"
+        else:
+            i "I really don't feel any changes."
+            a1 "Well, I tried."
+        a1 "You should probably start packing up."
+        i "Good idea. I can see our destination."
+        "I rummaged through my bag to see if I already have the necessities."
+        "Do I have everything in here?"
+        "Flashlight,{w=0.5} check."
+        "Phone,{w=0.5} check."
+        "Food,{w=0.5} check."
+        "Notebook,{w=0.5} check."
+        
+        "Gun,{w=0.5} chec{nw}"
+        $ _history_list[-1].what = "Self-defense items, check."
+        "Wait, what?{fast}"
+
+        "Right, first-aid...{w=0.5} check."
+        "And then my supplements...{w=0.5} check."
+        "I leave my warm seat in a haste and drag all of my belongings with me."
+        i "I guess I have everything right here."
+        a1 "Alright, I'll go with the others. Care to join us?"
+        menu:
+            "\"Sure.\"":
+                a1 "Okay. Right this way."
+                "We left the current passenger wagon onto the other one."
+                window hide
+                hide train1
+                show train2 behind merah
+                with wipeleft_scene
+                window auto
+                jump char_intro
+            "\"No thanks, I need some more time alone.\"":
+                a1 "I see. Take care."
+                hide merah
+                "[a1_name] leaves the scene, giving the passenger wagon to myself all alone."
+                "Dammit. I forgot to eat lunch."
+                "I was hoping they'd at least offer some food here."
+                "Should I eat the food I brought along now?"
+                menu:
+                    "Yes.":
+                        "Can't start the day with an empty stomach, right?"
+                        "*munch*{w=1.5} *munch*{w=1.5} *munch*"
+                        window hide
+                        pause 1.0
+                        window auto
+                        
+                    "No.":
+                        "Keep it together, [Main]."
+                        "Just a few more minutes and this trip will be over."
+                        "I have to save my food for the worst."
+                        $ hungry_flag = True
+
+                "I think getting some fresh air would ease me off."
+                "I open the window."
+                "Suprisingly, the wind against my face is actually rather pleasant."
+                menu:
+                    i "Should I...?"
+                    "Peek outside.":
+                        "I peek a bit outside the window frame."
+                        hide train1
+                        show forestbackground:
+                            yoffset 250
+                            xalign 1.0
+                            linear 1 xalign 0.0
+                            repeat
+                        with dissolve
+                        "It's a bit chilly, but in a good way. I feel myself waking up even more."
+                        "As much as I hate going to this stupid assignment, the wind does make me feel a bit safer."
+                        window hide
+                        show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}Ahhh...{/bt}")
+                        pause 5.0
+                        hide screen slow_text_center with Dissolve(3.0)
+                        $ window_scene = True
+                    "Stay in.":
+                        "I don't think I should. I might fall."
+                        "I'll just look at the scenery."
+                        window hide
+                        pause 5.0
+                        $ window_scene = False
+        
 
     label char_intro:
         if window_scene == True:
@@ -376,7 +501,7 @@ label start:
         "We exchanged laughs."
         m2 "I find reading a bit mesmerizing. I always imagine myself being at the shoes of the main character."
         m2 "Ooh, about that..."
-        "A certain book caught my attention yesterday and I was hoping to read it with someone here."
+        m2 "A certain book caught my attention yesterday and I was hoping to read it with someone here."
         m2 "It's about a group of friends traveling in an abandoned mansion."
         m2 "Where... you guessed it, someone had to die."
         m2 "If only he had accepted that her death was inevitable. I always think of different ways on how the story could have gone to."
@@ -393,7 +518,7 @@ label start:
         m2 "... then left all alone in the world with nothing but himself because he did not follow the order."
         m2 "..."
         "He paused for a moment, realizing he had been talking alone."
-        m2 "Sorry,{w=0.5} I must be rambling again..."
+        m2 "Sorry,{w=0.2} I must be rambling again..."
         i "No no, it's fine!"
         i "I like the way..."
         i "The uhh..."
@@ -417,31 +542,35 @@ label start:
         m2 "Isn't that fun?"
         i "Of course, that's something that you like."
         "I can already see the determination from his eyes."
-        "Your attention please. The train leaving for Farfetch will close its doors in four minutes."
-        m2 "Oh,{w=0.3} there's [a1_name]. Just in time."
-        ann "\"Your attention please. The train leaving for Farfetch will close its doors in four minutes.\""
+        m2 "Oh,{w=0.2} there's [a1_name]. Just in time."
+        "[m2_name] and [l1_name] arrives at the scene."
+        a1 "Hey guys! We heard the announcement."
+
+        "{i}\"Attention, passengers: this is your conductor. We are now arriving at the train stop.{/i}\""
+        m2 "And we're almost there."
+        
         # a1 "Hey guys, one of the coordinators got in touch with me a while ago."
         # a1 "As far as we know, we're going to rendezvous in a forgotten asylum deep within the forest to dig up the tragic history behind it."
-        a1 "I don't know... The coordinators offering a huge amount of money for just exploring the abandoned place?"
-        a1 "I don't think so."
-        a1 "They must be expecting that something bad might to happen to us."
-        a1 "So them offering a huge asset would mean anyone would be willing to explore it in exchange for money."
-        a1 "They don't want their hands to get dirty so they just leave it to some random group of friends."
-        l1 "That could be true."
-        "What the hell!"
-        i "Is that so?"
-        i "If it's offering more money than we initially agreed on, then I'm in."
-        a1 "Woah, woah, woah, woah!"
-        a1 "Not so fast!"
-        a1 "[m2_name], surely we won't be staying there for too long right?"
-        m2 "3 days."
-        a1 "{sc}3 d-days?!{/sc}"
-        "Wait what?!"
-        "My eyes grew wide."
-        "I thought we're only investigating the asylum?"
-        "I smell trouble..."
-        m2 "There's still the reward money after all of this."
-        m2 "It's worth it."
+        # a1 "I don't know... The coordinators offering a huge amount of money for just exploring the abandoned place?"
+        # a1 "I don't think so."
+        # a1 "They must be expecting that something bad might to happen to us."
+        # a1 "So them offering a huge asset would mean anyone would be willing to explore it in exchange for money."
+        # a1 "They don't want their hands to get dirty so they just leave it to some random group of friends."
+        # l1 "That could be true."
+        # "What the hell!"
+        # i "Is that so?"
+        # i "If it's offering more money than we initially agreed on, then I'm in."
+        # a1 "Woah, woah, woah, woah!"
+        # a1 "Not so fast!"
+        # a1 "[m2_name], surely we won't be staying there for too long right?"
+        # m2 "3 days."
+        # a1 "{sc}3 d-days?!{/sc}"
+        # "Wait what?!"
+        # "My eyes grew wide."
+        # "I thought we're only investigating the asylum?"
+        # "I smell trouble..."
+        # m2 "There's still the reward money after all of this."
+        # m2 "It's worth it."
         camera
         scene bg trainstation blurred with noise_scene
         

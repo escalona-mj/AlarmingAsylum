@@ -1,104 +1,116 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While processing text tag {size+=35} in '{size+=35}Music Settings{/size}'.:
-  File "renpy/common/00gamemenu.rpy", line 170, in script
-    $ ui.interact()
-  File "renpy/common/00gamemenu.rpy", line 170, in <module>
-    $ ui.interact()
-Exception: Unknown text tag 'size+=35'
+While running game code:
+  File "game/debug.rpy", line 5, in script
+    menu:
+  File "game/extras.rpy", line 20, in execute
+    screen achievements():
+  File "game/extras.rpy", line 20, in execute
+    screen achievements():
+  File "game/extras.rpy", line 22, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 127, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 127, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 131, in execute
+    frame:
+  File "game/extras.rpy", line 134, in execute
+    hbox:
+  File "game/extras.rpy", line 140, in execute
+    frame:
+  File "game/extras.rpy", line 143, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 145, in execute
+    viewport:
+  File "game/extras.rpy", line 154, in execute
+    vbox:
+  File "game/extras.rpy", line 155, in execute
+    transclude
+  File "game/extras.rpy", line 22, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 25, in execute
+    vbox:
+  File "game/extras.rpy", line 26, in execute
+    for k, v in achievement_list.items():
+  File "game/extras.rpy", line 28, in execute
+    if v[3] == None:
+  File "game/extras.rpy", line 28, in <module>
+    if v[3] == None:
+IndexError: list index out of range
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00gamemenu.rpy", line 170, in script
-    $ ui.interact()
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ast.py", line 1131, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\python.py", line 1049, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "renpy/common/00gamemenu.rpy", line 170, in <module>
-    $ ui.interact()
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\ui.py", line 299, in interact
+  File "game/debug.rpy", line 5, in script
+    menu:
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/ast.py", line 1903, in execute
+    choice = renpy.exports.menu(choices, self.set, args, kwargs, item_arguments)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/exports.py", line 1010, in menu
+    rv = renpy.store.menu(new_items)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/exports.py", line 1250, in display_menu
+    rv = renpy.ui.interact(mouse='menu', type=type, roll_forward=roll_forward)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/ui.py", line 299, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs) # type: ignore
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 3906, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\core.py", line 2602, in draw_screen
-    surftree = renpy.display.render.render_screen(
-  File "render.pyx", line 495, in renpy.display.render.render_screen
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\transition.py", line 546, in render
-    top = render(self.new_widget, width, height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\screen.py", line 704, in render
-    child = renpy.display.render.render(self.child, w, h, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 884, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1334, in render
-    surf = render(child,
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1060, in render
-    surf = render(d, rw, height - y, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1334, in render
-    surf = render(child,
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1847, in render
-    cwidth, cheight = sizeit('c', width, height, 0, 0)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1844, in sizeit
-    rend = renpy.display.render.render_for_size(pos_d[pos], width, height, st, at)
-  File "render.pyx", line 318, in renpy.display.render.render_for_size
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\viewport.py", line 256, in render
-    surf = renpy.display.render.render(self.child, child_width, child_height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1105, in render
-    surf = render(d, width - x, rh, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1105, in render
-    surf = render(d, width - x, rh, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1060, in render
-    surf = render(d, rw, height - y, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\display\layout.py", line 1105, in render
-    surf = render(d, width - x, rh, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 266, in renpy.display.render.render
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\text\text.py", line 2099, in render
-    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\text\text.py", line 617, in __init__
-    self.paragraphs = self.segment(text.tokens, style, renders, text)
-  File "C:\Users\dell\Desktop\MJ FILES\games\renpy-7.4.11-sdk\renpy\text\text.py", line 1268, in segment
-    raise Exception("Unknown text tag %r" % text)
-Exception: Unknown text tag 'size+=35'
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 3810, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/screen.py", line 451, in visit_all
+    callback(self)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/core.py", line 3810, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/screen.py", line 462, in per_interact
+    self.update()
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/display/screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/extras.rpy", line 20, in execute
+    screen achievements():
+  File "game/extras.rpy", line 20, in execute
+    screen achievements():
+  File "game/extras.rpy", line 22, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 127, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 127, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 131, in execute
+    frame:
+  File "game/extras.rpy", line 134, in execute
+    hbox:
+  File "game/extras.rpy", line 140, in execute
+    frame:
+  File "game/extras.rpy", line 143, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 145, in execute
+    viewport:
+  File "game/extras.rpy", line 154, in execute
+    vbox:
+  File "game/extras.rpy", line 155, in execute
+    transclude
+  File "game/extras.rpy", line 22, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 25, in execute
+    vbox:
+  File "game/extras.rpy", line 26, in execute
+    for k, v in achievement_list.items():
+  File "game/extras.rpy", line 28, in execute
+    if v[3] == None:
+  File "game/extras.rpy", line 28, in <module>
+    if v[3] == None:
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk/renpy/revertable.py", line 217, in __getitem__
+    rv = list.__getitem__(self, index)
+IndexError: list index out of range
 
-Windows-8.1-6.3.9600 AMD64
-Ren'Py 8.0.1.22070801
+Windows-10-10.0.22621 AMD64
+Ren'Py 7.5.3.22090809
 Alarming Asylum 1.0
-Sun Apr  2 16:03:16 2023
+Tue Apr  4 23:02:47 2023

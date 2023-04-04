@@ -80,6 +80,53 @@ style frame:
 ################################################################################
 ## In-game screens
 ################################################################################
+
+screen scoring():
+    zorder 300
+    frame:
+        xalign 0.5
+        yalign 0.10
+        xpadding 75
+        ypadding 50
+        background Frame("gui/frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
+            
+        vbox:
+            text _("Score"):
+                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+                text_align 0.5
+                xalign 0.5
+            text _("[player_score]  -  [computer_score]"):
+                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+                size 100
+                text_align 0.5
+                xalign 0.5
+
+screen rps_screen():
+    add "gui/overlay/confirm.png"
+    vbox:
+        xalign 0.5
+        yalign 0.5
+        
+        null height 50
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            imagebutton:
+                yalign 0.5
+                focus_mask True
+                idle "scissors"
+                action Return('scissors'), Hide("rps_screen", transition=noise_window)
+            imagebutton:
+                yalign 0.5
+                focus_mask True
+                idle "paper"
+                action Return('paper'), Hide("rps_screen", transition=noise_window)
+            imagebutton:
+                yalign 0.5
+                focus_mask True
+                idle "rock"
+                action Return('rock'), Hide("rps_screen", transition=noise_window)
+
 default Main = persistent.playername
 define persistent.playername = ''
 
@@ -121,10 +168,8 @@ screen name_input(message, ok_action):
             spacing 100
 
             textbutton _("OK") action ok_action
-    textbutton _("X") action Hide(screen='name_input'):
-        xalign 0.97
-        yalign 0.08
-
+            textbutton _("Back") action Hide(screen='name_input')
+        
 init python:
     def FinishEnterName():
         if not Main: return
@@ -965,7 +1010,7 @@ screen preferences():
                 null height 400
 
                 vbox:
-                    text _("{size=+15}Music Settings{/size}"):
+                    text _("{size=+25}Music Settings{/size}"):
                         font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
 
                     if config.has_music:
@@ -1792,6 +1837,7 @@ screen quick_menu():
                 if config.developer == True:
                     textbutton _("Back") action Rollback()
                     textbutton _("Hide") action HideInterface()
+                    textbutton _("Achieve") action Show("achievements")
                 else:
                     pass
                 # textbutton _("History") action ShowMenu('history')

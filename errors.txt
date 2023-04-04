@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 968: 'font' is not a keyword argument or valid child for the label statement.
-    font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
-        ^
+File "game/extras.rpy", line 12: invalid syntax
+            "rps_game_rock": [_("Rock Solid"), _("Win and only use \"rock\" in a game of Rock, Paper, Scissors."), 'secret'],
+                           ^
+    
 
-Ren'Py Version: Ren'Py 8.0.1.22070801
-Sun Apr  2 16:01:07 2023
+Ren'Py Version: Ren'Py 7.5.3.22090809
+Tue Apr  4 23:04:32 2023
