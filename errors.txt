@@ -2,10 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/extras.rpy", line 12: invalid syntax
-            "rps_game_rock": [_("Rock Solid"), _("Win and only use \"rock\" in a game of Rock, Paper, Scissors."), 'secret'],
-                           ^
+File "game/extras.rpy", line 3: invalid syntax
+    default achievement_list = {
+                            ^
     
 
 Ren'Py Version: Ren'Py 7.5.3.22090809
-Tue Apr  4 23:04:32 2023
+Wed Apr  5 13:17:42 2023

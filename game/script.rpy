@@ -3,7 +3,6 @@ define persistent.LizardSpock = False
 define persistent.RockSolid = False
 define persistent.TwinBlades = False
 define persistent.WrapItUp = False
-define dream_flag = False
 define hungry_flag = False
 define window_scene = None
 
@@ -139,6 +138,8 @@ label start:
             jump results
         elif computer_score == 3:
             jump results
+        elif player_score == 2 and computer_score == 2:
+            a1 "It's now or never!"
         else:
             pass
         show screen scoring with noise_window
@@ -163,9 +164,11 @@ label start:
             jump rps
 
         elif player_selection == 'rock':
-            $ only_rock += 1
             if computer_selection == 'scissors':
                 "Rock beats scissors! I win!"
+                $ only_rock += 1
+                $ only_paper = 0
+                $ only_scissors = 0
                 $ player_score +=1
                 jump rps
             else:
@@ -174,9 +177,11 @@ label start:
                 jump rps
 
         elif player_selection == 'paper':
-            $ only_paper += 1
             if computer_selection == 'rock':
                 "Paper beats rock! I win!"
+                $ only_paper += 1
+                $ only_rock = 0
+                $ only_scissors = 0
                 $ player_score +=1
                 jump rps
             else:
@@ -185,9 +190,11 @@ label start:
                 jump rps
 
         elif player_selection == 'scissors':
-            $ only_scissors += 1
             if computer_selection == 'paper':
                 "Scissors beats paper! I win!"
+                $ only_scissors += 1
+                $ only_paper = 0
+                $ only_rock = 0
                 $ player_score +=1
                 jump rps
             else:
@@ -210,7 +217,7 @@ label start:
                     $ renpy.display_notify("Hidden Achievement Get:\n\"Twin Blades\"")
                     play sound "audio/sfx/notify.ogg"
                     $ persistent.TwinBlades = True
-                i "And I only used [player_selection] against you!"
+                i "And I beat you using [player_selection]!"
             
             elif only_rock >= 3:
                 $ achievement.grant("rps_game_rock")
@@ -218,15 +225,15 @@ label start:
                     $ renpy.display_notify("Hidden Achievement Get:\n\"Rock Solid\"")
                     play sound "audio/sfx/notify.ogg"
                     $ persistent.RockSolid = True
-                i "And I only used [player_selection] against you!"
-            
+                i "And I beat you using [player_selection]!"
+
             elif only_paper >= 3:
                 $ achievement.grant("rps_game_paper")
                 if persistent.WrapItUp == False:
                     $ renpy.display_notify("Hidden Achievement Get:\n\"Wrap It Up!\"")
                     play sound "audio/sfx/notify.ogg"
                     $ persistent.WrapItUp = True
-                i "And I only used [player_selection] against you!"
+                i "And I beat you using [player_selection]!"
             
             i "Take that!"
             if only_paper >=3 or only_rock >=3 or only_scissors >=3:
@@ -234,10 +241,11 @@ label start:
             jump afterwards
         else:
             i "Aww, I lost."
-            a1 "You'll never take my title as the legendary Rock, Paper, Scissors King!"
+            a1 "Bow to me!"
             jump afterwards
 
     label afterwards:
+        hide screen scoring with noise_window
         a1 "Surely you're fully awake now?"
         if rps_win:
             i "A bit. Thanks for the game though, I feel replenished."
@@ -337,7 +345,7 @@ label start:
             i "Gah! What th-{w=0.5}{nw}" with vpunch
             i "Don't sneak behind me like that!"
             a1 "Hehe, sorry."
-            "Flabbergastered, I went back gazing into the distance."
+            "Flabbergasted, I went back gazing into the distance."
             a1 "By the way, my assistant wants to talk to you."
             a1 "I don't know what it is, but I'll leave the two of you alone."
             i "Is that so?"
@@ -462,8 +470,19 @@ label start:
         i "Shouldn't you only serve [a1_name]?"
         l1 "A friend of [a1_name] is also my responsibility."
         l1 "It is something that we, servants, should also serve."
+
+        if rps_win == True:
+            l1 "I heard you won against [a1_name] in a game of rock, paper, scissors right?"
+            l1 "I give you my congratulations."
+        else:
+            l1 "I heard you lost against [a1_name] in a game of rock, paper, scissors right?"
+            l1 "There is always next time."
+            "She gives me a pat in the head, giving me a comfortable feeling."
+
+        i "Th-thanks, [l1_name]."
+        i "How did you know?"
+        l1 "[a1_name] told me."
         l1 "Now, why don't you go with the others?"
-        i "Oh, I see."
         "Just as I leave [l1_name], I looked back at her with sincerity."
         i "By the way..."
         i "Thanks [l1_name]."

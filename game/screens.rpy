@@ -82,7 +82,7 @@ style frame:
 ################################################################################
 
 screen scoring():
-    zorder 300
+    zorder 100
     frame:
         xalign 0.5
         yalign 0.10
@@ -126,6 +126,9 @@ screen rps_screen():
                 focus_mask True
                 idle "rock"
                 action Return('rock'), Hide("rps_screen", transition=noise_window)
+        text _("Pick a choice"):
+            text_align 0.5
+            xalign 0.5
 
 default Main = persistent.playername
 define persistent.playername = ''

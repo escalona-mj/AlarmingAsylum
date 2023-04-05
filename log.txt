@@ -1,38 +1,135 @@
-Wed Apr  5 07:33:59 2023
+Wed Apr  5 13:15:43 2023
 Windows-10-10.0.22621
 Ren'Py 7.5.3.22090809
  
 
-Bootstrap to the start of init.init took 0.17s
+Bootstrap to the start of init.init took 0.16s
 Early init took 0.01s
-Loader init took 0.06s
-Loading error handling took 0.04s
-Loading script took 0.29s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.34s
 Loading save slot metadata. took 0.07s
 Loading persistent took 0.00s
-Faled to initialize steam: WindowsError(126, 'The specified module could not be found')
-Running init code took 0.12s
-Loading analysis data took 0.03s
-Analyze and compile ATL took 0.00s
-Index archives took 0.00s
-Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.04s
+
+File "game/extras.rpy", line 3: invalid syntax
+    default achievement_list = OrderedDict(
+                            ^
+    
 DPI scale factor: 1.250000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.08s
-Build styles took 0.01s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Save screen analysis took 0.00s
-Prepare screens took 0.11s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.00s
-Running _start took 0.00s
+Interface start took 0.23s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 15.43s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.29s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+
+File "game/extras.rpy", line 5: invalid syntax
+            "start": [("Beginning"), ("Start the game for the very first time."), None],
+                    ^
+    
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Interface start took 0.14s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 36.47s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.30s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+
+File "game/extras.rpy", line 5: invalid syntax
+            "start": ["Beginning", "Start the game for the very first time.", None],
+                    ^
+    
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Interface start took 0.15s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 48.58s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.30s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+
+File "game/extras.rpy", line 5: invalid syntax
+            "start": "Beginning", "Start the game for the very first time.", None,
+                    ^
+    
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Interface start took 0.15s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 118.17s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.31s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+
+File "game/extras.rpy", line 3: invalid syntax
+    default achievement_list = {
+                            ^
+    
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
 Interface start took 0.16s
 
 Initializing gl2 renderer:
@@ -43,12 +140,486 @@ Vendor: 'ATI Technologies Inc.'
 Renderer: 'AMD Radeon(TM) Graphics'
 Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1818, 1022) drawable=(1818, 1022)
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
 Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 130.79s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.03s
+Loading script took 0.30s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: WindowsError(126, 'The specified module could not be found')
+Running init code took 0.10s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.08s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.00s
+Init translation took 0.09s
 Build styles took 0.01s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.06s
+Prepare screens took 0.15s
+Save pyanalysis. took 0.07s
+Save bytecode. took 0.03s
 Running _start took 0.00s
+Interface start took 0.09s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(942, 530) drawable=(942, 530)
+Maximum texture size: 4096x4096
+
+Full traceback:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "renpy/ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "renpy/display/core.py", line 3810, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 451, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3810, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 462, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 144, in execute
+    frame:
+  File "game/extras.rpy", line 147, in execute
+    hbox:
+  File "game/extras.rpy", line 153, in execute
+    frame:
+  File "game/extras.rpy", line 156, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 158, in execute
+    viewport:
+  File "game/extras.rpy", line 167, in execute
+    vbox:
+  File "game/extras.rpy", line 168, in execute
+    transclude
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 36, in execute
+    vbox:
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in <module>
+    for k, v in sorted(achievement_list.keys()):
+ValueError: too many values to unpack
+
+While running game code:
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 144, in execute
+    frame:
+  File "game/extras.rpy", line 147, in execute
+    hbox:
+  File "game/extras.rpy", line 153, in execute
+    frame:
+  File "game/extras.rpy", line 156, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 158, in execute
+    viewport:
+  File "game/extras.rpy", line 167, in execute
+    vbox:
+  File "game/extras.rpy", line 168, in execute
+    transclude
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 36, in execute
+    vbox:
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in <module>
+    for k, v in sorted(achievement_list.keys()):
+ValueError: too many values to unpack
+While handling exception:
+Traceback (most recent call last):
+  File "renpy/display/error.py", line 147, in report_exception
+    traceback_fn=traceback_fn,
+  File "renpy/game.py", line 286, in invoke_in_new_context
+    return callable(*args, **kwargs)
+  File "renpy/display/error.py", line 48, in call_exception_screen
+    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
+  File "renpy/ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "renpy/display/core.py", line 4258, in interact_core
+    rv = root_widget.event(ev, x, y, 0)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/screen.py", line 743, in event
+    rv = self.child.event(ev, x, y, st)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/layout.py", line 1399, in event
+    rv = super(Window, self).event(ev, x, y, st)
+  File "renpy/display/layout.py", line 279, in event
+    rv = d.event(ev, x - xo, y - yo, st)
+  File "renpy/display/layout.py", line 279, in event
+    rv = d.event(ev, x - xo, y - yo, st)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/layout.py", line 1175, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "renpy/display/behavior.py", line 1073, in event
+    return handle_click(self.clicked)
+  File "renpy/display/behavior.py", line 1008, in handle_click
+    rv = run(action)
+  File "renpy/display/behavior.py", line 329, in run
+    return action(*args, **kwargs)
+  File "renpy/display/error.py", line 55, in rollback_action
+    renpy.exports.rollback(force=True)
+  File "renpy/exports.py", line 1716, in rollback
+    renpy.game.log.rollback(checkpoints, greedy=greedy, label=label, force=(force is True), abnormal=abnormal, current_label=current_label)
+  File "renpy/rollback.py", line 889, in rollback
+    self.load_failed()
+  File "renpy/rollback.py", line 807, in load_failed
+    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+
+Full traceback:
+  File "renpy/common/00start.rpy", line 278, in script
+    python:
+  File "renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00start.rpy", line 282, in <module>
+    renpy.call_in_new_context("_main_menu")
+  File "renpy/game.py", line 346, in call_in_new_context
+    return renpy.execution.run_context(False)
+  File "renpy/execution.py", line 938, in run_context
+    context.run()
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "renpy/ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "renpy/display/core.py", line 3810, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 451, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3810, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 462, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 144, in execute
+    frame:
+  File "game/extras.rpy", line 147, in execute
+    hbox:
+  File "game/extras.rpy", line 153, in execute
+    frame:
+  File "game/extras.rpy", line 156, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 158, in execute
+    viewport:
+  File "game/extras.rpy", line 167, in execute
+    vbox:
+  File "game/extras.rpy", line 168, in execute
+    transclude
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 36, in execute
+    vbox:
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in <module>
+    for k, v in sorted(achievement_list.keys()):
+ValueError: too many values to unpack
+
+While running game code:
+  File "renpy/common/00start.rpy", line 278, in script
+    python:
+  File "renpy/common/00start.rpy", line 282, in <module>
+    renpy.call_in_new_context("_main_menu")
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 31, in execute
+    screen achievements():
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 140, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 144, in execute
+    frame:
+  File "game/extras.rpy", line 147, in execute
+    hbox:
+  File "game/extras.rpy", line 153, in execute
+    frame:
+  File "game/extras.rpy", line 156, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 158, in execute
+    viewport:
+  File "game/extras.rpy", line 167, in execute
+    vbox:
+  File "game/extras.rpy", line 168, in execute
+    transclude
+  File "game/extras.rpy", line 33, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 36, in execute
+    vbox:
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in execute
+    for k, v in sorted(achievement_list.keys()):
+  File "game/extras.rpy", line 38, in <module>
+    for k, v in sorted(achievement_list.keys()):
+ValueError: too many values to unpack
+Resetting cache.
+Bootstrap to the start of init.init took 198.60s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.03s
+Loading script took 0.31s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: WindowsError(126, 'The specified module could not be found')
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.09s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.11s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.06s
+Prepare screens took 0.11s
+Save pyanalysis. took 0.07s
+Save bytecode. took 0.03s
+Running _start took 0.00s
+Interface start took 0.09s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(941, 529) drawable=(941, 529)
+Maximum texture size: 4096x4096
+
+Full traceback:
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+  File "renpy/loadsave.py", line 769, in load
+    log.unfreeze(roots, label="_after_load")
+  File "renpy/rollback.py", line 1078, in unfreeze
+    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
+  File "renpy/rollback.py", line 889, in rollback
+    self.load_failed()
+  File "renpy/rollback.py", line 807, in load_failed
+    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+
+While running game code:
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+Resetting cache.
+Bootstrap to the start of init.init took 247.38s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.03s
+Loading script took 0.31s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: WindowsError(126, 'The specified module could not be found')
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.11s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.08s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.12s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.07s
+Prepare screens took 0.13s
+Save pyanalysis. took 0.07s
+Save bytecode. took 0.03s
+Running _start took 0.00s
+Interface start took 0.10s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) Graphics'
+Version: '4.6.14761 Compatibility Profile Context 21.30.44.14 30.0.13044.14002'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+
+Full traceback:
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+  File "renpy/loadsave.py", line 769, in load
+    log.unfreeze(roots, label="_after_load")
+  File "renpy/rollback.py", line 1078, in unfreeze
+    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
+  File "renpy/rollback.py", line 889, in rollback
+    self.load_failed()
+  File "renpy/rollback.py", line 807, in load_failed
+    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+
+While running game code:
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?

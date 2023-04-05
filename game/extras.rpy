@@ -1,4 +1,5 @@
 python early:
+    from collections import OrderedDict
     achievement_list = {
         # "KeyName": [_("Achievement Name"), _("Achievement Description"), Achievement Type],
         "start": [_("Beginning"), _("Start the game for the very first time."), None],
@@ -21,7 +22,7 @@ python early:
 
         #test
         "normal": [_("Normal Test Achievement"), _("Can be acquired using normal means."), None],
-        "secret": [_("Secret Test Achievement"), _("Can only be acquired under specific circumstances."), 'secret'],
+        "secret": [_("Secret Test Achievement"), _("Can only be acquired under specific circumstances."), 'secret']
     }
 
 define lockaname = "Achievement Locked."
@@ -34,7 +35,7 @@ screen achievements():
         style_prefix "achievements"
         vbox:
             box_wrap True
-            for k, v in achievement_list.items():
+            for k, v in sorted(achievement_list.items()):
                 #display all achievements except hidden
                 if v[2] != 'secret':
                     frame:
