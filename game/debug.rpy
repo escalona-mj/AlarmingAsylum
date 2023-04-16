@@ -1,7 +1,6 @@
-image gray = Solid("#808080")
 label debug:
     $ quick_menu = False
-    scene bg gray
+    scene graybg
     menu:
         i "This is only to test certain screens and functions."
         "Achievement test":
@@ -19,7 +18,7 @@ label debug:
                 "Are you sure you want to delete the persistent data including achievements?\n{color=#c41f1f}(WARNING: This will close the game.){fast}{/color}"
                 "{color=#c41f1f}Yes.{/color}":
                     "Deleting persistent data...{nw}"
-                    $ persistent._clear(progress=False)
+                    $ persistent._clear(progress=True)
                     $ achievement.clear_all()
                     $ renpy.quit(relaunch=True)
                 "No.":
@@ -31,17 +30,21 @@ label debug:
 label achievement_test:
     menu:
         i "You may check the achievement list to see the changes."
-        "Grant achievement (Normal)":
-            i "Granted.{nw}"
-            $ achievement.grant("normal")
-            jump achievement_test
-        "Grant achievement (Hidden)":
-            i "Granted.{nw}"
-            $ achievement.grant("secret")
+        "Grant all achievements":
+            $ achievement.grant("start")
+            $ achievement.grant("end")
+            $ achievement.grant("no_time")
+            $ achievement.grant("rps_game")
+            $ achievement.grant("rps_game_rock")
+            $ achievement.grant("rps_game_paper")
+            $ achievement.grant("rps_game_scissors")
+            $ achievement.grant("bad_end")
+            $ achievement.grant("all_bad_end")
+            i "Granted."
             jump achievement_test
         "Clear achievements":
-            i "Cleared.{nw}"
             $ achievement.clear_all()
+            i "Cleared."
             jump achievement_test
         "Go back":
             jump debug
@@ -62,7 +65,7 @@ label notifying:
             jump debug
 
 label naming:
-    call screen name_input(message="What is your name?", ok_action=Return())
+    call screen name_input(message="What is your name?", ok_action=Return(), back_action=NullAction())
     $ persistent.playername = Main
     i "... is my name."
     $ renpy.notify("Your name is " + Main + ".")

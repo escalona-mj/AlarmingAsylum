@@ -11,7 +11,6 @@ define i = Character(
     what_prefix='"',
     what_suffix='"',
     ctc="ctc",
-    ctc_pause="ctc_pause",
     ctc_position="fixed")
 
 default a1_name = "Alonso"
@@ -59,6 +58,10 @@ define noise_scene = MultipleTransition([
 
 define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)
 
+transform textdissolve:
+        alpha 0
+        ease 0.25 alpha 1
+
 #############################
 #      DYNAMIC SCENES       #
 #############################
@@ -72,40 +75,112 @@ image forestbackground:
     im.Blur("images/bgs/train/forestbackground.png", 5.0)
     yoffset -250
     
+image bg trainstation:
+    im.Blur("images/bgs/bg trainstation.jpg", 5.0)
+
+image bg forest1:
+    im.Blur("images/bgs/bg forest1.jpg", 5.0)
+
+image bg forest2:
+    im.Blur("images/bgs/bg forest2.jpg", 5.0)
+    
+image forest2 night:
+    im.MatrixColor(im.Blur("images/bgs/bg forest2.jpg", 5.0), im.matrix.tint(.44,.65,.75))
+
+image bg outside_asylum:
+    im.MatrixColor(im.Blur("images/bgs/bg outside_asylum.jpg", 5.0), im.matrix.tint(.90,.65,1.0))
+
+image bg asylum:
+    im.Blur("gui/menu/asylum.jpg", 5.0)
 
 #############################
 #        MAIN MENU          #
 #############################
 
-transform blink_blur:
-    blur 10
-    linear 1.0 alpha 0.5
-    linear 2.0 alpha 0.0
-    repeat
+# transform blink_blur:
+#     blur 10
+#     linear 1.0 alpha 0.5
+#     linear 2.0 alpha 0.0
+#     repeat
 
-transform blink:
-    zoom .5
-    linear 1.0 alpha 0.0 blur 5
-    linear 5.0 alpha 1.0 blur 0
-    repeat
+# transform blink:
+#     zoom .5
+#     linear 1.0 alpha 0.0 blur 5
+#     linear 5.0 alpha 1.0 blur 0
+#     repeat
 
-image particle_blur = SnowBlossom(At("gui/menu/particle_small.png", blink_blur), border=150, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -80),  xspeed=(-200,200), horizontal=True)
-image particle = SnowBlossom(At("gui/menu/particle_small.png", blink), count=10, border=150, xspeed=(0, -10), start=10, fast=False, horizontal=False)
+# image particle_blur = SnowBlossom(At("gui/menu/particle_small.png", blink_blur), border=150, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -80),  xspeed=(-200,200), horizontal=True)
+# image particle = SnowBlossom(At("gui/menu/particle_small.png", blink), count=10, border=150, xspeed=(0, -10), start=10, fast=False, horizontal=False)
+
+image bird1 = SnowBlossom("gui/menu/bird1.png", count=3, border=150, xspeed=(100,250), yspeed=(-150,-90), fast=False, horizontal=False)
+image bird2 = SnowBlossom("gui/menu/bird2.png", count=3, border=150, xspeed=(100,250), yspeed=(-150,-90), fast=False, horizontal=False)
+image bird3 = SnowBlossom("gui/menu/bird3.png", count=3, border=150, xspeed=(100,250), yspeed=(-150,-90), fast=False, horizontal=False)
+
+# image vigenette = Composite(
+#     (1920,1080),
+#     (0,0), "gui/menu/rectangle_top.png",
+#     (0,871), "gui/menu/rectangle_bottom.png"
+#     )
+
+image graybg = ("gui/menu/gray.png")
+image moon = ("gui/menu/moon.png")
+# image birds = ("gui/menu/birds.png")
+
+image house = ("gui/menu/house.png")
+image trees = ("gui/menu/trees.png")
+image grass = ("gui/menu/grass.png")
+image grunge = ("gui/menu/grunge.png")
+image menuFrame = ("gui/menu/menu_frame.png")
+
+#############################
+#           SCREENS         #
+#############################
 
 image medal = ("gui/achievements/medal.png")
 image locked_medal = ("gui/achievements/locked_medal.png")
 
-image vigenette = Composite(
-    (1920,1080),
-    (0,0), "gui/menu/rectangle_top.png",
-    (0,871), "gui/menu/rectangle_bottom.png"
-    )
+image skip_overlay:
+    alpha 0.75
+    xalign 0.5
+    yalign 0.5
+    zoom 1.5
+    glitch("gui/overlay/confirm.png", chroma=True, offset=500, randomkey=None)
+    pause 0.1
+    glitch("gui/overlay/confirm.png", chroma=False, offset=500, randomkey=None)
+    pause 0.1
+    repeat
 
-image asylum:
-    im.Blur("gui/menu/asylum.jpg", 3.0)
-
-image bg trainstation blurred:
-    im.Blur("images/bgs/bg trainstation.jpg", 5.0)
+image logo:
+    "gui/menu/logo.png"
+    pause 0.5
+    choice:
+        glitch("gui/menu/logo.png", chroma=False, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+        pause 0.2
+        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+        pause 0.1
+    choice:
+        glitch("gui/menu/logo.png", chroma=True, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+        pause 0.1
+    choice:
+        glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=True, offset=1000, randomkey=None)
+        pause 0.1
+        glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
+        pause 0.1
+    choice:
+        pause 2.0
+    repeat
 
 #############################
 #      CHARACTER IMAGES     #
@@ -113,7 +188,20 @@ image bg trainstation blurred:
 
 image merah neutral = Composite(
     (980,980),
-    (0,25), "images/characters/merah neutral.png")
+    (0,0), "images/characters/merah neutral.png")
+
+image merah glitched:
+    "merah neutral"
+    pause 0.1
+    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
+    pause 0.01
+    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
+    pause 0.2
+    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
+    pause 0.1
+    "merah neutral"
+    pause 1.0
+
 
 #############################
 #            FONT           #
@@ -129,6 +217,7 @@ style disclaimer_font:
 #############################
 #           AUDIO           #
 #############################
-define audio.titlescreen = "audio/bgm/titlescreen.ogg"
+define audio.titlescreen = "<loop 23.154 to 83.098>audio/bgm/titlescreen.ogg"
+#<loop 23.154 to 83.098 or 1m 23.098>
 
 define audio.train = "audio/ambient/train.ogg"

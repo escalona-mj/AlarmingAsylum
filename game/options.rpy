@@ -25,6 +25,8 @@ define _game_menu_screen = None
 define config.menu_include_disabled = False
 define config.gl2 = True
 
+define config.layers = [ 'master', 'transient', 'screens', 'overlay' ]
+
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
 
@@ -40,6 +42,25 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+FONTS
+
+Suicide Squadron made by {a=https://www.fontspace.com/heaven-castro}heaven castro{/a}
+
+Kingthings Printing Kit by {a=https://www.kingthingsfonts.co.uk/}Kevin King{/a}
+
+
+MUSIC
+
+"Alone Once Again" by {a=https://www.danielbirchmusic.com}Daniel Birch{/a}
+
+"Dark Ambient Atmosphere 2" by {a=https://pixabay.com/users/danydory-9903/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=141314"}danydory{/a}
+
+
+EFFECTS
+
+{bt}"Kinetic Text Tags"{/bt} effect by {a=https://github.com/SoDaRa/Kinetic-Text-Tags}SoDaRa{/a}
+
+{gtext}"renpyChromaGlitch"{/gtext} effect by {a=https://github.com/Gouvernathor/renpy-ChromaGlitch}Gouvernathor{/a}
 """)
 
 
@@ -126,8 +147,8 @@ define config.window = "auto"
 
 ## Transitions used to show and hide the dialogue window
 
-define config.window_show_transition = noise_window
-define config.window_hide_transition = noise_window
+define config.window_show_transition = Dissolve(0.2)
+define config.window_hide_transition = Dissolve(0.2)
 
 
 ## Preference defaults #########################################################

@@ -1,0 +1,2 @@
+label scene_2:
+    ""

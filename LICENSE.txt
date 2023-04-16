@@ -1,8 +1,15 @@
 FONTS
 Suicide Squadron font made by heaven castro
-Avontuur Garde Goshikkutai Font made by heaven castro
+Licensed under Freeware
+
+Avontuur Garde Goshikkutai Font by heaven castro
+Licensed under Freeware
+
+Coarse Rounded Font by kehrerd
+Licensed under SIL Open Font License (OFL)
 
 IMAGES
+
 https://www.pexels.com/
 
 MUSIC USED
@@ -10,9 +17,5 @@ MUSIC USED
 Licensed under Creative Commons: By Attribution-NonCommercial 4.0 International
 (CC BY-NC 4.0) https://creativecommons.org/licenses/by-nc/4.0/
 
-SOUND EFFECTS
-Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=43196">Pixabay</a>
-
-Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=26360">Pixabay</a>
-
-Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=100590">Pixabay</a>
+Dark Ambient Atmosphère 2
+Music by <a href="https://pixabay.com/users/danydory-9903/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=141314">danydory</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=141314">Pixabay</a>

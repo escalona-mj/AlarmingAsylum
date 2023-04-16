@@ -5,7 +5,7 @@ label splashscreen:
         if renpy.variant("small"):
             $ config.allow_skipping = False
             show splash1 at truecenter:
-                zoom 0.35
+                zoom 0.5
             with noise
             $ renpy.pause(2.0, hard=True)
             hide splash1 with noise

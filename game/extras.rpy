@@ -1,44 +1,68 @@
-python early:
-    from collections import OrderedDict
-    achievement_list = {
-        # "KeyName": [_("Achievement Name"), _("Achievement Description"), Achievement Type],
-        "start": [_("Beginning"), _("Start the game for the very first time."), None],
+default persistent.achievement_list = {
+    # "KeyName": [_("Achievement Name"), _("Achievement Description"), Achievement Type],
+    "start": [
+        _("New Beginnings"),
+        _("Start a new game for the very first time."),
+        None
+        ],
 
-        "end": [_("Closure"), _("Complete the story."), None],
-        
-        "no_time": [_("Bad Things Come To Those Who Wait."), _("Fail to catch up with the quick time events."), None],
-        
-        "rps_game": [_("Lizard, Spock!"), _("Win against [a1_name] in a game of Rock, Paper, Scissors."), None],
-        
-        "rps_game_rock": [_("Rock Solid"), _("Win and only use \"rock\" in a game of Rock, Paper, Scissors."), 'secret'],
-        
-        "rps_game_scissors": [_("Twin Blades"), _("Win and only use \"scissors\" in a game of Rock, Paper, Scissors."), 'secret'],
-        
-        "rps_game_paper": [_("Wrap It Up "), _("Win and only use \"paper\" in a game of Rock, Paper, Scissors."), 'secret'],
-        
-        "bad_end": [_("Better Luck Next Time!"), _("Achieve a bad ending."), None],
-        
-        "black_cat": [_("The Black Cat Loves You"), _("Achieve all bad endings."), 'secret'],
+    "end": [
+        _("Closure"),
+        _("Complete the story normally."),
+        None],
+    
+    "no_time": [
+        _("Bad Things Come To Those Who Wait."),
+        _("Fail to catch up with the quick time events."),
+        None],
+    
+    "rps_game": [
+        _("Master of the Hand Games"),
+        _("Emerge victorious in a game of Rock, Paper, Scissors."),
+        None],
+    
+    "rps_game_rock": [
+        _("Rock Solid"),
+        _("Win three consecutive rounds using only rock."),
+        'secret'],
+    
+    "rps_game_scissors": [
+        _("Twin Blades"),
+        _("Win three consecutive rounds using only scissors."),
+        'secret'],
+    
+    "rps_game_paper": [
+        _("Wrap It Up "),
+        _("Win three consecutive rounds using only paper."),
+        'secret'],
+    
+    "bad_end": [
+        _("Better Luck Next Time!"),
+        _("Achieve a bad ending."),
+        None],
+    
+    "all_bad_end": [
+        _("Failure is Not an Option"),
+        _("Achieve all bad endings."),
+        'secret'],
 
-        #test
-        "normal": [_("Normal Test Achievement"), _("Can be acquired using normal means."), None],
-        "secret": [_("Secret Test Achievement"), _("Can only be acquired under specific circumstances."), 'secret']
     }
 
 define lockaname = "Achievement Locked."
 define lockdesc = "???"
 
 screen achievements():
-    modal True
+    tag menu
     use extras_menu(_("Achievements"), scroll="viewport"):
 
         style_prefix "achievements"
         vbox:
             box_wrap True
-            for k, v in sorted(achievement_list.items()):
+            for k, v in persistent.achievement_list.items():
                 #display all achievements except hidden
                 if v[2] != 'secret':
                     frame:
+                        # background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
                         hbox:
                             yalign 0.5
 
@@ -63,7 +87,7 @@ screen achievements():
                 else:
                     if achievement.has(k):
                         frame:
-                            background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
+                            background Frame("gui/achievements/hidden_achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
                             hbox:
                                 yalign 0.5
                                 add "medal" size (150, 150) yalign 0.5
@@ -121,7 +145,7 @@ screen extras_navigation():
 
         textbutton _("Achievements") action ShowMenu("achievements") alt "Achievements"
 
-        if achievement.has("black_cat"):
+        if achievement.has("all_bad_end"):
             textbutton _("Developer Notes") action NullAction() alt "Developer Notes"
             # textbutton _("Developer Notes") action ShowMenu("dev_notes") alt "Developer Notes"
 
@@ -131,7 +155,7 @@ screen extras_navigation():
 
     textbutton _("Return"):
         style "return_button"
-        action Hide(screen='achievements', transition=noise)
+        action Return()
 
 
 ## Extras Menu screen #######################################
@@ -140,7 +164,13 @@ screen extras_navigation():
 screen extras_menu(title, scroll=None, yinitial=0.0):
 
     style_prefix "game_menu"
-    add "gui/phone/overlay/game_menu.png"
+    
+    if main_menu:
+        use bg_main_menu
+        add "gui/overlay/confirm.png"
+    else:
+        add "gui/overlay/confirm.png"
+
     frame:
         style "game_menu_outer_frame"
 
@@ -191,12 +221,12 @@ screen extras_menu(title, scroll=None, yinitial=0.0):
     use extras_navigation
     
 
-style extras_menu_content_frame:
-    left_padding 50
-    top_margin 0
+# style extras_menu_content_frame:
+#     left_padding 50
+#     top_margin 0
 
-    left_margin 60
-    right_margin 30
+#     left_margin 60
+#     right_margin 30
 
-    xsize 1300
-    ysize 825
+#     xsize 1300
+#     ysize 825

@@ -54,13 +54,13 @@ define gui.interface_text_color = u'#ffffff'
 
 ## Fonts and Font Sizes ########################################################
 
-define gui.game_menu_label_font = "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+define gui.game_menu_label_font = "fonts/Kingthings-Printingkit.ttf"
 
 ## The font used for in-game text.
 define gui.text_font = "fonts/SuicideSquadron-rX0B.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+define gui.name_text_font = "fonts/SuicideSquadron-rX0B.ttf"
 
 ## The font used for out-of-game text.
 define gui.interface_text_font = "fonts/SuicideSquadron-rX0B.ttf"
@@ -429,7 +429,7 @@ init python:
 
         ## Font sizes.
         gui.text_size = 50
-        gui.name_text_size = 55 #54
+        gui.name_text_size = 60 #54
         gui.notify_text_size = 45
         gui.interface_text_size = 55
         gui.button_text_size = 55

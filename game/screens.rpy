@@ -81,109 +81,6 @@ style frame:
 ## In-game screens
 ################################################################################
 
-screen scoring():
-    zorder 100
-    frame:
-        xalign 0.5
-        yalign 0.10
-        xpadding 75
-        ypadding 50
-        background Frame("gui/frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
-            
-        vbox:
-            text _("Score"):
-                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
-                text_align 0.5
-                xalign 0.5
-            text _("[player_score]  -  [computer_score]"):
-                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
-                size 100
-                text_align 0.5
-                xalign 0.5
-
-screen rps_screen():
-    add "gui/overlay/confirm.png"
-    vbox:
-        xalign 0.5
-        yalign 0.5
-        
-        null height 50
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            imagebutton:
-                yalign 0.5
-                focus_mask True
-                idle "scissors"
-                action Return('scissors'), Hide("rps_screen", transition=noise_window)
-            imagebutton:
-                yalign 0.5
-                focus_mask True
-                idle "paper"
-                action Return('paper'), Hide("rps_screen", transition=noise_window)
-            imagebutton:
-                yalign 0.5
-                focus_mask True
-                idle "rock"
-                action Return('rock'), Hide("rps_screen", transition=noise_window)
-        text _("Pick a choice"):
-            text_align 0.5
-            xalign 0.5
-
-default Main = persistent.playername
-define persistent.playername = ''
-
-#custom name input
-screen name_input(message, ok_action):
-
-    modal True
-
-    zorder 200
-
-    style_prefix "confirm"
-
-    add "gui/overlay/confirm.png"
-    key "K_RETURN" action [ok_action]
-    
-    frame:
-        # if renpy.mobile:
-        #         yoffset -325
-                
-        has vbox:
-            xalign .5
-            yalign .5
-            spacing 30
-            xfill True
-        
-
-        label _(message):
-            style "confirm_prompt"
-            xalign 0.5
-            yalign 0.5
-
-        input default "" value VariableInputValue("Main") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
-            xalign 0.5
-            yalign 0.5
-
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            spacing 100
-
-            textbutton _("OK") action ok_action
-            textbutton _("Back") action Hide(screen='name_input')
-        
-init python:
-    def FinishEnterName():
-        if not Main: return
-        persistent.playername = Main
-        renpy.hide_screen("name_input")
-        renpy.jump_out_of_context("start")
-
-screen slow_text_center(txt):
-    fixed:
-        add Text(txt, slow_cps=2, text_align=0.5) xalign 0.5 yalign 0.5
-
 screen dialog(message, ok_action):
 
     modal True
@@ -237,9 +134,9 @@ screen say(who, what):
             window:
                 id "namebox"
                 style "namebox"
-                text who id "who"
+                text who id "who" at textdissolve
             
-        text what id "what"
+        text what id "what" at textdissolve
     use quick_menu
     
     
@@ -297,19 +194,11 @@ style say_dialogue:
     line_spacing 10
 
 image ctc:
-    xalign 0.95 yalign 0.95 alpha 0.0 subpixel True
+    xalign 0.5 yalign 0.975 alpha 0.0 subpixel True
     "gui/ctc/ctc.png"
     block:
-        easeout 0.75 alpha 1.0 yoffset 0
-        easein 0.75 alpha 0.5 yoffset -5
-        repeat
-
-image ctc_pause:
-    xalign 0.95 yalign 0.95 alpha 0.0 subpixel True
-    "gui/ctc/ctc_pause.png"
-    block:
-        easeout 0.25 alpha 1.0
-        easein 0.25 alpha 0.5
+        easeout 0.25 alpha 1.0 yoffset 0
+        easein 0.25 alpha 0.5 yoffset -5
         repeat
 
 ## Input screen ################################################################
@@ -463,6 +352,7 @@ style quick_button_text:
 transform menu_appear:
     on show:
         alpha 0 yoffset 500
+        pause 3.0
         easein 1.5 alpha 1 yoffset 0
         
 screen navigation():
@@ -471,10 +361,10 @@ screen navigation():
             style_prefix "hnavigation"
 
             xalign 0.5
-            yalign 0.96
+            yalign 0.95
             spacing 70
 
-            textbutton _("Start") action (Show(screen='name_input', message="What is your name?", ok_action=Function(FinishEnterName)))
+            textbutton _("Start") action (Show(screen='name_input', transition=noise_window, message="What is your name?", ok_action=Function(FinishEnterName), back_action=Hide(screen='name_input', transition=noise_window)))
 
             textbutton _("Load") action ShowMenu("load")
 
@@ -515,7 +405,8 @@ screen navigation():
 
             textbutton _("Settings") action ShowMenu("preferences")
 
-            textbutton _("Extras") action ShowMenu("achievements")
+            if main_menu:
+                textbutton _("Extras") action ShowMenu("achievements")
 
             textbutton _("About") action ShowMenu("about")
 
@@ -557,49 +448,79 @@ style hnavigation_button_text:
     xalign 0.5
 
 
+screen bg_main_menu():
+    add "graybg"
+
+    add "moon":
+        at transform:
+            on show:
+                alpha 0.0
+                pause 1.0
+                linear 1.5 alpha 1.0
+
+    add "bird1"
+    add "bird2"
+    add "bird3"
+
+    add "logo":
+        xalign 0.5
+        yalign 0.25
+        zoom 0.75
+        at transform:
+            on show:
+                alpha 0.0
+                pause 4.0
+                linear 0.7 alpha 1.0
+
+    add "house":
+        at transform:
+            on show:
+                yoffset 900
+                pause 2.0
+                easein 1.5 yoffset 0
+    
+    add "trees":
+        at transform:
+            on show:
+                yoffset 900
+                pause 2.0
+                easein 1.5 yoffset 0
+    add "grass":
+        at transform:
+            on show:
+                yoffset 600
+                pause 2.0
+                easein 1.5 yoffset 0
+    add "grunge"
+
+    add "gui/overlay/confirm.png":
+        at transform:
+            alpha 0.5
+
 ## Main Menu screen ############################################################
 ##
 ## Used to display the main menu when Ren'Py starts.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#main-menu
-
-
-transform logoease:
-    on show:
-        yoffset -50 alpha 0.0
-        linear 0.7 alpha 1.0 yoffset 0
-        linear 0.3 yoffset 15
-        easeout 0.5 yoffset 0
+## https://www.renpy.org/doc/html/screen_special.html#main-menu     
 
 screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     
     tag menu
-    
-    add "asylum" at bg_title_screen:
-        xalign 0.5
-        yalign 0.5
-
-    add "particle"
-    add "particle_blur"
-    add "vigenette"
- 
-    add "gui/logo.png" at logoease:
-        xalign 0.5
-        yalign 0.25
-        zoom 0.5
-
+    use bg_main_menu
     # add gui.main_menu_background
 
     ## This empty frame darkens the main menu.
-    frame:
-        style "main_menu_frame"
+    # frame:
+    #     style "main_menu_frame"
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
     use navigation
-
+    
+    add "menuFrame"
+    
     if gui.show_name:
 
         vbox:
@@ -655,9 +576,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     style_prefix "game_menu"
 
     if main_menu:
-        add "asylum"
-        add "particle"
-        add "particle_blur"
+        use bg_main_menu
         add "gui/overlay/confirm.png"
 
     else:
@@ -796,8 +715,10 @@ screen about():
 
         vbox:
 
-            label "[config.name!t]"
-            text _("Version [config.version!t]\n")
+            label "{size=+45}{font=fonts/Kingthings-Printingkit.ttf}[config.name!t!u]{/font}{/size}":
+                xalign 0.5
+            text _("Version [config.version!t]\n"):
+                xalign 0.5
 
             ## gui.about is usually set in options.rpy.
             if gui.about:
@@ -963,18 +884,19 @@ screen preferences():
         
         vbox:
             text _("{size=+15}Text Settings{/size}"):
-                font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+                font gui.game_menu_label_font
+                xalign 0.5
             hbox:
                 box_wrap True
 
                 # if renpy.variant("pc") or renpy.variant("web"):
                 
-                # if config.developer == True:
-                #     vbox:
-                #         style_prefix "radio"
-                #         label _("Display")
-                #         textbutton _("Window") action Preference("display", "window")
-                #         textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                if config.developer == True:
+                    vbox:
+                        style_prefix "radio"
+                        label _("Display")
+                        textbutton _("Window") action Preference("display", "window")
+                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 # vbox:
                 #     style_prefix "radio"
@@ -1014,7 +936,8 @@ screen preferences():
 
                 vbox:
                     text _("{size=+25}Music Settings{/size}"):
-                        font "fonts/Avontuurgardegoshikkutai-5Doa.ttf"
+                        font gui.game_menu_label_font
+                        xalign 0.5
 
                     if config.has_music:
                         label _("BGM Volume")
@@ -1161,7 +1084,10 @@ screen history():
 
     predict False
 
+    add "gui/overlay/confirm.png"
+
     frame:
+        background None
 
         style_prefix "history"
 
@@ -1583,7 +1509,7 @@ screen skip_indicator():
 
     zorder 100
     style_prefix "skip"
-
+    add "skip_overlay"
     frame:
 
         hbox:
@@ -1594,6 +1520,18 @@ screen skip_indicator():
             text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
             text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
             text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
+    vbox:
+        xalign 0.5
+        yalign 0.5
+        if not renpy.is_seen(ever=True):
+            text "Skipping is highly discouraged.\nYou have been warned." at animated_glitch:
+                color u'#ffffff33'
+                size 75
+                text_align 0.5
+        else:
+            pass
+
+        
 
 
 ## This transform is used to blink the arrows one after another.
@@ -1801,73 +1739,62 @@ screen quick_menu():
     variant "touch"
     imagebutton auto _("gui/quickmenu/menu_%s.png"):
             action ToggleVariable("quick_menu", True, False)
-            xalign 0.97
-            yalign 0.745
+            xalign 0.0
+            yalign 1.0
+            xoffset 10
+            yoffset -10
+            activate_sound "audio/sfx/click.ogg"
     zorder 100
 
     if quick_menu:
         frame:
             background None
-            xalign 0.90
-            yalign 0.74
-            xpadding 10
-            ypadding 10
-            
-            hbox:
-                style_prefix "quick"
+            xalign 0.0
+            yalign 1.0
+            xoffset 10
+            yoffset -100
 
-                #middle
-                # xalign 0.5
-                # yalign 0.99
-                # spacing 25
-                
-                spacing 15
-
-                #upper right
-                # xalign 0.95
-                # yalign 0.05
-                # spacing 25
-
-                #bottom right
-                # xalign 0.99
-                # yalign 0.99
-                # spacing 25
-
-            #     textbutton _("Back") action Rollback()
-            #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            #     textbutton _("Auto") action Preference("auto-forward", "toggle")
-            #     textbutton _("Menu") action ShowMenu()
-                if config.developer == True:
+            if config.developer == True:
+                grid 2 4:
+                    style_prefix "quick"
                     textbutton _("Back") action Rollback()
                     textbutton _("Hide") action HideInterface()
-                    textbutton _("Achieve") action Show("achievements")
-                else:
-                    pass
-                # textbutton _("History") action ShowMenu('history')
-                # textbutton _("Auto") action Preference("auto-forward", "toggle")
-                # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-                # textbutton _("Save") action ShowMenu('save')
-                # textbutton _("Load") action ShowMenu('load')
-                # textbutton _("Settings") action ShowMenu('preferences')
-
-                imagebutton auto _("gui/quickmenu/history_%s.png"):
-                    action ShowMenu('history')
-                    activate_sound "audio/sfx/click.ogg"
-                imagebutton auto _("gui/quickmenu/auto_%s.png"):
-                    action Preference("auto-forward", "toggle")
-                    activate_sound "audio/sfx/click.ogg"
-                imagebutton auto _("gui/quickmenu/skip_%s.png"):
-                    action Skip() alternate Skip(fast=True, confirm=True)
-                    activate_sound "audio/sfx/click.ogg"
-                imagebutton auto _("gui/quickmenu/save_%s.png"):
-                    action ShowMenu('save')
-                    activate_sound "audio/sfx/click.ogg"
-                # imagebutton auto _("gui/quickmenu/load_%s.png"):
-                #     action ShowMenu('load')
-                imagebutton auto _("gui/quickmenu/settings_%s.png"):
-                    action ShowMenu('preferences')
-                    activate_sound "audio/sfx/click.ogg"
-
+                    textbutton _("Achieve") action ShowMenu("achievements")
+                    imagebutton auto _("gui/quickmenu/history_%s.png"):
+                        action ShowMenu('history')
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/auto_%s.png"):
+                        action Preference("auto-forward", "toggle")
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/skip_%s.png"):
+                        action Skip() alternate Skip(fast=True, confirm=True)
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/save_%s.png"):
+                        action ShowMenu('save')
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/settings_%s.png"):
+                        action ShowMenu('preferences')
+                        activate_sound "audio/sfx/click.ogg"
+            else:
+                grid 2 3:
+                    style_prefix "quick"
+                    imagebutton auto _("gui/quickmenu/history_%s.png"):
+                        action ShowMenu('history')
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/save_%s.png"):
+                        action ShowMenu('save')
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/auto_%s.png"):
+                        action Preference("auto-forward", "toggle")
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/skip_%s.png"):
+                        action Skip() alternate Skip(fast=True, confirm=True)
+                        activate_sound "audio/sfx/click.ogg"
+                    imagebutton auto _("gui/quickmenu/settings_%s.png"):
+                        action ShowMenu('preferences')
+                        activate_sound "audio/sfx/click.ogg"
+                    null
+                
                 
                 
  
@@ -1890,11 +1817,12 @@ style say_label:
     color '#ffffff'
     yalign 0.5
     xoffset 0
+    outlines [(3, "#1a1a1a", 2, 2)]
 
 style say_dialogue:
     variant "small"
     properties gui.text_properties("dialogue")
-    #outlines [ (2, "#000000", 0, 0) ]
+    outlines [(0, "#1a1a1a", 2, 2)]
     line_spacing 0
     ypos 150
 

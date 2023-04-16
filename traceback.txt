@@ -1,42 +1,107 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 215, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 517, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 517, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/extras.rpy", line 54, in execute
+    screen achievements():
+  File "game/extras.rpy", line 54, in execute
+    screen achievements():
+  File "game/extras.rpy", line 56, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 165, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 165, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 175, in execute
+    frame:
+  File "game/extras.rpy", line 178, in execute
+    hbox:
+  File "game/extras.rpy", line 184, in execute
+    frame:
+  File "game/extras.rpy", line 187, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 189, in execute
+    viewport:
+  File "game/extras.rpy", line 198, in execute
+    vbox:
+  File "game/extras.rpy", line 199, in execute
+    transclude
+  File "game/extras.rpy", line 56, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 59, in execute
+    vbox:
+  File "game/extras.rpy", line 61, in execute
+    grid 1 10:
+Exception: Grid overfull.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 215, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 517, in script
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
     python hide:
-  File "renpy/ast.py", line 1131, in execute
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ast.py", line 1131, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 1061, in py_exec_bytecode
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\python.py", line 1061, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/00keymap.rpy", line 517, in <module>
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
     python hide:
-  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-  File "renpy/loadsave.py", line 769, in load
-    log.unfreeze(roots, label="_after_load")
-  File "renpy/rollback.py", line 1078, in unfreeze
-    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
-  File "renpy/rollback.py", line 889, in rollback
-    self.load_failed()
-  File "renpy/rollback.py", line 807, in load_failed
-    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 3810, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  [Previous line repeated 1 more time]
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\screen.py", line 451, in visit_all
+    callback(self)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\core.py", line 3810, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\screen.py", line 462, in per_interact
+    self.update()
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/extras.rpy", line 54, in execute
+    screen achievements():
+  File "game/extras.rpy", line 54, in execute
+    screen achievements():
+  File "game/extras.rpy", line 56, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 165, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 165, in execute
+    screen extras_menu(title, scroll=None, yinitial=0.0):
+  File "game/extras.rpy", line 175, in execute
+    frame:
+  File "game/extras.rpy", line 178, in execute
+    hbox:
+  File "game/extras.rpy", line 184, in execute
+    frame:
+  File "game/extras.rpy", line 187, in execute
+    if scroll == "viewport":
+  File "game/extras.rpy", line 189, in execute
+    viewport:
+  File "game/extras.rpy", line 198, in execute
+    vbox:
+  File "game/extras.rpy", line 199, in execute
+    transclude
+  File "game/extras.rpy", line 56, in execute
+    use extras_menu(_("Achievements"), scroll="viewport"):
+  File "game/extras.rpy", line 59, in execute
+    vbox:
+  File "game/extras.rpy", line 61, in execute
+    grid 1 10:
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\layout.py", line 546, in add
+    raise Exception("Grid overfull.")
+Exception: Grid overfull.
 
 Windows-10-10.0.22621 AMD64
-Ren'Py 7.5.3.22090809
+Ren'Py 8.0.3.22090809
 Alarming Asylum 1.0
-Wed Apr  5 13:19:52 2023
+Fri Apr 14 14:29:21 2023
