@@ -1,8 +1,8 @@
 image splash1 = "gui/splash1.png"
 label splashscreen:
     if config.developer == False:
-        $ renpy.music.play(config.main_menu_music)
-        if renpy.variant("small"):
+        if renpy.variant("mobile"):
+            $ renpy.music.play(config.main_menu_music)
             $ config.allow_skipping = False
             show splash1 at truecenter:
                 zoom 0.5

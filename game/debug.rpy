@@ -15,7 +15,7 @@ label debug:
         #     jump message_box
         "{color=#c41f1f}Delete persistent data{/color}":
             menu:
-                "Are you sure you want to delete the persistent data including achievements?\n{color=#c41f1f}(WARNING: This will close the game.){fast}{/color}"
+                "Are you sure you want to delete the persistent data including achievements?\n{color=#c41f1f}(WARNING: This will close and relaunch the game.){fast}{/color}"
                 "{color=#c41f1f}Yes.{/color}":
                     "Deleting persistent data...{nw}"
                     $ persistent._clear(progress=True)
@@ -30,21 +30,24 @@ label debug:
 label achievement_test:
     menu:
         i "You may check the achievement list to see the changes."
+        "Test Achievement Toast (Animation)":
+            $ renpy.show_screen(_screen_name='achievement_toast', title="Test Achievement", description="The achievement description.")
+            $ renpy.play("audio/sfx/notify.ogg", channel="sound")
+            jump achievement_test
         "Grant all achievements":
-            $ achievement.grant("start")
-            $ achievement.grant("end")
-            $ achievement.grant("no_time")
-            $ achievement.grant("rps_game")
-            $ achievement.grant("rps_game_rock")
-            $ achievement.grant("rps_game_paper")
-            $ achievement.grant("rps_game_scissors")
-            $ achievement.grant("bad_end")
-            $ achievement.grant("all_bad_end")
-            i "Granted."
+            $ achievement_get("start")
+            $ achievement_get("end")
+            $ achievement_get("no_time")
+            $ achievement_get("rps_game")
+            $ achievement_get("rps_game_rock")
+            $ achievement_get("rps_game_paper")
+            $ achievement_get("rps_game_scissors")
+            $ achievement_get("bad_end")
+            $ achievement_get("all_bad_end")
             jump achievement_test
         "Clear achievements":
             $ achievement.clear_all()
-            i "Cleared."
+            $ persistent.unlocked_achievement = 0
             jump achievement_test
         "Go back":
             jump debug
@@ -54,15 +57,7 @@ label notifying:
     i "This is a long test message using the notify screen."
     $ renpy.notify("Hello World!")
     i "This is a short test message using the notify screen."
-    menu:
-        i "Would you like to test the Achievement notification?"
-        "Yes.":
-            $ renpy.display_notify("Achievement Get:\n\"Achievement Name\"")
-            play sound "audio/sfx/notify.ogg"
-            i "Achievement granted."
-            jump debug
-        "No.":
-            jump debug
+    jump debug
 
 label naming:
     call screen name_input(message="What is your name?", ok_action=Return(), back_action=NullAction())
@@ -70,7 +65,7 @@ label naming:
     i "... is my name."
     $ renpy.notify("Your name is " + Main + ".")
     i "You will now see the inputted name in the screen notify using concatination."
-    i "The persistent name can be used in certain cases if you want the end user to use the name they inputted initally in starting a new game in other labels such as a post game or a chapter selection screen."
+    i "The persistent name can be used in certain cases if you want the end user to use the name they inputted initially in starting a new game in other labels such as a post game or a chapter selection screen."
     i "However, do NOTE that the name will not carry between saves."
     i "For example, if the user inputted \"Eileen\" while starting a new game, and loaded a different save file with a different name such as \"Neelie\"..."
     i "The game will still use \"Eileen\" in different labels outside the label start. Whatever the user has inputted while starting a new game will become the default name unless it is changed again in the naming screen."

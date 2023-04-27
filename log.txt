@@ -1,22 +1,21 @@
-Fri Apr 14 14:34:44 2023
+Thu Apr 27 18:43:33 2023
 Windows-10-10.0.22621
 Ren'Py 8.0.3.22090809
  
 
 Bootstrap to the start of init.init took 0.08s
-Early init took 0.01s
-Loader init took 0.07s
+Early init took 0.00s
+Loader init took 0.08s
 Loading error handling took 0.05s
-Loading script took 0.66s
-Loading save slot metadata. took 0.07s
+Loading script took 0.30s
+Loading save slot metadata. took 0.08s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
 Running init code took 0.11s
 Loading analysis data took 0.02s
 Analyze and compile ATL took 0.01s
 Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.13s
+Dump and make backups. took 0.09s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc. took 0.04s
@@ -27,14 +26,14 @@ Creating interface object took 0.00s
 Cleaning stores took 0.00s
 Init translation took 0.09s
 Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.02s
-Save screen analysis took 0.04s
-Prepare screens took 0.11s
-Save pyanalysis. took 0.05s
-Save bytecode. took 0.06s
+Load screen analysis took 0.05s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.13s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.00s
 Running _start took 0.00s
-Interface start took 0.16s
+Interface start took 0.18s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1200)
@@ -44,67 +43,30 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
+Cleaning stores took 0.00s
+Init translation took 0.00s
+Build styles took 0.01s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s
 Resetting cache.
-Bootstrap to the start of init.init took 49.61s
+Bootstrap to the start of init.init took 138.52s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.05s
-Loading script took 0.42s
-Loading save slot metadata. took 0.06s
+Loading script took 0.57s
+Loading save slot metadata. took 0.07s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
 Running init code took 0.06s
-Loading analysis data took 0.04s
+Loading analysis data took 0.03s
 Analyze and compile ATL took 0.01s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
 Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.07s
-DPI scale factor: 1.250000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.10s
-Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.02s
-Save screen analysis took 0.04s
-Prepare screens took 0.11s
-Save pyanalysis. took 0.04s
-Save bytecode. took 0.04s
-Running _start took 0.00s
-Interface start took 0.09s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1920, 1200)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'ATI Technologies Inc.'"
-Renderer: b'AMD Radeon(TM) Graphics'
-Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 69.77s
-Early init took 0.00s
-Loader init took 0.07s
-Loading error handling took 0.03s
-Loading script took 0.44s
-Loading save slot metadata. took 0.06s
-Loading persistent took 0.00s
-Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
-Running init code took 0.06s
-Loading analysis data took 0.02s
-Analyze and compile ATL took 0.01s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.09s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc. took 0.09s
@@ -117,9 +79,9 @@ Init translation took 0.08s
 Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
-Save screen analysis took 0.04s
-Prepare screens took 0.12s
-Save pyanalysis. took 0.04s
+Save screen analysis took 0.05s
+Prepare screens took 0.11s
+Save pyanalysis. took 0.00s
 Save bytecode. took 0.04s
 Running _start took 0.00s
 Interface start took 0.10s
@@ -132,59 +94,15 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
 Resetting cache.
-Bootstrap to the start of init.init took 90.02s
+Bootstrap to the start of init.init took 152.82s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.03s
-Loading script took 0.41s
-Loading save slot metadata. took 0.06s
-Loading persistent took 0.00s
-Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
-Running init code took 0.05s
-Loading analysis data took 0.03s
-Analyze and compile ATL took 0.01s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.10s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.08s
-DPI scale factor: 1.250000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.07s
-Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.03s
-Save screen analysis took 0.04s
-Prepare screens took 0.13s
-Save pyanalysis. took 0.04s
-Save bytecode. took 0.04s
-Running _start took 0.00s
-Interface start took 0.10s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1920, 1200)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'ATI Technologies Inc.'"
-Renderer: b'AMD Radeon(TM) Graphics'
-Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 105.68s
-Early init took 0.00s
-Loader init took 0.07s
-Loading error handling took 0.03s
-Loading script took 0.42s
-Loading save slot metadata. took 0.06s
+Loading script took 0.55s
+Loading save slot metadata. took 0.08s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
 Running init code took 0.06s
@@ -195,14 +113,14 @@ Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups
 Dump and make backups. took 0.10s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc. took 0.08s
+Initial gc. took 0.07s
 DPI scale factor: 1.250000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.07s
-Build styles took 0.00s
+Init translation took 0.08s
+Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
 Save screen analysis took 0.04s
@@ -210,7 +128,7 @@ Prepare screens took 0.12s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.04s
 Running _start took 0.00s
-Interface start took 0.09s
+Interface start took 0.10s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1200)
@@ -220,20 +138,20 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
 Resetting cache.
-Bootstrap to the start of init.init took 202.06s
+Bootstrap to the start of init.init took 182.28s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.03s
-Loading script took 0.43s
-Loading save slot metadata. took 0.06s
+Loading script took 0.54s
+Loading save slot metadata. took 0.07s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
-Running init code took 0.05s
+Running init code took 0.07s
 Loading analysis data took 0.03s
-Analyze and compile ATL took 0.00s
+Analyze and compile ATL took 0.01s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
 Dump and make backups. took 0.10s
@@ -246,11 +164,11 @@ nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.00s
 Cleaning stores took 0.00s
 Init translation took 0.08s
-Build styles took 0.00s
+Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
 Save screen analysis took 0.04s
-Prepare screens took 0.10s
+Prepare screens took 0.11s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.03s
 Running _start took 0.00s
@@ -264,44 +182,23 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.01s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
-Running _start took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.01s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
-Running _start took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.01s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
-Running _start took 0.00s
 Resetting cache.
-Bootstrap to the start of init.init took 321.50s
+Bootstrap to the start of init.init took 194.77s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.04s
-Loading script took 0.43s
-Loading save slot metadata. took 0.06s
+Loading script took 0.61s
+Loading save slot metadata. took 0.07s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
-Running init code took 0.05s
+Running init code took 0.06s
 Loading analysis data took 0.03s
 Analyze and compile ATL took 0.01s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.09s
+Dump and make backups. took 0.10s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc. took 0.09s
@@ -310,12 +207,56 @@ nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.07s
+Init translation took 0.08s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.04s
+Prepare screens took 0.12s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
+Running _start took 0.00s
+Interface start took 0.09s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 202.72s
+Early init took 0.00s
+Loader init took 0.07s
+Loading error handling took 0.03s
+Loading script took 0.54s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.10s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.07s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.08s
 Build styles took 0.00s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
-Save screen analysis took 0.03s
-Prepare screens took 0.12s
+Save screen analysis took 0.04s
+Prepare screens took 0.11s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.04s
 Running _start took 0.00s
@@ -329,18 +270,113 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
 Resetting cache.
-Bootstrap to the start of init.init took 365.99s
+Bootstrap to the start of init.init took 716.61s
+Early init took 0.00s
+Loader init took 0.08s
+Loading error handling took 0.04s
+Loading script took 0.48s
+Loading save slot metadata. took 0.08s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.11s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.08s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.04s
+Prepare screens took 0.11s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.06s
+Running _start took 0.01s
+Interface start took 0.11s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Cleaning stores took 0.00s
+Init translation took 0.00s
+Build styles took 0.01s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s
+Resetting cache.
+Bootstrap to the start of init.init took 901.10s
+Early init took 0.00s
+Loader init took 0.09s
+Loading error handling took 0.03s
+Loading script took 0.37s
+Loading save slot metadata. took 0.08s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.07s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.10s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.11s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.07s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.04s
+Prepare screens took 0.11s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
+Running _start took 0.00s
+Interface start took 0.12s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 907.71s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.03s
-Loading script took 0.33s
-Loading save slot metadata. took 0.06s
+Loading script took 0.39s
+Loading save slot metadata. took 0.08s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
-Running init code took 0.05s
+Running init code took 0.06s
 Loading analysis data took 0.03s
 Analyze and compile ATL took 0.01s
 Index archives took 0.00s
@@ -354,7 +390,95 @@ nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.00s
 Cleaning stores took 0.00s
+Init translation took 0.08s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.05s
+Prepare screens took 0.11s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
+Running _start took 0.00s
+Interface start took 0.09s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 921.84s
+Early init took 0.00s
+Loader init took 0.07s
+Loading error handling took 0.03s
+Loading script took 0.36s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.00s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.09s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.08s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
 Init translation took 0.09s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.03s
+Prepare screens took 0.09s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
+Running _start took 0.00s
+Interface start took 0.10s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 1017.05s
+Early init took 0.00s
+Loader init took 0.07s
+Loading error handling took 0.03s
+Loading script took 0.35s
+Loading save slot metadata. took 0.07s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.10s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.09s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.07s
 Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
@@ -373,39 +497,46 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
+Cleaning stores took 0.00s
+Init translation took 0.00s
+Build styles took 0.01s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s
 Resetting cache.
-Bootstrap to the start of init.init took 383.14s
+Bootstrap to the start of init.init took 1061.91s
 Early init took 0.00s
 Loader init took 0.07s
 Loading error handling took 0.03s
-Loading script took 0.33s
-Loading save slot metadata. took 0.06s
+Loading script took 0.36s
+Loading save slot metadata. took 0.08s
 Loading persistent took 0.00s
 Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
 Running init code took 0.06s
-Loading analysis data took 0.02s
+Loading analysis data took 0.03s
 Analyze and compile ATL took 0.01s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
-Dump and make backups. took 0.10s
+Dump and make backups. took 0.09s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc. took 0.10s
+Initial gc. took 0.11s
 DPI scale factor: 1.250000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.08s
+Init translation took 0.06s
 Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
 Save screen analysis took 0.04s
-Prepare screens took 0.09s
-Save pyanalysis. took 0.03s
-Save bytecode. took 0.03s
+Prepare screens took 0.13s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
 Running _start took 0.00s
 Interface start took 0.10s
 
@@ -417,7 +548,58 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) Graphics'
 Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1804, 1015) drawable=(1804, 1015)
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
+Maximum texture size: 4096x4096
+Cleaning stores took 0.00s
+Init translation took 0.00s
+Build styles took 0.01s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s
+Resetting cache.
+Bootstrap to the start of init.init took 1488.57s
+Early init took 0.00s
+Loader init took 0.07s
+Loading error handling took 0.03s
+Loading script took 0.35s
+Loading save slot metadata. took 0.14s
+Loading persistent took 0.00s
+Faled to initialize steam: FileNotFoundError("Could not find module 'C:\\Users\\Mark John\\Downloads\\renpy-7.5.3-sdk\\lib\\py3-windows-x86_64\\libsteam_api.so' (or one of its dependencies). Try using the full path with constructor syntax.")
+Running init code took 0.06s
+Loading analysis data took 0.03s
+Analyze and compile ATL took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Mark John\\AppData\\Roaming/RenPy/backups\\AlarmingAsylum':
+Dump and make backups. took 0.09s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.12s
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.07s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.02s
+Save screen analysis took 0.04s
+Prepare screens took 0.10s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.04s
+Running _start took 0.00s
+Interface start took 0.09s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 22.20.44.37.230215'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(940, 529) drawable=(940, 529)
 Maximum texture size: 4096x4096
 Cleaning stores took 0.00s
 Init translation took 0.00s

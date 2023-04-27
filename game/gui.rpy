@@ -425,11 +425,11 @@ init python:
     ## This changes the size and spacing of various GUI elements to ensure they
     ## are easily visible on phones.
     @gui.variant
-    def small():
+    def mobile():
 
         ## Font sizes.
-        gui.text_size = 50
-        gui.name_text_size = 60 #54
+        gui.text_size = 55
+        gui.name_text_size = 75 #54
         gui.notify_text_size = 45
         gui.interface_text_size = 55
         gui.button_text_size = 55

@@ -194,7 +194,7 @@ style say_dialogue:
     line_spacing 10
 
 image ctc:
-    xalign 0.5 yalign 0.975 alpha 0.0 subpixel True
+    xalign 0.975 yalign 0.95 alpha 0.0 subpixel True
     "gui/ctc/ctc.png"
     block:
         easeout 0.25 alpha 1.0 yoffset 0
@@ -253,7 +253,7 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
-
+    
     vbox at choice_transform:
         for i in items:
             textbutton i.caption action i.action
@@ -357,7 +357,7 @@ transform menu_appear:
         
 screen navigation():
     if renpy.get_screen("main_menu"):
-        hbox at menu_appear:
+        hbox: #at menu_appear:
             style_prefix "hnavigation"
 
             xalign 0.5
@@ -703,7 +703,8 @@ style return_button:
 ## example of how to make a custom screen.
 
 screen about():
-
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     tag menu
 
     ## This use statement includes the game_menu screen inside this one. The
@@ -745,14 +746,16 @@ style about_label_text:
 ## www.renpy.org/doc/html/screen_special.html#load
 
 screen save():
-
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     tag menu
 
     use file_slots(_("Save"))
 
 
 screen load():
-
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     tag menu
 
     use file_slots(_("Load"))
@@ -877,7 +880,8 @@ init python:
     renpy.music.register_channel("ambient", mixer="ambient", loop=True, tight=False)
 
 screen preferences():
-
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     tag menu
 
     use game_menu(_("Settings"), scroll="viewport"):
@@ -1736,74 +1740,82 @@ style pref_vbox:
 ## that uses fewer and bigger buttons that are easier to touch.       
 
 screen quick_menu():
-    variant "touch"
+    variant "mobile"
     imagebutton auto _("gui/quickmenu/menu_%s.png"):
             action ToggleVariable("quick_menu", True, False)
-            xalign 0.0
-            yalign 1.0
-            xoffset 10
-            yoffset -10
+            xalign 1.0
+            yalign 0.0
+            xoffset -25
+            yoffset 25
             activate_sound "audio/sfx/click.ogg"
     zorder 100
 
     if quick_menu:
         frame:
-            background None
-            xalign 0.0
-            yalign 1.0
-            xoffset 10
-            yoffset -100
-
-            if config.developer == True:
-                grid 2 4:
-                    style_prefix "quick"
+            background Frame("gui/frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
+            padding (20, 20, 20, 20)
+            xalign 1.0
+            yalign 0.0
+            xoffset -100
+            yoffset 10
+            hbox:
+                style_prefix "quick"
+                if config.developer == True:
                     textbutton _("Back") action Rollback()
                     textbutton _("Hide") action HideInterface()
                     textbutton _("Achieve") action ShowMenu("achievements")
-                    imagebutton auto _("gui/quickmenu/history_%s.png"):
-                        action ShowMenu('history')
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/auto_%s.png"):
-                        action Preference("auto-forward", "toggle")
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/skip_%s.png"):
-                        action Skip() alternate Skip(fast=True, confirm=True)
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/save_%s.png"):
-                        action ShowMenu('save')
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/settings_%s.png"):
-                        action ShowMenu('preferences')
-                        activate_sound "audio/sfx/click.ogg"
-            else:
-                grid 2 3:
-                    style_prefix "quick"
-                    imagebutton auto _("gui/quickmenu/history_%s.png"):
-                        action ShowMenu('history')
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/save_%s.png"):
-                        action ShowMenu('save')
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/auto_%s.png"):
-                        action Preference("auto-forward", "toggle")
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/skip_%s.png"):
-                        action Skip() alternate Skip(fast=True, confirm=True)
-                        activate_sound "audio/sfx/click.ogg"
-                    imagebutton auto _("gui/quickmenu/settings_%s.png"):
-                        action ShowMenu('preferences')
-                        activate_sound "audio/sfx/click.ogg"
-                    null
+                imagebutton auto _("gui/quickmenu/history_%s.png"):
+                    action ShowMenu('history')
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "History"
+                imagebutton auto _("gui/quickmenu/hide_%s.png"):
+                    action HideInterface()
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "Hide"
+                imagebutton auto _("gui/quickmenu/auto_%s.png"):
+                    action Preference("auto-forward", "toggle")
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "Auto-Forward"
+                imagebutton auto _("gui/quickmenu/skip_%s.png"):
+                    action Skip() alternate Skip(fast=True, confirm=True)
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "Skip"
+                imagebutton auto _("gui/quickmenu/save_%s.png"):
+                    action ShowMenu('save')
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "Save"
+                imagebutton auto _("gui/quickmenu/settings_%s.png"):
+                    action ShowMenu('preferences')
+                    activate_sound "audio/sfx/click.ogg"
+                    tooltip "Settings"
+    
+
+    # This has to be the last thing shown in the screen.
+
+    $ tooltip = GetTooltip()
+
+    if tooltip:
+
+        nearrect:
+            focus "tooltip"
+            prefer_top True
+
+            frame:
+                background None
+                xalign 0.5
+                text tooltip style "say_label":
+                    size 35
+                    
                 
                 
                 
  
 style window:
-    variant "small"
+    variant "mobile"
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
-    variant "small"
+    variant "mobile"
     xanchor 0.5
     xsize gui.namebox_width
     ypos 75
@@ -1811,7 +1823,7 @@ style namebox:
     background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
 
 style say_label:
-    variant "small"
+    variant "mobile"
     properties gui.text_properties("name")
     xalign gui.name_xalign
     color '#ffffff'
@@ -1820,14 +1832,14 @@ style say_label:
     outlines [(3, "#1a1a1a", 2, 2)]
 
 style say_dialogue:
-    variant "small"
+    variant "mobile"
     properties gui.text_properties("dialogue")
     outlines [(0, "#1a1a1a", 2, 2)]
     line_spacing 0
     ypos 150
 
 style choice_vbox:
-    variant "small"
+    variant "mobile"
     xalign 0.95
     yalign 0.65
     #ypos 405
@@ -1836,79 +1848,79 @@ style choice_vbox:
     spacing gui.choice_spacing
 
 style radio_button:
-    variant "small"
+    variant "mobile"
     foreground "gui/phone/button/radio_[prefix_]foreground.png"
 
 style check_button:
-    variant "small"
+    variant "mobile"
     foreground "gui/phone/button/check_[prefix_]foreground.png"
 
 style nvl_window:
-    variant "small"
+    variant "mobile"
     background "gui/phone/nvl.png"
 
 style main_menu_frame:
-    variant "small"
+    variant "mobile"
     # background "gui/phone/overlay/main_menu.png"
 
 style game_menu_outer_frame:
-    variant "small"
+    variant "mobile"
     # background "gui/phone/overlay/game_menu.png"
     background None
 
 style game_menu_navigation_frame:
-    variant "small"
+    variant "mobile"
     xsize 510
 
 style game_menu_content_frame:
-    variant "small"
+    variant "mobile"
     top_margin 0
     
 style pref_vbox:
-    variant "small"
+    variant "mobile"
     xsize None
 
 style bar:
-    variant "small"
+    variant "mobile"
     ysize gui.bar_size
     left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
     right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
 
 style vbar:
-    variant "small"
+    variant "mobile"
     xsize gui.bar_size
     top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
     bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
 
 style scrollbar:
-    variant "small"
+    variant "mobile"
     ysize gui.scrollbar_size
     base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
 
 style vscrollbar:
-    variant "small"
+    variant "mobile"
     xsize gui.scrollbar_size
     base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
     unscrollable "hide"
 
 style slider:
-    variant "small"
+    variant "mobile"
     ysize gui.slider_size
     base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
     thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
 
 style vslider:
-    variant "small"
+    variant "mobile"
     xsize gui.slider_size
     base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
 
 style slider_vbox:
-    variant "small"
+    variant "mobile"
     xsize None
 
 style slider_slider:
-    variant "small"
+    variant "mobile"
     xsize 900

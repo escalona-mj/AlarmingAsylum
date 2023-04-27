@@ -20,6 +20,8 @@ screen scoring():
                 xalign 0.5
 
 screen rps_screen():
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     add "gui/overlay/confirm.png"
     vbox:
         xalign 0.5

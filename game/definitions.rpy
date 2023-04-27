@@ -19,9 +19,10 @@ define a1 = DynamicCharacter(
     kind=i)
 
 default l1_name = "Lucy"
-define l1 = DynamicCharacter(
+define lucy = DynamicCharacter(
     'l1_name',
-    kind=i)
+    kind=i,
+    image="lucy")
 
 default m2_name = "Raymon"
 define m2 = DynamicCharacter(
@@ -66,10 +67,10 @@ transform textdissolve:
 #      DYNAMIC SCENES       #
 #############################
 image train1:
-    im.Blur("images/bgs/train/train1.png", 3.0)
+    im.Blur("images/bgs/train/train1.png", 5.0)
 
 image train2:
-    im.Blur("images/bgs/train/train2.png", 3.0)
+    im.Blur("images/bgs/train/train2.png", 5.0)
 
 image forestbackground:
     im.Blur("images/bgs/train/forestbackground.png", 5.0)
@@ -91,26 +92,11 @@ image bg outside_asylum:
     im.MatrixColor(im.Blur("images/bgs/bg outside_asylum.jpg", 5.0), im.matrix.tint(.90,.65,1.0))
 
 image bg asylum:
-    im.Blur("gui/menu/asylum.jpg", 5.0)
+    im.Blur("images/bgs/bg asylum.jpg", 5.0)
 
 #############################
 #        MAIN MENU          #
 #############################
-
-# transform blink_blur:
-#     blur 10
-#     linear 1.0 alpha 0.5
-#     linear 2.0 alpha 0.0
-#     repeat
-
-# transform blink:
-#     zoom .5
-#     linear 1.0 alpha 0.0 blur 5
-#     linear 5.0 alpha 1.0 blur 0
-#     repeat
-
-# image particle_blur = SnowBlossom(At("gui/menu/particle_small.png", blink_blur), border=150, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -80),  xspeed=(-200,200), horizontal=True)
-# image particle = SnowBlossom(At("gui/menu/particle_small.png", blink), count=10, border=150, xspeed=(0, -10), start=10, fast=False, horizontal=False)
 
 image bird1 = SnowBlossom("gui/menu/bird1.png", count=3, border=150, xspeed=(100,250), yspeed=(-150,-90), fast=False, horizontal=False)
 image bird2 = SnowBlossom("gui/menu/bird2.png", count=3, border=150, xspeed=(100,250), yspeed=(-150,-90), fast=False, horizontal=False)
@@ -124,8 +110,6 @@ image bird3 = SnowBlossom("gui/menu/bird3.png", count=3, border=150, xspeed=(100
 
 image graybg = ("gui/menu/gray.png")
 image moon = ("gui/menu/moon.png")
-# image birds = ("gui/menu/birds.png")
-
 image house = ("gui/menu/house.png")
 image trees = ("gui/menu/trees.png")
 image grass = ("gui/menu/grass.png")
@@ -136,14 +120,14 @@ image menuFrame = ("gui/menu/menu_frame.png")
 #           SCREENS         #
 #############################
 
-image medal = ("gui/achievements/medal.png")
+image unlocked_medal = ("gui/achievements/medal.png")
 image locked_medal = ("gui/achievements/locked_medal.png")
 
 image skip_overlay:
     alpha 0.75
     xalign 0.5
     yalign 0.5
-    zoom 1.5
+    zoom 1.2
     glitch("gui/overlay/confirm.png", chroma=True, offset=500, randomkey=None)
     pause 0.1
     glitch("gui/overlay/confirm.png", chroma=False, offset=500, randomkey=None)
@@ -182,25 +166,60 @@ image logo:
         pause 2.0
     repeat
 
+#  Transform blurring the image.
+transform withBlur:
+    blur 15
+transform noBlur:
+    blur 0
+
+
 #############################
 #      CHARACTER IMAGES     #
 #############################
 
-image merah neutral = Composite(
-    (980,980),
-    (0,0), "images/characters/merah neutral.png")
+layeredimage lucy:
 
-image merah glitched:
-    "merah neutral"
-    pause 0.1
-    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
-    pause 0.01
-    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
-    pause 0.2
-    glitch("merah neutral", chroma=False, randomkey=None) # bigger and always-random slicing
-    pause 0.1
-    "merah neutral"
-    pause 1.0
+    group base: #body
+        attribute base1 default:
+            "lucy 1l_1r"
+        attribute base2:
+            "lucy 2l_2r"
+        attribute base3:
+            "lucy 1l_2r"
+        attribute base4:
+            "lucy 2l_1r"
+
+    group eyes:
+        attribute eyes default:
+            "images/characters/lucy/face/eyes_normal.png"
+        attribute eyes_look:
+            "images/characters/lucy/face/eyes_look.png"
+        attribute eyes_closed:
+            "images/characters/lucy/face/eyes_closed.png"
+
+    group brows:
+        attribute brow default:
+            "images/characters/lucy/face/brow_normal.png"
+        attribute brow_sad:
+            "images/characters/lucy/face/brow_sad.png"
+        attribute brow_serious:
+            "images/characters/lucy/face/brow_serious.png"
+
+    group mouth:
+        attribute mouth default:
+            "images/characters/lucy/face/mouth_smile.png"
+        attribute mouth_open:
+            "images/characters/lucy/face/mouth_open.png"
+        attribute mouth_slightopen:
+            "images/characters/lucy/face/mouth_slightopen.png"
+        attribute mouth_serious:
+            "images/characters/lucy/face/mouth_serious.png"
+
+
+image lucy 1l_1r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/1r.png")
+image lucy 2l_2r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/2r.png")
+image lucy 1l_2r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/2r.png")
+image lucy 2l_1r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/1r.png")
 
 
 #############################
