@@ -13,7 +13,7 @@ transform achievement_transform:
 screen achievement_toast(title, description):
     zorder 500
     frame at achievement_transform:
-        xalign 0.5
+        xalign 0.0
         yalign 0.0
         padding (20,20,40,20)
         background Frame("gui/achievements/achievement_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
@@ -84,6 +84,11 @@ if not persistent.achievement_list:
             _("Better Luck Next Time!"),
             _("Achieve a bad ending.")
             ],
+
+        "doki_doki": [
+            _("Just [Main]."),
+            _("What just happened?")
+            ],
         
         "all_bad_end": [
             _("Failure is Not an Option"),
@@ -96,6 +101,8 @@ define lockaname = "Achievement Locked."
 define lockdesc = "???"
 
 screen achievements():
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     tag menu
     if main_menu:
         use bg_main_menu
@@ -104,7 +111,7 @@ screen achievements():
         add "gui/overlay/confirm.png"
     use extras_navigation
     
-    label "Achievements {color=#ffcf00}[persistent.unlocked_achievement]{/color}/[locked_achievement]" style "game_menu_label":
+    label "Achievements" style "game_menu_label":
         xalign 0.5
     
         
@@ -143,6 +150,9 @@ screen achievements():
                                 style_prefix "locked"
                                 label _("[lockaname]")
                                 text _("[lockdesc]")
+            text "You have unlocked {color=#ffcf00}[persistent.unlocked_achievement]{/color} out of [locked_achievement] achievements.":
+                xalign 0.5
+                size 45
         
 style achievements_vbox is vbox
 style achievements_frame is empty 
@@ -169,12 +179,6 @@ style achievements_frame:
     xfill True
 
 define dev_note = _p("""
-We would like to extend our sincere appreciation and congratulations to {color=#ffcf00}you{/color} who achieved this far to acquire all the achievements and completed the game 100%.
-
-We understand that it takes a significant amount of time and effort to fully engage with a narrative-driven game, and we are humbled by your dedication and commitment to our creation.
-
-As game developers, our primary goal is to create a world that is engaging, immersive, and rewarding for players. We are honored to have been able to provide you with an experience that you found both challenging and satisfying.
-
 Your dedication to completing the game means the world to us. This game is nothing but our fucking project.
 """)
 
@@ -215,7 +219,7 @@ screen dev_notes():
                         xalign 0.5
                         label _("Outstanding!"):
                             xalign 0.5
-                        text _("Unlock all achievements."):
+                        text _("You unlocked all achievements!"):
                             xalign 0.5
                     
                     add "unlocked_medal" size (150, 150) yalign 0.5

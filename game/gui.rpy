@@ -54,13 +54,13 @@ define gui.interface_text_color = u'#ffffff'
 
 ## Fonts and Font Sizes ########################################################
 
-define gui.game_menu_label_font = "fonts/Kingthings-Printingkit.ttf"
+define gui.game_menu_label_font = "fonts/Co2-wdOx.ttf"
 
 ## The font used for in-game text.
 define gui.text_font = "fonts/SuicideSquadron-rX0B.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "fonts/SuicideSquadron-rX0B.ttf"
+define gui.name_text_font = "fonts/Co2-wdOx.ttf"
 
 ## The font used for out-of-game text.
 define gui.interface_text_font = "fonts/SuicideSquadron-rX0B.ttf"
@@ -81,7 +81,7 @@ define gui.label_text_size = 36
 define gui.notify_text_size = 20
 
 ## The size of the game's title.
-define gui.title_text_size = 75
+define gui.title_text_size = 100
 
 
 ## Main and Game Menus #########################################################
@@ -204,14 +204,14 @@ define gui.quick_button_text_selected_color = gui.selected_color
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 640
+define gui.choice_button_width = 1000
 define gui.choice_button_height = None
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(40, 20, 0, 20)
+define gui.choice_button_borders = Borders(20, 20, 20, 20)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
-define gui.choice_button_text_xalign = 0.0
-define gui.choice_button_text_idle_color = "#e9e9e9"
+define gui.choice_button_text_xalign = 0.5
+define gui.choice_button_text_idle_color = "#ffffff"
 define gui.choice_button_text_hover_color = "#ffffff"
 define gui.choice_button_text_insensitive_color = "#444444"
 
@@ -337,7 +337,7 @@ define gui.unscrollable = "hide"
 ## The history screen displays dialogue that the player has already dismissed.
 
 ## The number of blocks of dialogue history Ren'Py will keep.
-define config.history_length = 250
+define config.history_length = 50
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
@@ -428,12 +428,12 @@ init python:
     def mobile():
 
         ## Font sizes.
-        gui.text_size = 55
+        gui.text_size = 60
         gui.name_text_size = 75 #54
-        gui.notify_text_size = 45
-        gui.interface_text_size = 55
-        gui.button_text_size = 55
-        gui.label_text_size = 55
+        gui.notify_text_size = 55
+        gui.interface_text_size = 60
+        gui.button_text_size = 60
+        gui.label_text_size = 60
 
         ## Adjust the location of the textbox.
         gui.textbox_yalign = 1.0
@@ -453,7 +453,6 @@ init python:
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15
 
-        gui.history_height = 250
         gui.history_text_width = 1035
 
         gui.quick_button_text_size = 35

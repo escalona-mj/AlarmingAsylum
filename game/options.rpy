@@ -25,7 +25,7 @@ define _game_menu_screen = None
 define config.menu_include_disabled = False
 define config.gl2 = True
 
-define config.layers = [ 'master', 'transient', 'screens', 'overlay' ]
+define config.layers = [ 'master', 'transient', 'screens', 'overlay', 'front' ]
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
@@ -42,26 +42,26 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
-FONTS
+This game uses free assets. Background images are taken from {a=https://www.pexels.com}Pexels{/a}, background music are taken from {a=https://dova-s.jp/EN/}DOVA-SYNDROME{/a}, sound effects are taken from {a=https://www.pixabay.com}Pixabay{/a}, and fonts are taken from {a=https://www.fontspace.com}FontSpace{/a}. We have compiled all the terms and conditions of the respective websites in this link here. We do not claim ownership of any of the assets used in this game.""")
+# FONTS
 
-Suicide Squadron made by {a=https://www.fontspace.com/heaven-castro}heaven castro{/a}
+# Suicide Squadron made by {a=https://www.fontspace.com/heaven-castro}heaven castro{/a}
 
-Kingthings Printing Kit by {a=https://www.kingthingsfonts.co.uk/}Kevin King{/a}
-
-
-MUSIC
-
-"Alone Once Again" by {a=https://www.danielbirchmusic.com}Daniel Birch{/a}
-
-"Dark Ambient Atmosphere 2" by {a=https://pixabay.com/users/danydory-9903/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=141314"}danydory{/a}
+# Kingthings Printing Kit by {a=https://www.kingthingsfonts.co.uk/}Kevin King{/a}
 
 
-EFFECTS
+# MUSIC
 
-{bt}"Kinetic Text Tags"{/bt} effect by {a=https://github.com/SoDaRa/Kinetic-Text-Tags}SoDaRa{/a}
+# "Alone Once Again" by {a=https://www.danielbirchmusic.com}Daniel Birch{/a}
 
-{gtext}"renpyChromaGlitch"{/gtext} effect by {a=https://github.com/Gouvernathor/renpy-ChromaGlitch}Gouvernathor{/a}
-""")
+# "Dark Ambient Atmosphere 2" by {a=https://pixabay.com/users/danydory-9903/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=141314"}danydory{/a}
+
+
+# EFFECTS
+
+# {bt}"Kinetic Text Tags"{/bt} effect by {a=https://github.com/SoDaRa/Kinetic-Text-Tags}SoDaRa{/a}
+
+# {gtext}"renpyChromaGlitch"{/gtext} effect by {a=https://github.com/Gouvernathor/renpy-ChromaGlitch}Gouvernathor{/a}
 
 
 ## A short name for the game used for executables and directories in the built
@@ -107,11 +107,11 @@ define config.main_menu_music = audio.titlescreen
 define config.enter_transition = noise
 define config.exit_transition = noise
 
-define config.end_splash_transition = noise
+define config.end_splash_transition = fade
 
 define config.enter_yesno_transition = noise
 define config.exit_yesno_transition = noise
-define config.game_main_transition = noise
+define config.game_main_transition = fade
 
 ## Between screens of the game menu.
 

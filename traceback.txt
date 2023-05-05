@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script_scene2.rpy", line 565, in script call
+    call locker_code
+  File "game/script_scene2.rpy", line 590, in script
+    return
+Exception: Could not find return label ('game/script_scene2.rpy', 1683215727, 11).
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script_scene2.rpy", line 565, in script call
+    call locker_code
+  File "game/script_scene2.rpy", line 590, in script
+    return
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ast.py", line 1782, in execute
+    next_node(renpy.game.context().lookup_return(pop=True))
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\execution.py", line 726, in lookup_return
+    raise Exception("Could not find return label {!r}.".format(self.return_stack[-1]))
+Exception: Could not find return label ('game/script_scene2.rpy', 1683215727, 11).
+
+Windows-10-10.0.22621 AMD64
+Ren'Py 8.0.3.22090809
+Alarming Asylum 1.0
+Thu May  4 23:57:15 2023

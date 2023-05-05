@@ -2,6 +2,8 @@
 #         CHARCTERS         #
 #############################
 
+define disclaimer = Character(None, centered)
+
 define narrator = Character(
     ctc="ctc",
     ctc_position="fixed")
@@ -25,20 +27,21 @@ define lucy = DynamicCharacter(
     image="lucy")
 
 default m2_name = "Raymon"
-define m2 = DynamicCharacter(
+define raymon = DynamicCharacter(
     'm2_name',
-    kind=i)
+    kind=i,
+    image="raymon")
 
 #############################
 #        TRANSITIONS        #
 #############################
 define wipeleft = ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64)
 
-define dissolve_scene_full = MultipleTransition([
-    False, Dissolve(1.0),
-    Solid("#000"), Pause(1.0),
-    Solid("#000"), Dissolve(1.0),
-    True])
+# define dissolve_scene_full = MultipleTransition([
+#     False, Dissolve(1.0),
+#     Solid("#000"), Pause(1.0),
+#     Solid("#000"), Dissolve(1.0),
+#     True])
 
 define wipeleft_scene = MultipleTransition([
     False, ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64),
@@ -49,15 +52,21 @@ define wipeleft_scene = MultipleTransition([
 define eyeopen = ImageDissolve("images/transitions/eyes.png", 1.5, 100)
 define eyeclose = ImageDissolve("images/transitions/eyes.png", 1.5, 100, reverse=True)
 
-define noise = ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64)
+define noise = ImageDissolve("images/transitions/noise.png", 0.5, ramplen=64)
 
-define noise_scene = MultipleTransition([
-    False, ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64),
-    Solid("#000"), Pause(0.25),
-    Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.75, reverse=True, ramplen=64),
+define noise_splash = ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64)
+
+# define noise_scene = MultipleTransition([
+#     False, ImageDissolve("images/transitions/noise.png", 0.5, ramplen=64),
+#     Solid("#000"), Pause(0.25),
+#     Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.5, reverse=True, ramplen=64),
+#     True])
+
+
+define camera_flash = MultipleTransition([
+    False, Dissolve(0.15),
+    Solid("#FFF"), Pause(0.0),
     True])
-
-define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)
 
 transform textdissolve:
         alpha 0
@@ -66,6 +75,10 @@ transform textdissolve:
 #############################
 #      DYNAMIC SCENES       #
 #############################
+
+image bwAsylum:
+    im.Blur("gui/asylum.jpg", 5.0)
+
 image train1:
     im.Blur("images/bgs/train/train1.png", 5.0)
 
@@ -84,15 +97,24 @@ image bg forest1:
 
 image bg forest2:
     im.Blur("images/bgs/bg forest2.jpg", 5.0)
-    
-image forest2 night:
-    im.MatrixColor(im.Blur("images/bgs/bg forest2.jpg", 5.0), im.matrix.tint(.44,.65,.75))
 
 image bg outside_asylum:
     im.MatrixColor(im.Blur("images/bgs/bg outside_asylum.jpg", 5.0), im.matrix.tint(.90,.65,1.0))
 
+image bg door:
+    im.MatrixColor(im.Blur("images/bgs/bg door.jpg", 5.0), im.matrix.tint(.90,.65,1.0))
+
 image bg asylum:
     im.Blur("images/bgs/bg asylum.jpg", 5.0)
+
+image bg office:
+    im.Blur("images/bgs/bg office.jpg", 5.0)
+
+image bg bed:
+    im.Blur("images/bgs/bg bed.jpg", 5.0)
+
+image bg locker:
+    im.Blur("images/bgs/bg locker.jpg", 5.0)
 
 #############################
 #        MAIN MENU          #
@@ -134,7 +156,9 @@ image skip_overlay:
     pause 0.1
     repeat
 
-image logo:
+image logo = ("gui/menu/logo.png")
+
+image logo_glitch:
     "gui/menu/logo.png"
     pause 0.5
     choice:
@@ -166,11 +190,23 @@ image logo:
         pause 2.0
     repeat
 
-#  Transform blurring the image.
+#  Transform that blurs the background when opening screens.
 transform withBlur:
     blur 15
 transform noBlur:
     blur 0
+
+transform rewind:
+    truecenter
+    zoom 1.20
+    parallel:
+        easeout_bounce 0.2 xalign 0.55
+        easeout_bounce 0.2 xalign 0.45
+        repeat
+    parallel:
+        easeout_bounce 0.33 yalign 0.55
+        easeout_bounce 0.33 yalign 0.45
+        repeat
 
 
 #############################
@@ -180,58 +216,96 @@ transform noBlur:
 layeredimage lucy:
 
     group base: #body
-        attribute base1 default:
+        attribute l_base1 default:
             "lucy 1l_1r"
-        attribute base2:
+        attribute l_base2:
             "lucy 2l_2r"
-        attribute base3:
+        attribute l_base3:
             "lucy 1l_2r"
-        attribute base4:
+        attribute l_base4:
             "lucy 2l_1r"
 
     group eyes:
-        attribute eyes default:
+        attribute l_eyes default:
             "images/characters/lucy/face/eyes_normal.png"
-        attribute eyes_look:
+        attribute l_eyes_look:
             "images/characters/lucy/face/eyes_look.png"
-        attribute eyes_closed:
+        attribute l_eyes_closed:
             "images/characters/lucy/face/eyes_closed.png"
+        attribute l_eyes_closedhappy:
+            "images/characters/lucy/face/eyes_closedhappy.png"
+        attribute l_eyes_anxious:
+            "images/characters/lucy/face/eyes_anxious.png"
 
     group brows:
-        attribute brow default:
+        attribute l_brow default:
             "images/characters/lucy/face/brow_normal.png"
-        attribute brow_sad:
+        attribute l_brow_sad:
             "images/characters/lucy/face/brow_sad.png"
-        attribute brow_serious:
+        attribute l_brow_serious:
             "images/characters/lucy/face/brow_serious.png"
 
     group mouth:
-        attribute mouth default:
+        attribute l_mouth default:
             "images/characters/lucy/face/mouth_smile.png"
-        attribute mouth_open:
+        attribute l_mouth_open:
             "images/characters/lucy/face/mouth_open.png"
-        attribute mouth_slightopen:
+        attribute l_mouth_slightopen:
             "images/characters/lucy/face/mouth_slightopen.png"
-        attribute mouth_serious:
+        attribute l_mouth_serious:
             "images/characters/lucy/face/mouth_serious.png"
 
 
-image lucy 1l_1r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/1r.png")
-image lucy 2l_2r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/2r.png")
-image lucy 1l_2r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/2r.png")
-image lucy 2l_1r = im.Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/1r.png")
+image lucy 1l_1r = Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/1r.png")
+image lucy 2l_2r = Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/2r.png")
+image lucy 1l_2r = Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/1l.png", (0, 0), "images/characters/lucy/2r.png")
+image lucy 2l_1r = Composite((960, 960), (0, 0), "images/characters/lucy/lucy_head.png", (0, 0), "images/characters/lucy/2l.png", (0, 0), "images/characters/lucy/1r.png")
 
+
+layeredimage raymon:
+
+    group base: #body
+        attribute r_base default:
+            "images/characters/raymon/raymon_base.png"
+
+    group eyes:
+        attribute r_eyes default:
+            "images/characters/raymon/face/eyes_normal.png"
+        attribute r_eyes_look:
+            "images/characters/raymon/face/eyes_look.png"
+        attribute r_eyes_closed:
+            "images/characters/raymon/face/eyes_closed.png"
+        attribute r_eyes_closedhappy:
+            "images/characters/raymon/face/eyes_closedhappy.png"
+
+    group brows:
+        attribute r_brow default:
+            "images/characters/raymon/face/brow_normal.png"
+        attribute r_brow_sad:
+            "images/characters/raymon/face/brow_sad.png"
+        attribute r_brow_serious:
+            "images/characters/raymon/face/brow_serious.png"
+
+    group mouth:
+        attribute r_mouth default:
+            "images/characters/raymon/face/mouth_smile.png"
+        attribute r_mouth_open:
+            "images/characters/raymon/face/mouth_open.png"
+        attribute r_mouth_slightopen:
+            "images/characters/raymon/face/mouth_slightopen.png"
+        attribute r_mouth_serious:
+            "images/characters/raymon/face/mouth_serious.png"
 
 #############################
 #            FONT           #
 #############################
 
-style partner_handwriting:
-    font "fonts/NaomisHand-Regular.ttf"
+# style partner_handwriting:
+#     font "fonts/NaomisHand-Regular.ttf"
 
-style disclaimer_font:
-    color "#ffffff"
-    font "fonts/Astonished-KMrD.ttf"
+# style disclaimer_font:
+#     color "#ffffff"
+#     font "fonts/Astonished-KMrD.ttf"
 
 #############################
 #           AUDIO           #
@@ -240,3 +314,11 @@ define audio.titlescreen = "<loop 23.154 to 83.098>audio/bgm/titlescreen.ogg"
 #<loop 23.154 to 83.098 or 1m 23.098>
 
 define audio.train = "audio/ambient/train.ogg"
+define audio.forest = "audio/ambient/forest.mp3"
+
+define audio.asylum = "<loop 105.970 to 203.363>audio/bgm/brokenclock.mp3"
+#<loop 1m 45.970/105.970 to 3m 23.363/203.363>
+
+define audio.merrygoround = "<loop 24.171>audio/bgm/merrygoround.mp3"
+
+define audio.merrygoround2 = "<loop 24.162>audio/bgm/merrygoround2.mp3"

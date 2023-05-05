@@ -21,6 +21,6 @@ label not_for_big_screens:
     scene black
     $ _dismiss_pause = False
     $ renpy.block_rollback()
-    play sound "audio/sfx/error.wav"
+    play sound "audio/sfx/warning.mp3"
     call screen dialog(message="This game is meant to be played in Android devices.\nPlease install it there.", ok_action=Quit(confirm=False))
     return

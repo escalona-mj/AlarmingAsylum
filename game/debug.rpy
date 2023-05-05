@@ -1,6 +1,4 @@
 label debug:
-    $ quick_menu = False
-    scene graybg
     menu:
         i "This is only to test certain screens and functions."
         "Achievement test":
@@ -43,6 +41,7 @@ label achievement_test:
             $ achievement_get("rps_game_paper")
             $ achievement_get("rps_game_scissors")
             $ achievement_get("bad_end")
+            $ achievement_get("doki_doki")
             $ achievement_get("all_bad_end")
             jump achievement_test
         "Clear achievements":
@@ -60,7 +59,7 @@ label notifying:
     jump debug
 
 label naming:
-    call screen name_input(message="What is your name?", ok_action=Return(), back_action=NullAction())
+    call screen name_input(message="What is your name?", ok_action=Return(), back_action=Rollback())
     $ persistent.playername = Main
     i "... is my name."
     $ renpy.notify("Your name is " + Main + ".")
