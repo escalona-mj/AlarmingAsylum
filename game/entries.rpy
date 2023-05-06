@@ -8,16 +8,14 @@ init python:
             \n{b}NOTES{/b}: Sh  was ad itt d to th  as lu  aft r  xp ri ncing a n rvous br akdown following th  d ath of h r husband in a car accid nt  Sh  has no fa il  or clos  fri nds, and has b  n unco  unicativ  with staff    b rs sinc  h r arrival  It is uncl ar if sh  will r spond to tr at  nt or if h r condition will d t riorat  furth r\n\n1"""
         ],
         "alonso_paper":[
-            """{font=/fonts/FirstTimeWriting-z8KM1.ttf}{size=+20}I lost my legs long ago, and now many people fear me.
+            """{font=/fonts/FirstTimeWriting-z8KM1.ttf}{size=+30}I lost my legs long ago, and now many people fear me.
             \nWhen they see me, they run for their lives.
-            \n\n\n\n\n\n\n\n\n\n\n                i like it when i had mine back then
-            \n\n\n\n\n             the world is not the same when you are ch nged\n\n\n\n\n\n\n
-
-            \n\n\n\n            beyond rep ir.\n\n\n\n\n\n\n\n
-            then she came\n\n\n\n\n\n\nshe gave me back my normal life\n\n\n\n\nthank you, Nurse a  c \n\n5{/size}"""
+            \n\n\ni like it when i had mine back then
+            \n\n\n             the world is not the same when you are ch nged\n\n            beyond rep ir\n\n\n\n\n
+            \nthen she came\n\n\n\n\nshe gave me back my n rmal life\n\n\n\n\nth nk you, Nurse a  c \n\n5{/size}"""
         ],
         "entry2":[
-            """{font=/fonts/Creepshow.ttf}Patient Name: Jo n S   h\nAdmission Date: June 18, 1954\nAge: 25
+            """{font=/fonts/Creepshow.ttf}{size=+5}Patient Name: Jo n S   h\nAdmission Date: June 18, 1954\nAge: 25
             \nREASON FOR ADMISSION: He was admitted to the asylum after experiencing a psychotic episode in public. Witnesses reported that he was acting erratically and appeared to be hallucinating. He was also seen engaging in self-harm behaviors.
             \nMEDICAL HISTORY: He has a history of bipolar disorder and has previously been hospitalized for similar episodes of psychosis. He has been prescribed medication to manage his symptoms, but his condition has been difficult to stabilize.
             \nCURRENT CONDITION: He is currently under close observation and is receiving treatment to manage his symptoms. He has shown some improvement. Nurse A  c  is expecting him to be discharged soon.\n\n6"""

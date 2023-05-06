@@ -26,7 +26,7 @@ label splashscreen:
                     $ in_splash = False
                 "I would like to stop playing immediately.":
                     $ renpy.quit()
-        # $ renpy.music.play(config.main_menu_music)
+        $ renpy.music.play(config.main_menu_music)
         # call screen disclaimer with dissolve
         
         show renpy_logo at truecenter:

@@ -15,6 +15,25 @@ transform truecenter_blur:
     yalign 0.5
     blur 5
 
+transform easeleft_transform:
+    offscreenleft
+    ease 1.0 left
+     
+transform easeright_transform:
+    offscreenright
+    ease 1.0 right
+     
+transform gocenter_transform:
+    ease 0.5 center
+     
+transform centertoleft_transform:
+    center
+    ease 0.5 left
+     
+transform centertoright_transform:
+    center
+    ease 0.5 right
+
 label start:
     $ quick_menu = True
     show black
@@ -71,56 +90,56 @@ label start:
 
     $ achievement_get("start")
 
-    show merah neutral
+    show alonso a_brow_serious a_mouth_serious
     i "Wh-wha?"
     "Something hard hit my face, causing me to jerk out."
-    $ a1_name = "???" 
-    a1 "[Main], wake up!"
-    a1 "And I thought I was the sleepy one..."
+    $ alonso_name = "???" 
+    alonso a_mouth_slightopen "[Main], wake up!"
+    alonso "And I thought I was the sleepy one..."
     "My eyes start to dart around to look at what's familiar and what isn't."
-    $ a1_name = "Alonso" 
+    $ alonso_name = "Alonso" 
     i "Sorry Alonso, I must have dozed off."
-    a1 "I tried waking you up earlier, but you wouldn't budge."
+    alonso "I tried waking you up earlier, but you wouldn't budge."
     "I know Alonso's a great friend, but he shouldn't just wake people up."
     "Unless it's an emergency."
     "Stretching to gain energy, I stare blankly at the window, looking for an ounce of motivation."
-    a1 "Were you sleeping here alone?"
-    a1 "There's plenty of seats to sleep from our side though."
+    alonso "Were you sleeping here alone?"
+    alonso "There's plenty of seats to sleep from our side though."
     i "I don't like people watching me sleep."
     i "Even if we're the only ones here."
     "..."
     "I think there's something we both wanted to say."
     "I don't have the courage to, not yet."
     "Thankfully, Alonso breaks the silence."
-    a1 "Well... aren't you excited?"
+    alonso "Well... aren't you excited?"
     i "I'm excited to leave once everything is over."
     "I scoffed then gave him a disapproval look."
     "He isn't that bad, he just looks after my wellbeing."
     "I mean, that's what friends do, right?"
-    a1 "I'm having second thoughts about going on this trip..."
+    alonso "I'm having second thoughts about going on this trip..."
     i "What?"
-    a1 "W-wait! I-it's not like that or anything..."
+    alonso "W-wait! I-it's not like that or anything..."
     "I can see right through him. Typical Alonso."
     i "We're only there to discover the mystery of the asylum."
     i "It was supposedly to be your butler's mission, but I don't know why you had to bring yourself and us as well."
     i "Heck, why did you even disclose this information to us?"
-    a1 "Hold on! Just let me explain."
-    a1 "What if something bad happens to her?"
-    a1 "We won't be there for her."
-    a1 "I know to myself I can't do it alone, so I brought you guys."
+    alonso "Hold on! Just let me explain."
+    alonso "What if something bad happens to her?"
+    alonso "We won't be there for her."
+    alonso "I know to myself I can't do it alone, so I brought you guys."
     "I paused."
     "I didn't realized how important his butler is to him."
     i "Right. Sorry, I didn't know..."
     i "But we're going to be fine. Didn't you said that before?"
     i "Whether if we encounter something paranormal or not, we've got each other."
-    a1 "Yeah, you're right..."
+    alonso "Yeah, you're right..."
     "..."
     "I try to yawn discreetly into my hand, but I guess it doesn't look discreet enough."
-    a1 "Have you been taking your vitamins like I told you?"
-    a1 "You won't last long in trips like these."
+    alonso "Have you been taking your vitamins like I told you?"
+    alonso "You won't last long in trips like these."
     i "Oh, I keep forgetting it."
     "Alonso scoffs at me with worry."
-    a1 "You should probably start packing up."
+    alonso "You should probably start packing up."
     i "Yeah, good idea. We might be close already."
     "I rummaged through my bag to see if I already have the necessities."
     "Do I have everything in here?"
@@ -138,11 +157,11 @@ label start:
     "Right, first-aid... check."
     "I leave my warm seat in a haste and drag all of my belongings with me."
     i "I guess I have everything right here."
-    a1 "Alright, I'll go with the others. Care to join us?"
+    alonso "Alright, I'll go with the others. Care to join us?"
     menu:
         "Err..."
         "\"Sure.\"":
-            a1 "Okay. Right this way."
+            alonso "Okay. Right this way."
             "We left the current passenger wagon onto the other one."
             window hide
             hide train1
@@ -151,7 +170,7 @@ label start:
             window auto
             jump char_intro
         "\"No thanks, I need some more time alone.\"":
-            a1 "Suit yourself."
+            alonso "Suit yourself."
             hide merah
             "Alonso leaves the scene, giving the passenger wagon to myself all alone."
             "Dammit. I forgot to eat lunch."
@@ -212,17 +231,17 @@ label start:
                 linear 1 xalign 0.0
                 repeat
             window show(None)
-            a1 "{size=+50}[Main!u]!{/size}{fast}" with vpunch
+            alonso "{size=+50}[Main!u]!{/size}{fast}" with vpunch
             window auto
             i "Gah! What th-{nw}" with vpunch
             i "Don't sneak behind me like that!"
-            a1 "Hehe, sorry."
+            alonso "Hehe, sorry."
             "..."
             i "Alonso... Please don't do that again."
-            a1 "Right, right. I'm sorry I scared you."
+            alonso "Right, right. I'm sorry I scared you."
             # "Flabbergasted, I went back gazing into the distance."
-            a1 "Oh! My butler wants to see you."
-            a1 "I don't know what it is, but I'll leave the two of you alone."
+            alonso "Oh! My butler wants to see you."
+            alonso "I don't know what it is, but I'll leave the two of you alone."
             i "Is that so?"
         elif window_scene == False:
             window auto
@@ -231,7 +250,7 @@ label start:
             "It's not something I should be worried of... right?"
         else:
             window auto
-            a1 "Stay here while I look for Raymon."
+            alonso "Stay here while I look for Raymon."
             i "Okay."
             hide merah
             "I scanned the whole area."
@@ -376,8 +395,8 @@ label start:
         $ renpy.music.set_volume(0.0, delay=0.0, channel='music')
         "Lucy's expression immediately changed."
         "I might have strike a nerve."
-        lucy l_mouth_slightopen "A friend of Alonso is also my responsibility."
-        lucy l_eyes_closed l_base3"It is something that we, servants, should also serve."
+        lucy l_mouth_slightopen "A friend of Sire Alonso is also my responsibility."
+        lucy l_eyes_closed l_base3"It is something that we, servants, should also adhere."
         show lucy l_mouth_serious -l_base3 -l_eyes_closed
         "Right, a butler's expertise."
         "That was a stupid question to ask."
@@ -502,39 +521,39 @@ label start:
         show lucy at left
         show merah neutral at right
         with Dissolve(0.2)
-        a1 "There you are [Main]!"
-        a1 "Man, wandering through these empty endless passenger wagons sure is tiring."
-        a1 "I've been looking everywhere for you two."
+        alonso "There you are [Main]!"
+        alonso "Man, wandering through these empty endless passenger wagons sure is tiring."
+        alonso "I've been looking everywhere for you two."
         "How did he get lost? This train is just a corridor..."
-        a1 "Luckily, I came across Lucy. She pointed out exactly where you guys are."
+        alonso "Luckily, I came across Lucy. She pointed out exactly where you guys are."
         i "Thanks, Lucy. If it weren't for you, Alonso would've been left wandering aimlessly in the train."
         show lucy l_base2 l_mouth_open l_eyes_closedhappy 
         "Lucy laughs from my bad-executed joke."
-        a1 "Yeah yeah, laugh it off."
+        alonso "Yeah yeah, laugh it off."
         hide lucy
         show lucy at left
-        a1 "I'll laugh once I beat [Main] in this game!"
-        a1 "How about a game of rock, paper, scissors for a while?"
+        alonso "I'll laugh once I beat [Main] in this game!"
+        alonso "How about a game of rock, paper, scissors for a while?"
         label menu_rps:
             menu:
-                a1 "Best of 3?"
+                alonso "Best of 3?"
                 "\"Sure, we're almost there anyway.\"":
                     $ played_rps = True
-                    a1 "Alright!"
+                    alonso "Alright!"
                     jump rps
                 "\"No thanks.\"":
-                    a1 "Aww."
+                    alonso "Aww."
                     jump afterwards
                 "\"What are you, a kid?\"" if persistent.easter_egg1 == None:
-                    a1 "Aww."
-                    a1 "That really hurt."
-                    a1 "I mean, that's the only minigame they can implement."
-                    a1 "Have some respect."
+                    alonso "Aww."
+                    alonso "That really hurt."
+                    alonso "I mean, that's the only minigame they can implement."
+                    alonso "Have some respect."
                     "Huh? What minigame?"
                     i "Who's they?"
-                    a1 "The developers. The people who made this game."
+                    alonso "The developers. The people who made this game."
                     i "What are you talking about?"
-                    a1 "They're watching us right now."
+                    alonso "They're watching us right now."
                     show forestbackground:
                         xalign 0.0
                         linear 1 xalign 1.0
@@ -547,13 +566,13 @@ label start:
                     $ renpy.music.set_volume(0.0, delay=0.0, channel='music')
                     play sound "audio/bgm/merrygoround_reverse.mp3"
                     "{cps=150}What are you talking about?{/cps}{nw}"
-                    a1 "{cps=150}The developers. The people who made this game.{/cps}{nw}"
+                    alonso "{cps=150}The developers. The people who made this game.{/cps}{nw}"
                     i "{cps=150}{/cps}Who's they?{nw}"
                     "{cps=150}Huh? What minigame?{/cps}{nw}"
-                    a1 "{cps=150}Have some respect.{/cps}{nw}"
-                    a1 "{cps=150}I mean, that's the only minigame they can implement.{/cps}{nw}"
-                    a1 "{cps=150}That really hurt.{/cps}{nw}"
-                    a1 "{cps=150}Aww.{/cps}{nw}"
+                    alonso "{cps=150}Have some respect.{/cps}{nw}"
+                    alonso "{cps=150}I mean, that's the only minigame they can implement.{/cps}{nw}"
+                    alonso "{cps=150}That really hurt.{/cps}{nw}"
+                    alonso "{cps=150}Aww.{/cps}{nw}"
                     hide skip_overlay
                     show layer master
                     stop sound
@@ -578,7 +597,7 @@ label start:
         elif computer_score == 3:
             jump results
         elif player_score == 2 and computer_score == 2:
-            a1 "It's now or never!"
+            alonso "It's now or never!"
         else:
             pass
         show screen scoring with Dissolve(0.25)
@@ -599,7 +618,7 @@ label start:
 
         if player_selection == computer_selection:
             "It's a tie."
-            a1 "Ooh, I'll get ya!"
+            alonso "Ooh, I'll get ya!"
             jump rps
 
         elif player_selection == 'rock':
@@ -660,13 +679,13 @@ label start:
             
             i "Take that!"
             if only_paper >=3 or only_rock >=3 or only_scissors >=3:
-                a1 "Yeah yeah, rub it in. That was pure luck."
+                alonso "Yeah yeah, rub it in. That was pure luck."
             else:
-                a1 "I'll get you next time..."
+                alonso "I'll get you next time..."
             jump afterwards
         else:
             i "Aww, I lost."
-            a1 "Bow to me!"
+            alonso "Bow to me!"
             jump afterwards
 
     label afterwards:
@@ -679,14 +698,14 @@ label start:
         "{i}\"Thank you and have a nice day.\"{/i}"
         if played_rps == True:
             raymon "While you guys are playing your game, me and Lucy have packed your things up, thank you very much."
-            a1 "Whoops, thanks."
+            alonso "Whoops, thanks."
         else:
-            a1 "Whaddya know. We're here."
-        a1 "Do you have everything with you, [Main]?"
+            alonso "Whaddya know. We're here."
+        alonso "Do you have everything with you, [Main]?"
         "I'm not sure if I left anything at the seat I was sleeping in..."
         "If there's anything I left behind, so be it."
         i "I guess I'm all good now."
-        a1 "Great! Let's go."
+        alonso "Great! Let's go."
         stop ambient fadeout 6.0
         play sound trainstop
         window hide
@@ -714,22 +733,26 @@ label start:
         "The sun is shining along with the birds singing, but the forest is eerily quiet."
         "Too quiet..."
         i "Um, where is the asylum?"
+        show lucy l_mouth_serious with Dissolve(0.2)
         lucy "Patience, [Main]. We are not there yet."
-        lucy "We have to traverse through the forest."
-        a1 "Adventure awaits us!" with vpunch
+        lucy l_mouth_slightopen "We have to traverse through the forest."
+        hide lucy
+        show lucy l_brow_sad l_eyes_closedhappy at centertoleft_transform
+        show raymon at right with Dissolve(0.2)
+        alonso "Adventure awaits us!" with vpunch
         "Alonso comes near me, and reaches his hand to me."
-        a1 "Come along, my companion."
+        alonso "Come along, my companion."
         i "What's up with that attitude of yours?"
-        a1 "Aw, can you just appreciate my enthusiasm?"
-        a1 "I'm trying to make this trip a bit fun."
+        alonso "Aw, can you just appreciate my enthusiasm?"
+        alonso "I'm trying to make this trip a bit fun."
         "This trip is going to be the end of me."
         i "Do you even know where're we going?"
-        a1 "Err... no?"
+        alonso "Err... no?"
         "I {bt=1}sighed{/bt}."
         raymon "Why don't we let Lucy lead the way?"
         raymon "She WAS assigned to this mission after all."
         i "That would make more sense."
-        a1 "R-right."
+        alonso "R-right."
         "Lucy goes in front of us and giggles as she takes the lead."
         scene bg forest1 with wipeleft_scene:
             yalign 1.0
@@ -738,9 +761,17 @@ label start:
         "We followed a narrow trail, with trees looming over us on either side."
         i "Wow, this place must be really hidden from the public."
         i "It must be a refugee site for individuals from other states."
+        show raymon r_brow_sad r_eyes_closed r_mouth_serious at center
+        show expression AlphaMask("images/others/forest_foliage.png", At("raymon", center)) as r_mask
+        with Dissolve(0.2)
         raymon "No. It wasn't."
-        # raymon "Hey Lucy, what kind of {i}\'asylum\'{/i} are we going to anyway?"
-        # raymon "Is it a rehabilitation center to treat the lunatics in nuthouses or a refugee site?"
+        show raymon at centertoright_transform
+        show expression AlphaMask("images/others/forest_foliage.png", At("raymon", centertoright_transform)) as r_mask
+        pause 0.1
+        show lucy l_eyes_look l_mouth_serious l_brow_sad at left
+        show expression AlphaMask("images/others/forest_foliage.png", At("lucy", left)) as l_mask
+        with Dissolve(0.2)
+
         lucy "..."
         "Lucy remained silent."
         "I think she's trying to say something, but doesn't know how to respond yet."
@@ -751,18 +782,23 @@ label start:
         # lucy "Mostly, the ground floors and upper floors were assigned to give shelter to asylum seekers."
         # lucy "But for some unknown reasons, none of refugees were recorded to be released."
         # lucy "I am guessing all the refugees were taken to the basement along with the lunatics."
-        lucy "Asylums were used as a form of social control, with individuals who did not conform to societal norms or who were perceived as a threat to public safety, often being institutionalized."
-        lucy "As a result, many patients suffered and died in those institutions, with their stories and struggles forgotten."
+        show raymon r_eyes_look
+        lucy l_eyes_closed l_mouth_slightopen "Asylums were used as a form of social control, with individuals who did not conform to societal norms or who were perceived as a threat to public safety..."
+        show raymon r_eyes_closed
+        lucy l_eyes_look "As a result, many patients suffered and died in those institutions, with their experiences forgotten."
         lucy "It is also a place where they performed... human experiments."
-        lucy "Patients were often subjected to inhumane treatments such as lobotomies, electroshock therapy, and other experimental procedures."
-        raymon "And patients with mental illnesses were often mistreated by society at large, leading to a lack of proper care and support."
-        lucy "Exactly."
+        show raymon -r_eyes_closed
+        lucy l_eyes_closed "Patients were often subjected to inhumane treatments such as lobotomies, electroshock therapy, and other experimental procedures."
+        show lucy l_mouth_serious
+        raymon r_mouth_slightopen "And patients with mental illnesses were often mistreated by society at large, leading to a lack of proper care and support."
+        show raymon r_mouth_serious
+        lucy -l_eyes-closed l_mouth_serious "Exactly."
         # lucy "It is probably the reason why the asylum was built here."
         # lucy "It had been a prison for patients who had been locked away, forgotten by society."
         # lucy "Screams can be heard deep within the forest back then, and even today."
         hide black
-        lucy "I might be rambling too much..."
-        lucy "Surely you have heard stories about this place, [Main]?"
+        lucy l_eyes_look "I might be rambling too much..."
+        lucy -l_mouth_serious -l_eyes_look "Surely you have heard stories about this place, [Main]?"
         i "N-no..."
         "Sort of..."
         "I'm at loss for words."
@@ -773,7 +809,8 @@ label start:
         # raymon "...death."
         # "..."
         raymon "Where are the people running the asylum?"
-        lucy "That, I do not know."
+        lucy l_eyes_closed l_mouth_serious"That, I do not know."
+        show raymon r_eyes_closed
         lucy "Only God knows where they went."
         "..."
         "We decided to keep quiet for the rest of our journey."
@@ -784,7 +821,9 @@ label start:
         "As we walked deeper into the forest, the atmosphere began to change."
         "The air grew cooler, and the sunlight filtered through the trees in an eerie way."
         "I could hear strange noises in the distance, and the rustling of leaves seemed to follow us."
-        a1 "Are we there yet already?"
+        show alonso a_eyes_closed
+        show expression AlphaMask("images/others/forest_foliage.png", At("alonso a_eyes_closed", center)) as a_mask
+        alonso "Are we there yet already?"
         lucy "Yes. Just a bit more."
         lucy "It should be right around the corner."
         "..."
@@ -807,14 +846,14 @@ label start:
         "It's almost night already."
         lucy "We're here."
         lucy "Before we go ahead inside, is anyone of you ready?"
-        a1 "My stuff's here."
-        a1 "How about you, Raymon?"
+        alonso "My stuff's here."
+        alonso "How about you, Raymon?"
         play sound "audio/sfx/camera.mp3" volume 0.5
         "{bt=2}*click*{/bt}{fast}"
         "I see Raymon waving a plastic film, taken by his camera."
         # raymon "I can almost hear the deafening souls..."
         raymon "Of course! I'm always prepared."
-        a1 "The walls look it could give up at any moment..."
+        alonso "The walls look it could give up at any moment..."
         lucy "Indeed, it does."
         lucy "We might have to get this mission done as soon as possible."
         i "I'm ready."

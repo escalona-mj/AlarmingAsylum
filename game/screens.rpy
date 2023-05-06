@@ -606,7 +606,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     if main_menu:
         use bg_main_menu
         add "gui/overlay/confirm.png":
-            alpha 0.5
+            alpha 0.75
 
     else:
         add "gui/overlay/confirm.png"

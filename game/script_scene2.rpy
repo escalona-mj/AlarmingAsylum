@@ -1,11 +1,11 @@
 label scene_2:
     "A large door stands in front of us."
     "No matter how much strength I put to open the door, it won't budge."
-    a1 "This door seems stuck."
-    a1 "Raymon, do you have something that can open this door?"
+    alonso "This door seems stuck."
+    alonso "Raymon, do you have something that can open this door?"
     show bg door:
         linear 5.0 yalign 0.5
-    a1 "Like a key or something?"
+    alonso "Like a key or something?"
     raymon "No, but I do have something better."
     "Raymon whips out a bottle container labeled \"Motor Oil\"."
     "He then applies the oil to the hinges of the door."
@@ -36,10 +36,10 @@ label scene_2:
     $ config.skipping = False
     $ renpy.notify("Saving the game is recommended.")
     play sound "audio/sfx/warning.mp3" volume 0.2
-    a1 "There aren't any... g-ghosts here, right?"
+    alonso "There aren't any... g-ghosts here, right?"
     raymon "No Alonso. Besides, aren't you a bit too old to be scared of ghosts?"
-    a1 "Yeah, it's probably because I've gotten attached to superstitious beliefs..."
-    a1 "And this place reeks."
+    alonso "Yeah, it's probably because I've gotten attached to superstitious beliefs..."
+    alonso "And this place reeks."
     "I don't blame Alonso. The air was heavy with the stench of decay."
     "Despite the grim atmosphere, I carefully look at my surroundings to see if I can find something that can help Lucy on her mission."
     play sound "audio/sfx/camera.mp3" volume 0.5
@@ -52,7 +52,7 @@ label scene_2:
     raymon "Why don't we split up?"
     "What?"
     "What kind of suggestion is that?"
-    a1 "Uh, no thank you. You're asking for death."
+    alonso "Uh, no thank you. You're asking for death."
     i "He's right!"
     lucy "I appreciate the suggestion that you want to make my mission go a lot smoother..."
     lucy "But I cannot overlook such a lousy decision for my convenience."
@@ -61,17 +61,70 @@ label scene_2:
     raymon "[Main], do you have a preference?"
     i "Well, if it'll get this job done sooner, then I don't see a problem."
 
-define room1_done = 0
-define room2_done = 0
-define room3_done = 0
+define room1_done = False
+define room2_done = False
+define room1_2_done = False
+define room3_done = False
+define room3_checked = False
 define LucySecret = False
+
+define act2 = False
+define seenSuicide = False
 
 label asylum_mapping:
     $ config.rollback_enabled = True
     $ config.skipping = False #pauses skipping if turned on
     scene bg asylum with dissolve
-    if room1_done == 1 and room2_done == 1:
-        "waht the fucj"
+    if room1_2_done == False and room1_done == True and room2_done == True:
+        $ room1_2_done = True
+        i "So far, we've only collected some clothes and papers."
+        if room3_checked == True:
+            i "And the room across the hallway is blocked."
+        else:
+            i "The only room we haven't explored is the room across the hallway."
+        alonso "I really hope Lucy's finding the clues she needs."
+        alonso "Are you alright, Lucy?"
+        lucy "..."
+        "Lucy seems like she's got a lot on her mind."
+        "It took her a few seconds to reply back to Alonso."
+        lucy "Y-Yes."
+        lucy "Fortunately, all of the items we have collected are directly aiding my mission."
+        raymon "That's great."
+        lucy "..."
+        alonso "Lucy, are you hiding something?"
+        $ config.skipping = False
+        alonso "You've been awfully quiet since-{nw}"
+        window hide(None)
+        stop music
+        play sound "audio/sfx/fallstuff.mp3"
+        pause 3.5
+        window auto
+        alonso "{sc}WHAT WAS THAT?{/sc}"
+        "Suddenly, I felt a chill sensation as the sound echoes throughout the room."
+        i "The atmosphere got a little bit colder. It's not just me, right?"
+        raymon "M-must've been the wind."
+        "Lucy trying to regain her composure from the sudden noise, tries to calm Alonso."
+        lucy "It sounds like something fell in the office, Sire..."
+        i "Nope, nope, nope."
+        raymon "Maybe it's the rats again."
+        lucy "Alright, alright. Let us all calm down."
+        lucy "I will check out the source of the noise."
+        alonso "Nope! You aren't going there alone."
+        alonso "We're coming with you."
+        alonso "If you're going to die, we might as well die together."
+        raymon "..."
+        i "..."
+        lucy "..."
+        "That's... a bit too much?"
+        "Lucy chuckles from the awkwardness that formed between us."
+        lucy "I see. If you say so, Sire."
+        lucy "Everyone, stay behind me."
+        $ act2 = True
+        $ config.skipping = False
+        # i "I'm officially freaked out. Let's get out of here!"
+        # "I rushed through the entrance."
+        # "However, I was met with a terrible fate."
+        # i "{sc}Who closed the damn door?!{/sc}" with vpunch
     if persistent.reminder == None:
         play sound "audio/sfx/warning.mp3" volume 0.2
         call screen confirm(message="NOTE: There are instances where the quick menu will be disabled, so make sure you've saved your file before proceeding.\n\n{color=#ffffffca}({b}Yes{/b}, I understand. {b}No{/b}, let me save first.)", yes_action=Return(), no_action=Rollback())
@@ -85,23 +138,24 @@ label new_room:
     return
 
 label room1:
-    
+    if act2 == True:
+        jump act2_hanging        
     $ wentAlonso = False
     $ wentRaymon = False
     $ wentLucy = False
     $ menuchoice = 0
 
-    if room1_done == 0:
-        if room1_done == 0 and room2_done == 0:
+    if room1_done == False:
+        if room1_done == False and room2_done == False:
             call new_room
-        $ room1_done = 1
+        $ room1_done = True
         scene bg office with wipeleft_scene
         "As expected, the room is a mess."
         "Books are scattered across the floor along with desks that are almost unrecognizable due to its state."
         "There's also a marking on the wall that says \"School sucks!\"."
         play sound "audio/sfx/camera.mp3" volume 0.5
         "{bt=2}*click*{/bt}{fast}"
-        a1 "This must be the office."
+        alonso "This must be the office."
         raymon "Let's look around."
         lucy "Do not go too far."
         lucy "I need to gather as much intel as I can."
@@ -119,12 +173,12 @@ label room1:
                     "I proceeded to help Alonso."
                     "I see him wandering aimlessly at the corner of the room."
                     "He seems to be looking for something."
-                    a1 "Oh [Main]! Come here quick!"
-                    a1 "I found a desk."
+                    alonso "Oh [Main]! Come here quick!"
+                    alonso "I found a desk."
                     "The desk is covered in layers of dust and cobwebs."
                     "The once polished surface of the desk is now dull and scratched, and the wood is warped and split in places."
                     "The desk looks like it hasn't been used in years, perhaps even decades."
-                    a1 "I can't seem to open the drawer though."
+                    alonso "I can't seem to open the drawer though."
                     i "Let me try."
                     "I grasp the handle, tightly in my hand, but it's shut tight and won't budge when I try to pull it open."
                     "Determined, I try again with more force."
@@ -133,22 +187,22 @@ label room1:
                     "I was taken aback by my force, but I managed to regain my composure."
                     "My excitement turns to horror as I see a decaying snake lying coiled up in the drawer."
                     i "What the hell!" with vpunch
-                    a1 "What?! {w=0.2}What?!{w=0.2} What?!"
+                    alonso "What?! {w=0.2}What?!{w=0.2} What?!"
                     "Alonso paces towards me and the desk."
-                    a1 "Oh. It's a dead snake..."
-                    a1 "What's a dead snake doing in a drawer?"
+                    alonso "Oh. It's a dead snake..."
+                    alonso "What's a dead snake doing in a drawer?"
                     i "Maybe food?"
                     "Alonso examines the snake's corpse."
                     i "Stay away from that thing."
-                    a1 "Relax, it's dead."
+                    alonso "Relax, it's dead."
                     i "Okay, but leave it alone."
                     i "It has suffered long enough trapped in that drawer."
-                    a1 "Okay."
+                    alonso "Okay."
                     "Looking at the old desk, I examine the rest of the drawers."
                     "As I rummage through each of the drawers, one drawer had a paper in it."
                     "The edges are frayed and torn, and the paper has yellowed with age."
                     "It also had a distinct scent, a musty smell that is reminiscent of old books and antique stores."
-                    a1 "Oh, you found something. What does it say?"
+                    alonso "Oh, you found something. What does it say?"
                     "I look at the paper, which left a seemingly bizzare note."
                     $ entry("alonso_paper")
                     "Nurse A  c ...?"
@@ -157,36 +211,36 @@ label room1:
                         "Nurse Alice..."
                         "Lucy's mother."
                         i "She must have cured the patient."
-                        a1 "She?"
+                        alonso "She?"
                     else:
                         i "Who's Nurse A   c ?"
-                        a1 "Nurse Ay-see?"
+                        alonso "Nurse Ay-see?"
                     "Alonso takes the paper from my hand."
-                    a1 "Looks like someone didn't get to keep their legs."
+                    alonso "Looks like someone didn't get to keep their legs."
                     "I look to Alonso with a glowering expression."
                     i "Alonso! Rude."
-                    a1 "Sorry."
+                    alonso "Sorry."
                     "Judging from the handwriting, the note seems to be written by a child."
                     i "How can you joke at a disabled child's letter?"
-                    a1 "Oof, now I feel even more bad."
-                    a1 "Okay, I'm sorry."
+                    alonso "Oof, now I feel even more bad."
+                    alonso "Okay, I'm sorry."
                     i "Don't apologize to me! Apologize to the child."
                     i "Even if they're not here anymore."
                     "Alonso turns around and clasps both of his hands."
-                    a1 "{size=-25}Forgive me.{/size}"
+                    alonso "{size=-25}Forgive me.{/size}"
                     "I shake my head."
                     "The child must be so grateful to the nurse that they made a letter just for her."
                     "That's... heartwarming."
                     "I wonder how the nurse reacted to such a dearing letter."
                     i "This paper might be helpful."
                     $ renpy.notify("You take the paper.")
-                    a1 "To be honest, if we see any old paper here with information written on it, it's probably important."
+                    alonso "To be honest, if we see any old paper here with information written on it, it's probably important."
                     i "Pretty much."
                     if menuchoice == 2:
                         pass
                     else:
                         i "I'll look for the others. Will you be okay alone?"
-                        a1 "Yeah. I'll stay here and look around."
+                        alonso "Yeah. I'll stay here and look around."
                         i "Okay. Take care."
                         "I leave Alonso in his business."
                         jump room1_choices
@@ -215,11 +269,11 @@ label room1:
                     "After several tense moments, a satisfying crack can be heard, and a section of the cabinet's top breaks away, revealing the insides."
                     play sound "audio/sfx/rats.mp3" loop volume 0.5
                     "However, when opened, Raymon had unleashed two small creatures that darted out from the file cabinet."
-                    raymon "AHHH! GET IT OFF ME!" with vpunch
+                    raymon "{sc}AHHH! GET IT OFF ME!{/sc}" with vpunch
                     "The rats are small and scraggly, with matted fur and beady eyes that seem to follow the Raymon's every move."
                     "They move quickly and without fear, scampering around Raymon's body."
-                    raymon "[Main!u], HELP ME!"
-                    raymon "MY BAG, QUICKLY!"
+                    raymon "{sc}[Main!u], HELP ME!{/sc}"
+                    raymon "{sc}MY BAG, QUICKLY!{/sc}"
                     "I quickly grabbed Raymon's bag to see if he has anything to stop these rats."
                     "What am I suppose to grab here?!"
                     raymon "Wait, nevermind [Main]!"
@@ -234,8 +288,8 @@ label room1:
                     raymon "They must have been trapped in that file cabinet."
                     stop sound fadeout 1.5
                     "Slowly, we relax, and watch as the rats disappear into the darkness and leaves us alone."
-                    "..."
-                    raymon "That was something?"
+                    pause 1.0
+                    raymon "That was something."
                     i "Yeah."
                     i "Why don't we go and take a look at the cabinet you just opened?"
                     raymon "I almost forgot about that."
@@ -274,8 +328,7 @@ label room1:
                     raymon "..."
                     raymon "So you know that asylums were used as long-term care facilities for people with mental illnesses, right?"
                     i "Yeah?"
-                    raymon "Even though many of these facilities focused on custodial care, such as keeping patients fed, clothed, and sheltered..."
-                    raymon "In some cases, patients were subjected to inhumane treatments, including physical and emotional abuse..."
+                    raymon "Most patients were subjected to inhumane treatments, including physical and emotional abuse..."
                     raymon "Along with experimentation with unproven medical treatments."
                     raymon "However, this nurse managed to get a chronic-mentally ill patient to be cured and discharged, something that was very rare back then."
                     i "That's amazing."
@@ -285,6 +338,7 @@ label room1:
                     i "I kinda thought that asylums are eternal prisons for the mental."
                     i "Like, once you go in there... you're never leaving..."
                     i "Because of the limited knowledge available back then in the field of psychology or science or something..."
+                    i "They would just assume people with psychotic episodes to be untreateable..."
                     raymon "Well you're not wrong."
                     raymon "But you are also quite wrong."
                     "I look to Raymon with a confused expression."
@@ -357,16 +411,16 @@ label room1:
             lucy "Okay everyone."
             lucy "Have you all found something?"
             if wentAlonso == True:
-                a1 "We sure did."
-                a1 "[Main], give the paper to Lucy."
+                alonso "We sure did."
+                alonso "[Main], give the paper to Lucy."
                 $ renpy.notify("You gave the paper.")
                 i "Alright."
             else:
-                a1 "I sure did."
-                a1 "I found a note."
-                a1 "The handwriting looked like it belong to a child."
-                a1 "It's quite a heartwarming one, with the last sentence thanking {i}\"Nurse a  c \"{/i}."
-            a1 "Also found a dead snake in a drawer, if anyone wants to know."
+                alonso "I sure did."
+                alonso "I found a note."
+                alonso "The handwriting looked like it belong to a child."
+                alonso "It's quite a heartwarming one, with the last sentence thanking {i}\"Nurse a  c \"{/i}."
+            alonso "Also found a dead snake in a drawer, if anyone wants to know."
             if LucySecret == True:
                 "I see Lucy's eyes flashed for a while."
             else:
@@ -387,7 +441,6 @@ label room1:
             raymon "Craziest shid, I tell you."
             if LucySecret == True:
                 "For the second time, I saw Lucy flashed her eyes once more."
-                "It seems like she's shocked about how her mother managed to do all of this."
                 "Her mother must be highly respected by both patients and staff members, judging from the letters they found."
             else:
                 pass
@@ -402,19 +455,22 @@ label room1:
                 call room2_locker_choices
                 "I think I got it."
                 i "Guys, we might have a clue for the locker."
-                a1 "Are you sure? Then lead the way!"
+                alonso "Are you sure? Then lead the way!"
                 "We went back to the other room."
                 scene bg locker with wipeleft_scene
                 "Things stood still since we left here."
                 "Let's see..."
                 call locker_code
                 call open_locker
-                
-            lucy "I am guessing that there is nothing left to find in this room."
-            lucy "[Main], should we get going?"
-            i "Yeah, sure."
-            lucy "Then let us."
+            if room1_done == True and room2_done == False:     
+                lucy "I am guessing that there is nothing left to find in this room."
+                lucy "[Main], should we get going?"
+                i "Yeah, sure."
+                lucy "Then let us."
+            else:
+                "I guess that's everything."
             "We peacefully make our way out of the room."
+
     else:
         "We've already went there."
     jump asylum_mapping
@@ -463,6 +519,16 @@ label secret_lucy:
     "I reached out and gently placed my hand on her hand, offering what little comfort I could."
     "After a few moments of shared silence, her tears began to subside."
     lucy "I would also like to apologize for lying to Alonso about this mission."
+    "..."
+    lucy "You see, after my father tasked me to do this mission, Alonso was at the door already, listening I presume."
+    lucy "He asked me a ton of questions about the mission, so I fabricated it."
+    lucy "I told him it was a silly little exploration in the abandoned asylum."
+    lucy "He then offered to join you and Raymon."
+    lucy "As much as I want to do this mission alone, I guess bringing a little bit of support would not mind."
+    "So that's the story behind the mission..."
+    "Alonso shouldn't really be snooping around other people's business."
+    "Man."
+    "But then again, Alonso doesn't want Lucy to go through this alone."
     lucy "I do not want him to feel the sadness I am currently facing."
     i "I understand the weight of your situation..."
     i "But I think Alonso will understand if you reach out to him."
@@ -471,7 +537,7 @@ label secret_lucy:
     i "Yeah..."
     lucy "Alright, that is enough drama for one day, ahaha."
     "For a butler, I thought she's emotionless; an expert."
-    "But she's still human, with feelings..."
+    "But I guess she's still human, with feelings..."
     lucy "Shall we?"
     "I nod."
     return
@@ -482,11 +548,11 @@ label room2:
     $ seenAlonso = False
     $ seenRaymon = False
 
-    if room1_done == 0 and room2_done == 0:
+    if room1_done == False and room2_done == False:
         call new_room
         
-    if room2_done == 0:
-        $ room2_done = 1
+    if room2_done == False:
+        $ room2_done = True
         scene bg bed with wipeleft_scene
         "The musty smell of abandonment fills my nostrils as we step inside."
         "The room was mostly empty at this point."
@@ -506,11 +572,11 @@ label room2:
                     "The thin mattress is torn and stained, and the pillow discolored with age."
                     "The bed seem to have been slept on by animals, judging from it."
                     "I can't help but wonder how many patients have laid on this bed in the past."
-                    a1 "Let me check underneath the bed."
-                    "Alonos checks underneath the bed."
-                    a1 "I found err..."
+                    alonso "Let me check underneath the bed."
+                    "..."
+                    alonso "I found err..."
                     raymon "What did you find?"
-                    a1 "A doll."
+                    alonso "A doll."
                     "The doll is ragged, with loose strings on each arm and its clothes."
                     "Upon taking a closer look, the doll has a pocket on its apron. In there lies a paper that's been folded to fit into the small pocket."
                     $ entry("doll_paper")
@@ -525,7 +591,7 @@ label room2:
                     i "That's probably just their imagination, right?"
                     raymon "True, but why would a doll with a seemingly sad note end up in an asylum?"
                     raymon "The doll was probably taken away from the child with brute force when their parents sent the child here..."
-                    a1 "That's a possible assumption."
+                    alonso "That's a possible assumption."
                     lucy "I think we all should hurry. We do not have enough time to deal with a letter from a child."
                     lucy "If it has been left by the child in this place, we should not delve into it deeper."
                     i "Right, right... My bad."
@@ -539,26 +605,27 @@ label room2:
                     scene bg locker with wipeleft
                     window auto
                     "Against the wall is an old, dented locker with its paint chipped and peeling."
-                    a1 "I wonder if there's anything worth salvaging in here."
+                    alonso "I wonder if there's anything worth salvaging in here."
                     lucy "Master Alonso, I would appreciate if we leave things as they are."
                     lucy "We might disturb unwanted spirits."
-                    a1 "Oh, right... Of course."
+                    alonso "Oh, right... Of course."
                     "I try to open the locker but as expected, it's locked tight."
                     raymon "Look at the locker door."
                     "There's a paper hanging from the side of the door gap."
                     "I take the paper."
                     $ entry("locker_paper")
                     i "There's a code."
+                    i "That's... convenient."
                     i "The first 3 numbers are missing."
                     i "Where are we going to find the three numbers?"
-                    a1 "It'll take forever to crack that code!"
+                    alonso "It'll take forever to crack that code!"
                     if room1_done == True:
                         i "Hmm..."
                         i "Lucy, give me the papers."
                         lucy "What do you need them for?"
                         i "There's gotta be some sort clue we aren't seeing."
                         raymon "What would be the correlation of random papers that we found on the previous room to the locker code?"
-                        a1 "Don't you have something in your bag that can open it?"
+                        alonso "Don't you have something in your bag that can open it?"
                         raymon "As a matter of fact, I do."
                         raymon "Let me grab my crowbar."
                         play ambient "audio/sfx/crowbar.mp3" loop volume 0.7
@@ -573,15 +640,19 @@ label room2:
                         i "I think I might have."
                         i "Raymon, can I try the lock code?"
                         raymon "Have you found something? We've been trying to open this to no avail."
-                        a1 "At this point, I'm hoping if [Main] can actually open this."
+                        alonso "At this point, I'm hoping if [Main] can actually open this."
                         stop ambient fadeout 2.5
                         i "Alright, let me just..."
                         call locker_code
+                        call open_locker
                         lucy "This would greatly help."
                         if not LucySecret:
-                            "How would this help?"
+                            "How would a uniform alone help?"
+                        raymon "Is that all?"
+                        lucy "I believe so."
+                        jump room2_choices
                     else:
-                        a1 "Would a crowbar open the locker?"
+                        alonso "Would a crowbar open the locker?"
                         raymon "As a matter of fact, it may..."
                         raymon "Let me grab my crowbar."
                         play ambient "audio/sfx/crowbar.mp3" loop volume 0.7
@@ -598,10 +669,10 @@ label room2:
                 lucy "I think we have seen enough here."
                 lucy "Is anyone ready to leave?"
                 i "Yep."
-                a1 "Uhuh."
+                alonso "Uhuh."
                 "Raymon nodded."
             else:
-                a1 "Well, we didn't find anything."
+                alonso "Well, we didn't find anything."
                 lucy "Why don't we take a look at the other rooms?"
                 raymon "Good idea."
             "We leave the room."
@@ -613,7 +684,7 @@ label room2:
 
 label open_locker:
     "It's a..."
-    a1 "Bunch of clothes."
+    alonso "Bunch of clothes..."
     "Lucy steps closer to the locker."
     lucy "Not just any clothes, it's nurse clothing."
     "Lucy takes the uniform."
@@ -631,7 +702,7 @@ label open_locker:
         i "...It's all good, I don't really have any use for it..."
         "Lucy takes the locket from me and leaves me be."
     else:
-        "I am really hoping that she knows what she's doing."
+        "I really am hoping that she knows what she's doing."
         "It seems like she'll take anything that we see here."
         "Didn't she told us not to salvage the things lying around here?"
         "Very suspicious of her..."
@@ -654,6 +725,7 @@ label room2_locker_choices:
     return
 
 label locker_code:
+    $ config.skipping = False
     $ code = renpy.input("What's the code?", length=5, allow='1234567890')
     if not code == "61593":
         "The lock doesn't budge."
@@ -673,20 +745,21 @@ label locker_code:
         play sound "audio/sfx/padunlock.mp3"
         "With a satisfying click, the lock had open itself."
         i "Yes!"
-        a1 "Good job, [Main]!"
+        alonso "Good job, [Main]!"
         raymon "Looks like we won't be needing our trusty crowbar."
-        raymon "Coincidentally, the papers did had the code."
-        a1 "What matters is that it's open."
+        raymon "What bothers me is that, coincidentally, the papers did had the code."
+        alonso "Well, what matters is that it's open."
         "I can't help but wonder what secrets might be hidden inside."
         "Alonso opens the locker."
     return
 
 label room3:
     $ config.skipping = False
-    if room1_done == 1 and room2_done == 1:
-        $ room3_done = 1
+    if act2 == True and seenSuicide == True:
+        $ room3_done = True
         "This is room 3."
     else:
+        $ room3_checked = True
         "Seems like there's something blocking the way."
         "I think I'll go check out the other rooms first."
     jump asylum_mapping

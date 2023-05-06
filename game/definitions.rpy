@@ -16,7 +16,7 @@ define i = Character(
     ctc_position="fixed")
 
 default a1_name = "Alonso"
-define a1 = DynamicCharacter(
+define alonso = DynamicCharacter(
     'a1_name',
     kind=i)
 
@@ -296,6 +296,41 @@ layeredimage raymon:
         attribute r_mouth_serious:
             "images/characters/raymon/face/mouth_serious.png"
 
+layeredimage alonso:
+
+    group base: #body
+        attribute a_base default:
+            "images/characters/alonso/alonso_base.png"
+
+    group eyes:
+        attribute a_eyes default:
+            "images/characters/alonso/face/eyes_normal.png"
+        attribute a_eyes_look:
+            "images/characters/alonso/face/eyes_look.png"
+        attribute a_eyes_closed:
+            "images/characters/alonso/face/eyes_closed.png"
+        attribute a_eyes_closedhappy:
+            "images/characters/alonso/face/eyes_closedhappy.png"
+
+    group brows:
+        attribute a_brow default:
+            "images/characters/alonso/face/brow_normal.png"
+        attribute a_brow_sad:
+            "images/characters/alonso/face/brow_sad.png"
+        attribute a_brow_serious:
+            "images/characters/alonso/face/brow_serious.png"
+
+    group mouth:
+        attribute a_mouth default:
+            "images/characters/alonso/face/mouth_smile.png"
+        attribute a_mouth_open:
+            "images/characters/alonso/face/mouth_open.png"
+        attribute a_mouth_slightopen:
+            "images/characters/alonso/face/mouth_slightopen.png"
+        attribute a_mouth_serious:
+            "images/characters/alonso/face/mouth_serious.png"
+
+
 #############################
 #            FONT           #
 #############################
@@ -310,7 +345,9 @@ layeredimage raymon:
 #############################
 #           AUDIO           #
 #############################
-define audio.titlescreen = "<loop 23.154 to 83.098>audio/bgm/titlescreen.ogg"
+define audio.titlescreen = "<loop 12.975 to 84.371>audio/bgm/wind.mp3"
+
+# define audio.titlescreen = "<loop 23.154 to 83.098>audio/bgm/titlescreen.ogg"
 #<loop 23.154 to 83.098 or 1m 23.098>
 
 define audio.train = "audio/ambient/train.ogg"
