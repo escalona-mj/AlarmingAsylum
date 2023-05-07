@@ -1,26 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script_scene2.rpy", line 565, in script call
-    call locker_code
-  File "game/script_scene2.rpy", line 590, in script
-    return
-Exception: Could not find return label ('game/script_scene2.rpy', 1683215727, 11).
+  File "game/script_scene3.rpy", line 177, in script
+    call screen asylum_map_2 with dissolve
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+Exception: Screen asylum_map_2 is not known.
+
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script_scene2.rpy", line 565, in script call
-    call locker_code
-  File "game/script_scene2.rpy", line 590, in script
-    return
-  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ast.py", line 1782, in execute
-    next_node(renpy.game.context().lookup_return(pop=True))
-  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\execution.py", line 726, in lookup_return
-    raise Exception("Could not find return label {!r}.".format(self.return_stack[-1]))
-Exception: Could not find return label ('game/script_scene2.rpy', 1683215727, 11).
+  File "game/script_scene3.rpy", line 177, in script
+    call screen asylum_map_2 with dissolve
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ast.py", line 2232, in execute
+    self.call("execute")
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\ast.py", line 2220, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\statements.py", line 281, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\exports.py", line 3167, in call_screen
+    show_screen(_screen_name, _transient=True, *args, **kwargs)
+  File "C:\Users\Mark John\Downloads\renpy-7.5.3-sdk\renpy\display\screen.py", line 1185, in show_screen
+    raise Exception("Screen %s is not known.\n" % (name[0],))
+Exception: Screen asylum_map_2 is not known.
+
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
 Alarming Asylum 1.0
-Thu May  4 23:57:15 2023
+Sun May  7 12:02:37 2023

@@ -25,13 +25,13 @@ screen rps_screen():
     add "gui/overlay/confirm.png":
         alpha 0.7
     if config.developer == True:
-        use quick_menu # TODO: REMOVE when PUBLISHING
+        use quick_menu
     else:
         pass
     vbox:
         xalign 0.5
         yalign 0.5
-        null height 50
+        null height 100
         hbox:
             xalign 0.5
             yalign 0.5
@@ -92,14 +92,21 @@ screen name_input(message, ok_action, back_action):
 
     add "gui/overlay/confirm.png"
     key "K_RETURN" action [ok_action]
-    
+
+    hbox:
+            xalign 0.97
+            yalign 0.43
+            spacing 10
+
+            textbutton _("OK") action ok_action
+            textbutton _("Back") action back_action
+
     frame:
         has vbox:
             xalign .5
             yalign .5
             spacing 30
             xfill True
-        
 
         label _(message):
             style "confirm_prompt"
@@ -109,14 +116,6 @@ screen name_input(message, ok_action, back_action):
         input default "" value VariableInputValue("Main") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
             xalign 0.5
             yalign 0.5
-
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            spacing 100
-
-            textbutton _("OK") action ok_action
-            textbutton _("Back") action back_action
         
 init python:
     def FinishEnterName():
@@ -233,16 +232,21 @@ transform paper:
         linear 0.25 alpha 0
 
 screen entry(content):
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     fixed:
-        textbutton "X":
+        textbutton "Return":
             xalign 1.0
+            yalign 1.0
+            xoffset -10
+            yoffset -10
             action Return()
     style_prefix "entry"
     frame at paper:
         background None
         add "images/screen_maps/paper.jpg" at truecenter
         viewport at truecenter:
-            xsize 1050
+            xsize 1000
             ysize 1080
             mousewheel True
             draggable True
@@ -254,6 +258,43 @@ screen entry(content):
 style entry_text:
     size 30
     color u'#000000'
-    
-    
-        
+
+style entry_button_text:
+    font gui.game_menu_label_font
+
+################    GAME OVER     ##########################
+screen game_over(message):
+    dismiss action MainMenu(confirm=False)
+    style_prefix "game_over"
+
+    frame:
+        background None
+        xalign 0.5
+        yalign 0.5
+
+        has vbox:
+            xalign 0.5
+            yalign 0.5
+
+        label "GAME OVER.":
+            xalign 0.5
+            
+        text message:
+            xalign 0.5
+
+    fixed:
+        style_prefix "info"
+        text "Click anywhere to return to the main menu." at info:
+            size 35
+            xalign 0.5
+            yalign 0.95
+
+transform info:
+        ease 1.0 alpha 1.0
+        ease 1.0 alpha 0.5
+        repeat
+
+style game_over_label_text:
+    font gui.game_menu_label_font
+    color u'#730f0fff'
+    size 200

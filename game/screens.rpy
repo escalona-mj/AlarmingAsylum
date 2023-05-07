@@ -408,11 +408,11 @@ screen navigation():
             else:
                 pass
 
-            if renpy.variant("pc"):
+            # if renpy.variant("pc"):
 
-                ## The quit button is banned on iOS and unnecessary on Android and
-                ## Web.
-                textbutton _("Quit") action Quit(confirm=main_menu)
+            #     ## The quit button is banned on iOS and unnecessary on Android and
+            #     ## Web.
+            textbutton _("Quit") action Quit(confirm=main_menu)
 
     else:
         vbox:
@@ -470,9 +470,11 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
+    font gui.game_menu_label_font
 
 style hnavigation_button_text:
     xalign 0.5
+    font gui.game_menu_label_font
 
 
 screen bg_main_menu():
@@ -693,10 +695,9 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 75
     right_margin 30
     top_margin 15
-    xsize 1300
+    xfill True
     ysize 825
 
 style game_menu_viewport:
@@ -852,7 +853,7 @@ screen file_slots(title):
 
                 spacing gui.page_spacing
 
-                textbutton _("Prev") action FilePagePrevious()
+                textbutton _("<") action FilePagePrevious()
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A") action FilePage("auto")
@@ -864,7 +865,7 @@ screen file_slots(title):
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
 
-                textbutton _("Next") action FilePageNext()
+                textbutton _(">") action FilePageNext()
 
 
 style page_label is gui_label
@@ -885,12 +886,14 @@ style page_label_text:
     text_align 0.5
     layout "subtitle"
     hover_color gui.hover_color
+    font gui.game_menu_label_font
 
 style page_button:
     properties gui.button_properties("page_button")
 
 style page_button_text:
     properties gui.button_text_properties("page_button")
+    font gui.game_menu_label_font
 
 style slot_button:
     properties gui.button_properties("slot_button")
@@ -919,17 +922,19 @@ screen preferences():
         vbox:
             text _("Text Settings"):
                 font gui.game_menu_label_font
+                xalign 0.5
+            null height 25
             hbox:
-                box_wrap True
+                spacing 50
 
                 # if renpy.variant("pc") or renpy.variant("web"):
                 
-                if config.developer == True:
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                # if config.developer == True:
+                #     vbox:
+                #         style_prefix "radio"
+                #         label _("Display")
+                #         textbutton _("Window") action Preference("display", "window")
+                #         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                 # vbox:
                 #     style_prefix "radio"
@@ -939,64 +944,63 @@ screen preferences():
                 #     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
+                    xsize 690
                     style_prefix "check"
                     label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    text _("Skips the dialogue regardless if seen or unseen.")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    text _("Keeps skipping, even on choices.")
+                    textbutton _("Unseen Text") action Preference("skip", "toggle"):
+                        tooltip "Skips the dialogue regardless if seen or unseen."
+                    textbutton _("After Choices") action Preference("after choices", "toggle"):
+                        tooltip "Keeps skipping, even on choices."
+
+                vbox:
+                    style_prefix "slider"
+                    xsize 500
+                    label _("Text Speed")
+                    bar value Preference("text speed"):
+                        tooltip "The speed of the in-game dialogue text."
+
+                    label _("Auto-Forward Time")
+                    bar value Preference("auto-forward time"):
+                        tooltip "The speed of the automation per dialogue.\n(The lower it is, the faster it gets.)"
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
 
             null height (4 * gui.pref_spacing)
 
-            hbox:
-                style_prefix "slider"
-                box_wrap True
-                vbox:
-                    label _("Text Speed")
-                    text _("The speed of the in-game dialogue text.")
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-                    text _("The speed of the automation per dialogue.")
-                    bar value Preference("auto-forward time")
-
-                null height 400
+            # null height 400
 
             text _("Music Settings"):
                 font gui.game_menu_label_font
-
+                xalign 0.5
+            null height 25
             hbox:
                 style_prefix "slider"
-                box_wrap True
+                spacing 50
+                
                 vbox:
+                    xsize 690
                     if config.has_music:
                         label _("BGM Volume")
-
-                        vbox:
-                            text _("The loudness of background music throughout the game.")
-                            bar value Preference("music volume")
+                        bar value Preference("music volume"):
+                            tooltip "The loudness of background music throughout the game."
 
                         label _("Ambient Volume")
-
-                        vbox:
-                            text _("The loudness of ambient music throughout the game.")
-                            bar value Preference("ambient volume")
-
+                        bar value Preference("ambient volume"):
+                            tooltip "The loudness of ambient music throughout the game."
+                vbox:
+                    xsize 500
                     if config.has_sound:
 
                         label _("Sound Volume")
 
                         vbox:
-                            text _("The loudness of sound effects throughout the game.")
-                            bar value Preference("sound volume")
+                            bar value Preference("sound volume"):
+                                tooltip "The loudness of sound effects throughout the game."
 
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)
-
-
+                                
                     if config.has_voice:
                         label _("Voice Volume")
 
@@ -1011,10 +1015,24 @@ screen preferences():
 
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
+                            tooltip "Mute all sounds."
                             style "mute_all_button"
                 
             null height 25
 
+    $ tooltip = GetTooltip()
+
+    if tooltip:
+
+        nearrect:
+            focus "tooltip"
+            prefer_top True
+
+            frame:
+                xalign 0.5
+                padding (30,20,20,20)
+                text tooltip style "tooltip_hover":
+                    size 45
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1082,6 +1100,7 @@ style check_button_text:
     idle_color u'#929292'
     hover_color u'#fff'
     selected_color u'#fff'
+    size 60
     # properties gui.button_text_properties("check_button")
 
 style slider_slider:
@@ -1525,6 +1544,7 @@ style confirm_button:
 
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
+    font gui.game_menu_label_font
 
 
 ## Skip indicator screen #######################################################
@@ -1901,7 +1921,7 @@ style game_menu_outer_frame:
 
 style game_menu_navigation_frame:
     variant "mobile"
-    xsize 510
+    xsize 420
 
 style game_menu_content_frame:
     variant "mobile"
@@ -1954,4 +1974,4 @@ style slider_vbox:
 
 style slider_slider:
     variant "mobile"
-    xsize 900
+    xsize 525

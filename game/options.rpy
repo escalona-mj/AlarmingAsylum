@@ -125,7 +125,7 @@ define config.after_load_transition = noise
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = noise
+define config.end_game_transition = fade
 
 
 ## A variable to set the transition used when the game starts does not exist.

@@ -89,7 +89,7 @@ label asylum_mapping:
         "It took her a few seconds to reply back to Alonso."
         lucy "Y-Yes."
         lucy "Fortunately, all of the items we have collected are directly aiding my mission."
-        raymon "That's great."
+        raymon "That's... good news, I hope."
         lucy "..."
         alonso "Lucy, are you hiding something?"
         $ config.skipping = False
@@ -121,10 +121,6 @@ label asylum_mapping:
         lucy "Everyone, stay behind me."
         $ act2 = True
         $ config.skipping = False
-        # i "I'm officially freaked out. Let's get out of here!"
-        # "I rushed through the entrance."
-        # "However, I was met with a terrible fate."
-        # i "{sc}Who closed the damn door?!{/sc}" with vpunch
     if persistent.reminder == None:
         play sound "audio/sfx/warning.mp3" volume 0.2
         call screen confirm(message="NOTE: There are instances where the quick menu will be disabled, so make sure you've saved your file before proceeding.\n\n{color=#ffffffca}({b}Yes{/b}, I understand. {b}No{/b}, let me save first.)", yes_action=Return(), no_action=Rollback())
@@ -138,6 +134,9 @@ label new_room:
     return
 
 label room1:
+    if seenSuicide == True:
+        "I don't think I want to relive that traumatic event again."
+        jump asylum_mapping
     if act2 == True:
         jump act2_hanging        
     $ wentAlonso = False
@@ -296,6 +295,8 @@ label room1:
                     play sound "audio/sfx/filecabinetopen.mp3" volume 0.5
                     "We opened the cabinet."
                     "The drawers are filled with old files and papers, with the edges yellowed and brittle with age."
+                    play sound "audio/sfx/camera.mp3" volume 0.5
+                    "{bt=2}*click*{/bt}{fast}"
                     "Raymon sifts through the folders and runs his fingers over the documents, feeling the rough texture of the paper."
                     i "Well?"
                     raymon "Interesting. These are patient entries."
@@ -472,7 +473,7 @@ label room1:
             "We peacefully make our way out of the room."
 
     else:
-        "We've already went there."
+        "There's nothing left to see here."
     jump asylum_mapping
     
 label secret_lucy:
@@ -571,6 +572,8 @@ label room2:
                     "A hospital bed sits with its metal frame rusted and worn."
                     "The thin mattress is torn and stained, and the pillow discolored with age."
                     "The bed seem to have been slept on by animals, judging from it."
+                    play sound "audio/sfx/camera.mp3" volume 0.5
+                    "{bt=2}*click*{/bt}{fast}"
                     "I can't help but wonder how many patients have laid on this bed in the past."
                     alonso "Let me check underneath the bed."
                     "..."
@@ -678,7 +681,7 @@ label room2:
             "We leave the room."
             jump asylum_mapping
     else:
-        "We've already went there."
+        "There's nothing left to see here."
     jump asylum_mapping
 
 
@@ -698,7 +701,7 @@ label open_locker:
         "{i}To my beloved, Lucy.{/i}"
         i "...Lucy, I think this might be your mother's locket..."
         lucy "...Oh, it is..."
-        lucy "...I'd like to take it from you, is that okay?..."
+        lucy "...I would like to take it from you, is that okay?..."
         i "...It's all good, I don't really have any use for it..."
         "Lucy takes the locket from me and leaves me be."
     else:
@@ -752,14 +755,3 @@ label locker_code:
         "I can't help but wonder what secrets might be hidden inside."
         "Alonso opens the locker."
     return
-
-label room3:
-    $ config.skipping = False
-    if act2 == True and seenSuicide == True:
-        $ room3_done = True
-        "This is room 3."
-    else:
-        $ room3_checked = True
-        "Seems like there's something blocking the way."
-        "I think I'll go check out the other rooms first."
-    jump asylum_mapping

@@ -431,8 +431,8 @@ init python:
         gui.text_size = 60
         gui.name_text_size = 75 #54
         gui.notify_text_size = 55
-        gui.interface_text_size = 60
-        gui.button_text_size = 60
+        gui.interface_text_size = 50
+        gui.button_text_size = 50
         gui.label_text_size = 60
 
         ## Adjust the location of the textbox.

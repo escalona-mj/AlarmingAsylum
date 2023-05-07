@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script_scene2.rpy", line 603: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
-    "\"No, I've got this.\""
-                            ^
+File "game/custom_screens.rpy", line 96: frame expects a non-empty block.
+    frame:
+          ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu May  4 23:55:18 2023
+Sun May  7 10:52:45 2023

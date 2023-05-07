@@ -40,7 +40,7 @@ label splashscreen:
         with dissolve
         
         show splash1 at truecenter:
-            zoom 0.5
+            zoom 0.75
         play sound "audio/sfx/splash.mp3" volume 0.3
         with noise_splash
         $ renpy.pause(2.5)

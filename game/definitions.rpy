@@ -116,6 +116,9 @@ image bg bed:
 image bg locker:
     im.Blur("images/bgs/bg locker.jpg", 5.0)
 
+image bg basement:
+    im.Blur("images/bgs/bg basement.jpg", 5.0)
+
 #############################
 #        MAIN MENU          #
 #############################
