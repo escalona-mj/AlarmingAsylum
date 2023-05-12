@@ -251,6 +251,8 @@ style input:
 #         for i in items:
 #             textbutton i.caption action i.action
 
+define in_splash = False
+
 screen choice(items):
     on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
     on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
@@ -515,7 +517,7 @@ screen bg_main_menu():
     # add "grunge"
 
     add "gui/overlay/confirm.png":
-        alpha 0.75
+        alpha 0.5
     
     if renpy.get_screen("main_menu"):
         add "logo":
@@ -763,7 +765,8 @@ style about_label_text is gui_label_text
 style about_text is text
 
 style about_label_text:
-    size gui.label_text_size
+    # size gui.label_text_size
+    size 100
     font "fonts/Rayando-xj18.ttf"
 
 
@@ -853,7 +856,7 @@ screen file_slots(title):
 
                 spacing gui.page_spacing
 
-                textbutton _("<") action FilePagePrevious()
+                textbutton _("{font=/fonts/Co2-wdOx.ttf}<") action FilePagePrevious()
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A") action FilePage("auto")
@@ -865,7 +868,7 @@ screen file_slots(title):
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
 
-                textbutton _(">") action FilePageNext()
+                textbutton _("{font=/fonts/Co2-wdOx.ttf}>") action FilePageNext()
 
 
 style page_label is gui_label
@@ -893,7 +896,6 @@ style page_button:
 
 style page_button_text:
     properties gui.button_text_properties("page_button")
-    font gui.game_menu_label_font
 
 style slot_button:
     properties gui.button_properties("slot_button")

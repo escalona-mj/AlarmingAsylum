@@ -9,7 +9,7 @@ label credits:
     pause
     $ _dismiss_pause = False
     $ renpy.block_rollback()
-    play sound "audio/sfx/error.wav"
+    play sound "audio/sfx/warning.mp3"
     $ achievement.grant("Better Luck Next Time!")
     call screen dialog(message="Error: The script.rpy is missing or corrupted.\nPlease reinstall the game.", ok_action=Quit(confirm=False))
     return

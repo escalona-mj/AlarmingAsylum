@@ -72,7 +72,6 @@ define act2 = False
 define seenSuicide = False
 
 label asylum_mapping:
-    $ config.rollback_enabled = True
     $ config.skipping = False #pauses skipping if turned on
     scene bg asylum with dissolve
     if room1_2_done == False and room1_done == True and room2_done == True:
@@ -122,6 +121,7 @@ label asylum_mapping:
         $ act2 = True
         $ config.skipping = False
     if persistent.reminder == None:
+        $ config.rollback_enabled = True
         play sound "audio/sfx/warning.mp3" volume 0.2
         call screen confirm(message="NOTE: There are instances where the quick menu will be disabled, so make sure you've saved your file before proceeding.\n\n{color=#ffffffca}({b}Yes{/b}, I understand. {b}No{/b}, let me save first.)", yes_action=Return(), no_action=Rollback())
         $ persistent.reminder = True

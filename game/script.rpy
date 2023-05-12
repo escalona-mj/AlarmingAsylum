@@ -581,7 +581,7 @@ label start:
                     $ renpy.music.set_volume(1.0, delay=0.0, channel='music')
                     $ persistent.easter_egg1 = True
                     $ del _history_list[-18:]
-                    $ achievement_get("doki_doki")
+                    $ achievement_get("wall_break")
                     $ config.allow_skipping = True
                     $ quick_menu = True
                     show forestbackground:

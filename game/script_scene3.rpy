@@ -9,7 +9,7 @@ transform swing:
     repeat
 
 transform jumpscare:
-    linear .2 zoom 10.0
+    linear .2 zoom 15.0
 
 image jumpscare1 = ("images/others/jump.jpg")
 image jumpscare2 = ("images/others/scare.png")
@@ -61,11 +61,10 @@ label act2_hanging:
     "My body is completely frozen."
     "There is a body hanging in the air, in front of us."
     "A lifeless body, staring down at us..."
-    "The body isn't even decaying or infested with maggots..."
     "Was this a recent death?"
-    "Are we not alone in the asylum?"
+    "Were we not alone in the asylum?"
     "Raymon suppresses his urge to vomit..."
-    "But he wasn't able to and vomits on the ground instead."
+    "But wasn't able to and vomits on the ground instead."
     "I look to Lucy, but she's taking this normally as if she isn't affected by the sudden turn of events."
     i "L-Lucy?! W-what..."
     "I froze."
@@ -86,6 +85,7 @@ label act2_hanging:
             jump act2
         "\"...\"":
             $ config.skipping = False
+            "..."
             raymon "[Main]?"
             raymon "[Main]?!"
             raymon "[Main!u]!!?"
@@ -106,7 +106,7 @@ label act2_hanging:
             stop music
             "Raymon leaves."
             "For a moment, darkness covered the room once more."
-            "I'm left with the lifeless body here behind me."
+            "I'm left alone with the lifeless body here behind me."
             "I try to look back to see if it's still there."
             show black:
                 alpha 1.0
@@ -115,18 +115,21 @@ label act2_hanging:
             "I reach out my hand into the void to confirm if the body is still there."
             "..."
             "It's not there anymore."
-            "Where could have it gone{nw}"
             $ quick_menu = False
             $ config.skipping = False
+            show jumpscare1:
+                alpha 0.0
+                linear 3.8 alpha 1.0
+            "I suddenly feel something moving closer on my front."
+            "What in the fuc-{nw}"
             play sound "audio/sfx/jumpscare.mp3"
-            show jumpscare1 with Dissolve(3.8)
             hide jumpscare1
             show jumpscare2 at jumpscare:
                 xalign 0.5
                 yalign 0.5
             pause 0.2
             hide jumpscare2
-            pause 1.0
+            pause 1.5
             $ achievement_get("bad_end")
             play sound "audio/sfx/game_over.mp3"
             call screen game_over(message="I'd leave the premises if I were you.") with dissolve
@@ -135,9 +138,9 @@ label act2:
     scene bg asylum with wipeleft_scene
     i "I'm officially freaked out. Let's get out of here!"
     "I rushed through the entrance."
-    "However, I was met with a terrible fate."
+    "However, we were met with a terrible fate."
     "I see Alonso banging the door while Lucy is trying to maintain his temper."
-    alonso "{sc}Who closed the damn door?!{/sc}" with vpunch
+    alonso "{sc}Who locked the damn door?!{/sc}" with vpunch
     lucy "Banging the door will do no good, Sire."
     lucy "I suggest that you calm down while we think this situation together."
     stop music fadeout 3.5
@@ -155,8 +158,7 @@ label act2:
     lucy "I am also confused as well..."
     i "Lucy, how were you so calm and emotionless when you witnessed that?"
     "Lucy looks at me with a concerned face."
-    lucy "Did I not tell you that I have seen the world far more than you know?"
-    lucy "This situation is just one of the worse things I have faced in my life{nw}"
+    lucy "I have seen far worse things than these.{nw}"
     raymon "*cough*"
     raymon "Hello? We have more important matters to deal with!"
     raymon "How are we even going to get out of here?"
@@ -176,7 +178,8 @@ label room3:
     if act2 == True and seenSuicide == True:
         $ room3_done = True
         scene bg basement with wipeleft_scene
-        "This is room 3."
+        "It's a basement?"
+        "The"
     else:
         $ room3_checked = True
         "Seems like there's something blocking the way."

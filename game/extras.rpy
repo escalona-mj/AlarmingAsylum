@@ -76,7 +76,7 @@ if not persistent.achievement_list:
             ],
         
         "rps_game_paper": [
-            _("Wrap It Up "),
+            _("Wrap It Up"),
             _("Win three consecutive rounds using only paper."),
             ],
         
@@ -85,9 +85,9 @@ if not persistent.achievement_list:
             _("Achieve a bad ending.")
             ],
 
-        "doki_doki": [
-            _("Just [Main]."),
-            _("What just happened?")
+        "wall_break": [
+            _("Behind the Curtain"),
+            _("Uncover a 4th-wall-break joke within the game.")
             ],
         
         "all_bad_end": [
@@ -111,7 +111,7 @@ screen achievements():
         add "gui/overlay/confirm.png"
     use extras_navigation
     
-    label "Achievements" style "game_menu_label":
+    label "Achievements {color=#ffcf00}[persistent.unlocked_achievement]{/color}/[locked_achievement]" style "game_menu_label":
         xalign 0.5
     
         
@@ -167,22 +167,22 @@ style locked_label_text:
 
 style achievements_text:
     yalign 0.5
-    size 35
+    size 45
 
 style locked_text:
     yalign 0.5
     color u'#404040'
-    size 35
+    size 45
 
 style achievements_frame:
     padding (20, 20, 20, 20)
     xfill True
 
 define dev_note = _p("""
-Your dedication to completing the game means the world to us. This game is nothing but our fucking project.
+Your dedication to completing the game means the world to us. In our gratitude, please accept this small gift from us.
 """)
 
-screen dev_notes():
+screen secret_menu():
     tag menu
     if main_menu:
         use bg_main_menu
@@ -191,7 +191,7 @@ screen dev_notes():
         add "gui/overlay/confirm.png"
     use extras_navigation
 
-    label "Developer Notes" style "game_menu_label":
+    label "Hall of Completionists" style "game_menu_label":
         xalign 0.5
         
     viewport:
@@ -225,6 +225,8 @@ screen dev_notes():
                     add "unlocked_medal" size (150, 150) yalign 0.5
             text "[dev_note]":
                 xalign 0.5
+            text "{a=https://www.youtube.com/watch?v=dQw4w9WgXcQ}Click here to get your gift!{/a}":
+                xalign 0.5
 
 ## Extras Navigation screen ############################################################
 ##
@@ -241,7 +243,7 @@ screen extras_navigation():
 
         #for completionists
         if persistent.unlocked_achievement == locked_achievement:
-            textbutton _("Developer Notes") action ShowMenu("dev_notes") alt "Developer Notes"
+            textbutton _("Hall of Completionists") action ShowMenu("secret_menu") alt "Hall of Completionist"
 
         else:
 

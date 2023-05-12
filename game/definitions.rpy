@@ -52,7 +52,7 @@ define wipeleft_scene = MultipleTransition([
 define eyeopen = ImageDissolve("images/transitions/eyes.png", 1.5, 100)
 define eyeclose = ImageDissolve("images/transitions/eyes.png", 1.5, 100, reverse=True)
 
-define noise = ImageDissolve("images/transitions/noise.png", 0.5, ramplen=64)
+define noise = ImageDissolve("images/transitions/noise.png", 0.40, ramplen=64)
 
 define noise_splash = ImageDissolve("images/transitions/noise.png", 0.75, ramplen=64)
 

@@ -92,16 +92,9 @@ screen name_input(message, ok_action, back_action):
 
     add "gui/overlay/confirm.png"
     key "K_RETURN" action [ok_action]
-
-    hbox:
-            xalign 0.97
-            yalign 0.43
-            spacing 10
-
-            textbutton _("OK") action ok_action
-            textbutton _("Back") action back_action
-
+    
     frame:
+        yalign 0.25
         has vbox:
             xalign .5
             yalign .5
@@ -116,6 +109,14 @@ screen name_input(message, ok_action, back_action):
         input default "" value VariableInputValue("Main") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
             xalign 0.5
             yalign 0.5
+    
+    hbox:
+            xalign 0.97
+            yalign 0.35
+            spacing 10
+
+            textbutton _("OK") action ok_action
+            textbutton _("Back") action back_action
         
 init python:
     def FinishEnterName():
@@ -264,7 +265,7 @@ style entry_button_text:
 
 ################    GAME OVER     ##########################
 screen game_over(message):
-    dismiss action MainMenu(confirm=False)
+
     style_prefix "game_over"
 
     frame:
@@ -280,16 +281,23 @@ screen game_over(message):
             xalign 0.5
             
         text message:
-            xalign 0.5
+            at transform:
+                alpha 0.0
+                pause 2.0
+                xalign 0.5
+                linear 0.5 alpha 1.0
 
     fixed:
         style_prefix "info"
-        text "Click anywhere to return to the main menu." at info:
-            size 35
+        textbutton "Click here to return to the main menu." at info:
             xalign 0.5
             yalign 0.95
+            action MainMenu(confirm=False)
 
 transform info:
+    alpha 0.0
+    pause 3.0
+    block:
         ease 1.0 alpha 1.0
         ease 1.0 alpha 0.5
         repeat
@@ -298,3 +306,9 @@ style game_over_label_text:
     font gui.game_menu_label_font
     color u'#730f0fff'
     size 200
+
+style info_button is empty
+
+style info_button_text:
+    size 35
+    hover_color '#ffffff'

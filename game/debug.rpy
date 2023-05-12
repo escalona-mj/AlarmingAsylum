@@ -41,7 +41,7 @@ label achievement_test:
             $ achievement_get("rps_game_paper")
             $ achievement_get("rps_game_scissors")
             $ achievement_get("bad_end")
-            $ achievement_get("doki_doki")
+            $ achievement_get("wall_break")
             $ achievement_get("all_bad_end")
             jump achievement_test
         "Clear achievements":
