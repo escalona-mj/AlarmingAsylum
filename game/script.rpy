@@ -10,30 +10,6 @@ default only_scissors = 0
 
 default played_rps = False
 
-transform truecenter_blur:
-    xalign 0.5
-    yalign 0.5
-    blur 5
-
-transform easeleft_transform:
-    offscreenleft
-    ease 1.0 left
-     
-transform easeright_transform:
-    offscreenright
-    ease 1.0 right
-     
-transform gocenter_transform:
-    ease 0.5 center
-     
-transform centertoleft_transform:
-    center
-    ease 0.5 left
-     
-transform centertoright_transform:
-    center
-    ease 0.5 right
-
 label start:
     $ quick_menu = True
     show black
@@ -90,59 +66,77 @@ label start:
 
     $ achievement_get("start")
 
-    show alonso a_brow_serious a_mouth_serious
+    show alonso a_brow_sad a_mouth_slightopen:
+        xalign 0.45
+        blur 5
+        subpixel True
+        yalign 0.25
+        zoom 7
+    $ a1_name = "???" 
+    alonso "Wake up!{fast}"
     i "Wh-wha?"
+    show alonso a_mouth_serious:
+        ease 0.4 xalign 0.5 yalign 1.0 zoom 1.0 blur 0
     "Something hard hit my face, causing me to jerk out."
-    $ alonso_name = "???" 
-    alonso a_mouth_slightopen "[Main], wake up!"
-    alonso "And I thought I was the sleepy one..."
+    alonso a_mouth_slightopen a_brow_serious"[Main], wake up!"
+    alonso a_eyes_closed a_brow_sad"And I thought I was the sleepy one..."
+    hide alonso
+    show alonso a_mouth_serious
     "My eyes start to dart around to look at what's familiar and what isn't."
-    $ alonso_name = "Alonso" 
+    $ a1_name = "Alonso" 
     i "Sorry Alonso, I must have dozed off."
-    alonso "I tried waking you up earlier, but you wouldn't budge."
+    alonso a_brow_sad "I tried waking you up earlier, but you wouldn't budge."
     "I know Alonso's a great friend, but he shouldn't just wake people up."
     "Unless it's an emergency."
     "Stretching to gain energy, I stare blankly at the window, looking for an ounce of motivation."
-    alonso "Were you sleeping here alone?"
-    alonso "There's plenty of seats to sleep from our side though."
+    alonso a_mouth_slightopen"Were you sleeping here alone?"
+    alonso a_eyes_look"There's plenty of seats to sleep from our side though."
+    show alonso -a_eyes_look a_mouth_serious
     i "I don't like people watching me sleep."
     i "Even if we're the only ones here."
     "..."
     "I think there's something we both wanted to say."
     "But I don't have the courage to, not yet."
     "Thankfully, Alonso breaks the silence."
-    alonso "Well... aren't you excited?"
+    alonso -a_mouth_serious"Well... aren't you excited?"
     i "..."
     "I really can't give a clear answer to that."
+    show alonso a_mouth_serious a_eyes_look
     "I scoffed then gave him a disapproval look."
     # "He isn't that bad, he just looks after my wellbeing."
     # "I mean, that's what friends do, right?"
-    alonso "You know, I'm having second thoughts about going on this trip..."
+    alonso a_eyes_closed"You know, I'm having second thoughts about going on this trip..."
     i "What?"
-    alonso "W-wait! I-it's not like that or anything..."
+    alonso a_eyes_look a_mouth_open "W-wait! I-it's not like that or anything..."
     "I can see right through him. Typical Alonso."
+    show alonso a_mouth_serious -a_eyes_look
     i "We're only there to discover the mystery of the asylum, according to your butler."
     i "It was supposedly to be her mission, but I don't know why you had to bring yourself and us as well."
     i "Heck, why did you even disclose this information to us?"
     alonso "Hold on! Just let me explain."
-    alonso "I just can't help but..."
-    alonso "What if something bad happens to her?"
-    alonso "We won't be there for her."
-    alonso "I know to myself I can't do it alone, so I brought you guys."
+    alonso a_eyes_closed "I just can't help but..."
+    alonso a_eyes_look "What if something bad happens to her?"
+    alonso a_eyes_closed"We won't be there for her."
+    alonso -a_eyes_closed"I know to myself I can't do it alone, so I brought you guys."
     "I paused."
     "I shouldn't jump to conclusions and violence..."
     i "Right. Sorry, I didn't know..."
     i "But we're going to be fine."
     i "Whether if we encounter something paranormal or not, we've got each other."
+    show alonso -a_mouth_serious
     "Alonso returns a smile afterwards."
     alonso "Yeah, you're right..."
     "..."
     "After a few awkward seconds, I yawn discreetly into my hand."
     "But I guess it doesn't look discreet enough."
-    alonso "Have you been taking your vitamins like I told you?"
-    alonso "You won't last long in trips like these."
+    alonso a_brow_serious a_mouth_slightopen "Have you been taking your vitamins like I told you?"
+    alonso a_mouth_serious a_eyes_closed a_brow_sad"You won't last long in trips like these."
+    show alonso -a_eyes_closed -a_brow_sad
     i "Oh, I keep forgetting it."
+    show alonso a_eyes_closed a_mouth_slightopen
     "Alonso scoffs at me with worry."
+    hide alonso
+    show alonso
     alonso "You should probably start packing up."
     i "Yeah, good idea. We might be close already."
     play sound "audio/sfx/bag.mp3" loop
@@ -167,13 +161,13 @@ label start:
             "We left the current passenger wagon onto the other one."
             window hide
             hide train1
-            show train2 behind merah
+            show train2 behind alonso
             with wipeleft_scene
             window auto
             jump char_intro
         "\"No thanks, I need some more time alone.\"":
             alonso "Suit yourself."
-            hide merah
+            hide alonso with Dissolve(0.2)
             "Alonso leaves the scene, giving the passenger wagon to myself all alone."
             "Dammit. I forgot to eat lunch."
             "I was hoping they'd at least offer some food here."
@@ -236,15 +230,19 @@ label start:
             alonso "{size=+50}[Main!u]!{/size}{fast}" with vpunch
             window auto
             i "Gah! What th-{nw}" with vpunch
+            show alonso a_eyes_closedhappy a_mouth_open a_brow_serious with wipeleft
+            "I turn around to see Alonso behind me."
             i "Don't sneak behind me like that!"
-            alonso "Hehe, sorry."
+            alonso a_eyes_look a_brow_sad"Hehe, sorry."
             "..."
+            show alonso a_mouth_serious
             i "Alonso... Please don't do that again."
-            alonso "Right, right. I'm sorry I scared you."
+            alonso -a_eyes_look"Right, right. I'm sorry I scared you."
             # "Flabbergasted, I went back gazing into the distance."
-            alonso "Oh! My butler wants to see you."
-            alonso "I don't know what it is, but I'll leave the two of you alone."
+            alonso -a_mouth_serious"Oh! My butler wants to see you."
+            alonso -a_brow_sad"I don't know what it is, but I'll leave the two of you alone."
             i "Is that so?"
+            hide alonso with Dissolve(0.2)
         elif window_scene == False:
             window auto
             "I wonder..."
@@ -254,7 +252,7 @@ label start:
             window auto
             alonso "Stay here while I look for Raymon."
             i "Okay."
-            hide merah
+            hide alonso with Dissolve(0.2)
             "I scanned the whole area."
 
         "In the corner of my eye, I see a well-suited lady approaching me."
@@ -520,21 +518,29 @@ label start:
         "I can already see the determination from his eyes."
         raymon r_mouth_slightopen r_eyes_look "Oh, there's Alonso and Lucy. Just in time."
         hide raymon with Dissolve(0.2)
-        show lucy at left
-        show merah neutral at right
+        show lucy l_eyes_closed at left
+        show alonso at right
         with Dissolve(0.2)
         alonso "There you are [Main]!"
-        alonso "Man, wandering through these empty endless passenger wagons sure is tiring."
+        alonso a_brow_sad a_eyes_closed a_mouth_serious"Man, wandering through these empty endless passenger wagons sure is tiring."
         alonso "I've been looking everywhere for you two."
         "How did he get lost? This train is just a corridor..."
-        alonso "Luckily, I came across Lucy. She pointed out exactly where you guys are."
+        show lucy -l_eyes_closed
+        alonso -a_brow_sad -a_eyes_closed"Luckily, I came across Lucy. She pointed out exactly where you guys are."
+        show lucy l_mouth_slightopen
         i "Thanks, Lucy. If it weren't for you, Alonso would've been left wandering aimlessly in the train."
         show lucy l_base2 l_mouth_open l_eyes_closedhappy 
+        show alonso a_eyes_closed a_brow_sad
         "Lucy laughs from my bad-executed joke."
-        alonso "Yeah yeah, laugh it off."
+        alonso a_mouth_slightopen "Yeah yeah, laugh it off."
         hide lucy
+        hide alonso
+        show alonso at right
         show lucy at left
-        alonso "I'll laugh once I beat [Main] in this game!"
+        alonso a_brow_serious"I'll laugh once I beat [Main] in this game!"
+        show lucy:
+            ease 0.5 offscreenleft
+        show alonso at gocenter_transform
         alonso "How about a game of rock, paper, scissors for a while?"
         label menu_rps:
             menu:
@@ -544,18 +550,18 @@ label start:
                     alonso "Alright!"
                     jump rps
                 "\"No thanks.\"":
-                    alonso "Aww."
+                    alonso a_eyes_closed a_brow_sad a_mouth_serious "Aww."
                     jump afterwards
                 "\"What are you, a kid?\"" if persistent.easter_egg1 == None:
-                    alonso "Aww."
-                    alonso "That really hurt."
+                    alonso a_eyes_closed a_brow_sad a_mouth_serious"Aww."
+                    alonso -a_eyes_closed"That really hurt."
                     alonso "I mean, that's the only minigame they can implement."
-                    alonso "Have some respect."
+                    alonso a_eyes_closed"Have some respect."
                     "Huh? What minigame?"
                     i "Who's they?"
-                    alonso "The developers. The people who made this game."
+                    alonso a_mouth_slightopen -a_eyes_closed"The developers. The people who made this game."
                     i "What are you talking about?"
-                    alonso "They're watching us right now."
+                    alonso a_eyes_look a_mouth_serious "They're watching us right now."
                     show forestbackground:
                         xalign 0.0
                         linear 1 xalign 1.0
@@ -567,14 +573,15 @@ label start:
                     $ config.allow_skipping = False
                     $ renpy.music.set_volume(0.0, delay=0.0, channel='music')
                     play sound "audio/bgm/merrygoround_reverse.mp3"
-                    "{cps=150}What are you talking about?{/cps}{nw}"
-                    alonso "{cps=150}The developers. The people who made this game.{/cps}{nw}"
+                    i"{cps=150}What are you talking about?{/cps}{nw}"
+                    show alonso -a_eyes_look
+                    alonso a_mouth_slightopen"{cps=150}The developers. The people who made this game.{/cps}{nw}"
                     i "{cps=150}{/cps}Who's they?{nw}"
                     "{cps=150}Huh? What minigame?{/cps}{nw}"
-                    alonso "{cps=150}Have some respect.{/cps}{nw}"
+                    alonso a_eyes_closed"{cps=150}Have some respect.{/cps}{nw}"
                     alonso "{cps=150}I mean, that's the only minigame they can implement.{/cps}{nw}"
-                    alonso "{cps=150}That really hurt.{/cps}{nw}"
-                    alonso "{cps=150}Aww.{/cps}{nw}"
+                    alonso -a_eyes_closed"{cps=150}That really hurt.{/cps}{nw}"
+                    alonso a_eyes_closed a_brow_sad a_mouth_serious"{cps=150}Aww.{/cps}{nw}"
                     hide skip_overlay
                     show layer master
                     stop sound
@@ -588,6 +595,8 @@ label start:
                         xalign 1.0
                         linear 1 xalign 0.0
                         repeat
+                    hide alonso
+                    show alonso
                     jump menu_rps
                     
 
@@ -740,7 +749,7 @@ label start:
         lucy l_mouth_slightopen "We have to traverse through the forest."
         hide lucy
         show lucy l_brow_sad l_eyes_closedhappy at centertoleft_transform
-        show raymon at right with Dissolve(0.2)
+        show alonso a_eyes_closedhappy a_mouth_open a_brow_serious at right with Dissolve(0.2)
         alonso "Adventure awaits us!" with vpunch
         "Alonso comes near me, and reaches his hand to me."
         alonso "Come along, my companion."

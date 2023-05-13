@@ -11,14 +11,14 @@ init python:
             """{font=/fonts/FirstTimeWriting-z8KM1.ttf}{size=+30}I lost my legs long ago, and now many people fear me.
             \nWhen they see me, they run for their lives.
             \n\n\ni like it when i had mine back then
-            \n\n\n             the world is not the same when you are ch nged\n\n            beyond rep ir\n\n\n\n\n
-            \nthen she came\n\n\n\n\nshe gave me back my n rmal life\n\n\n\n\nth nk you, Nurse a  c \n\n5{/size}"""
+            \n\n\n             the world is not the 5ame when you are ch nged\n\n            beyond rep ir\n\n\n\n\n
+            \nthen she came\n\n\n\n\nshe gave me back my n rmal life\n\n\n\n\nth nk you, Nurse a  c{/size}"""
         ],
         "entry2":[
             """{font=/fonts/Creepshow.ttf}{size=+5}Patient Name: Jo n S   h\nAdmission Date: June 18, 1954\nAge: 25
             \nREASON FOR ADMISSION: He was admitted to the asylum after experiencing a psychotic episode in public. Witnesses reported that he was acting erratically and appeared to be hallucinating. He was also seen engaging in self-harm behaviors.
             \nMEDICAL HISTORY: He has a history of bipolar disorder and has previously been hospitalized for similar episodes of psychosis. He has been prescribed medication to manage his symptoms, but his condition has been difficult to stabilize.
-            \nCURRENT CONDITION: He is currently under close observation and is receiving treatment to manage his symptoms. He has shown some improvement. Nurse A  c  is expecting him to be discharged soon.\n\n6"""
+            \nCURRENT CONDITION: He is currently under close observation and is receiving treatment to manage his symptoms. He has shown some improvement. Nurse A  c  is expecting him to be dischar6ed soon."""
         ],
         "lucy_paper":[
             """{font=/fonts/Creepshow.ttf}Name: Alice T       n\nPosition: Nurse\nDate of Birth: Febru  y 10, 1930\nDate of Hire: Ju   1, 1958\nSalary: $60 per month
@@ -48,8 +48,8 @@ init python:
 - Alice has a strong work ethic and is always willing to go the extra mile to ensure the well-being of her patients."""
         ],
         "locker_paper": [
-            """{font=/fonts/MorantCapitals-ywyXm.ttf}{size=+60}
-    dont forget the locker code it's ___93{/size}"""
+            """{font=/fonts/MorantCapitals-ywyXm.ttf}{size=+100}
+    \ndont forget the locker code it's ___93{/size}"""
         ],
         "doll_paper": [
             """{font=/fonts/Morant-lgMB5.ttf}{size=+50} my mom say that were going somewere and i can bring you

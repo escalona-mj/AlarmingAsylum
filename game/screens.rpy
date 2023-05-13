@@ -356,7 +356,7 @@ screen quick_menu():
 
 default quick_menu = True
 
-default quick_menu_frame = False
+default quick_menu_frame = True
 
 style quick_button is default
 style quick_button_text is button_text

@@ -1,4 +1,56 @@
 #############################
+#        TRANSFORMS         #
+#############################
+transform textdissolve:
+    alpha 0
+    ease 0.25 alpha 1
+
+# Transform that blurs the background when opening screens.
+transform withBlur:
+    blur 15
+transform noBlur:
+    blur 0
+
+transform rewind:
+    truecenter
+    zoom 1.20
+    parallel:
+        easeout_bounce 0.2 xalign 0.55
+        easeout_bounce 0.2 xalign 0.45
+        repeat
+    parallel:
+        easeout_bounce 0.33 yalign 0.55
+        easeout_bounce 0.33 yalign 0.45
+        repeat
+
+#dream text blur
+transform truecenter_blur:
+    xalign 0.5
+    yalign 0.5
+    blur 5
+
+#transforms for characters
+transform easeleft_transform:
+    offscreenleft
+    ease 1.0 left
+     
+transform easeright_transform:
+    offscreenright
+    ease 1.0 right
+     
+transform gocenter_transform:
+    ease 0.5 center
+     
+transform centertoleft_transform:
+    center
+    ease 0.5 left
+     
+transform centertoright_transform:
+    center
+    ease 0.5 right
+
+
+#############################
 #         CHARCTERS         #
 #############################
 
@@ -18,7 +70,8 @@ define i = Character(
 default a1_name = "Alonso"
 define alonso = DynamicCharacter(
     'a1_name',
-    kind=i)
+    kind=i,
+    image="alonso")
 
 default l1_name = "Lucy"
 define lucy = DynamicCharacter(
@@ -62,15 +115,10 @@ define noise_splash = ImageDissolve("images/transitions/noise.png", 0.75, rample
 #     Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.5, reverse=True, ramplen=64),
 #     True])
 
-
-define camera_flash = MultipleTransition([
-    False, Dissolve(0.15),
-    Solid("#FFF"), Pause(0.0),
-    True])
-
-transform textdissolve:
-        alpha 0
-        ease 0.25 alpha 1
+# define camera_flash = MultipleTransition([
+#     False, Dissolve(0.15),
+#     Solid("#FFF"), Pause(0.0),
+#     True])
 
 #############################
 #      DYNAMIC SCENES       #
@@ -139,6 +187,7 @@ image house = ("gui/menu/house.png")
 image trees = ("gui/menu/trees.png")
 image grass = ("gui/menu/grass.png")
 image grunge = ("gui/menu/grunge.png")
+image logo = ("gui/menu/logo.png")
 image menuFrame = ("gui/menu/menu_frame.png")
 
 #############################
@@ -159,58 +208,37 @@ image skip_overlay:
     pause 0.1
     repeat
 
-image logo = ("gui/menu/logo.png")
-
-image logo_glitch:
-    "gui/menu/logo.png"
-    pause 0.5
-    choice:
-        glitch("gui/menu/logo.png", chroma=False, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
-        pause 0.2
-        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
-        pause 0.1
-    choice:
-        glitch("gui/menu/logo.png", chroma=True, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
-        pause 0.1
-    choice:
-        glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=True, offset=1000, randomkey=None)
-        pause 0.1
-        glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
-        pause 0.1
-    choice:
-        pause 2.0
-    repeat
-
-#  Transform that blurs the background when opening screens.
-transform withBlur:
-    blur 15
-transform noBlur:
-    blur 0
-
-transform rewind:
-    truecenter
-    zoom 1.20
-    parallel:
-        easeout_bounce 0.2 xalign 0.55
-        easeout_bounce 0.2 xalign 0.45
-        repeat
-    parallel:
-        easeout_bounce 0.33 yalign 0.55
-        easeout_bounce 0.33 yalign 0.45
-        repeat
-
+# image logo_glitch:
+#     "gui/menu/logo.png"
+#     pause 0.5
+#     choice:
+#         glitch("gui/menu/logo.png", chroma=False, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+#         pause 0.2
+#         glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+#         pause 0.1
+#     choice:
+#         glitch("gui/menu/logo.png", chroma=True, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=False, offset=60, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=True, offset=60, randomkey=None)
+#         pause 0.1
+#     choice:
+#         glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=True, offset=1000, randomkey=None)
+#         pause 0.1
+#         glitch("gui/menu/logo.png", chroma=False, offset=1000, randomkey=None)
+#         pause 0.1
+#     choice:
+#         pause 2.0
+#     repeat
 
 #############################
 #      CHARACTER IMAGES     #
@@ -332,18 +360,6 @@ layeredimage alonso:
             "images/characters/alonso/face/mouth_slightopen.png"
         attribute a_mouth_serious:
             "images/characters/alonso/face/mouth_serious.png"
-
-
-#############################
-#            FONT           #
-#############################
-
-# style partner_handwriting:
-#     font "fonts/NaomisHand-Regular.ttf"
-
-# style disclaimer_font:
-#     color "#ffffff"
-#     font "fonts/Astonished-KMrD.ttf"
 
 #############################
 #           AUDIO           #
