@@ -68,7 +68,7 @@ label start:
 
     show alonso a_brow_sad a_mouth_slightopen:
         xalign 0.45
-        blur 5
+        blur 25
         subpixel True
         yalign 0.25
         zoom 7
@@ -601,6 +601,8 @@ label start:
                     
 
     label rps:
+        hide alonso
+        show alonso
         $ config.skipping = False
         if player_score == 3:
             $ rps_win = True
@@ -608,7 +610,7 @@ label start:
         elif computer_score == 3:
             jump results
         elif player_score == 2 and computer_score == 2:
-            alonso "It's now or never!"
+            alonso a_brow_serious a_mouth_open "It's now or never!"
         else:
             pass
         show screen scoring with Dissolve(0.25)
@@ -629,7 +631,7 @@ label start:
 
         if player_selection == computer_selection:
             "It's a tie."
-            alonso "Ooh, I'll get ya!"
+            alonso a_eyes_closedhappy "Ooh, I'll get ya!"
             jump rps
 
         elif player_selection == 'rock':
@@ -674,6 +676,7 @@ label start:
     label results:
         if rps_win:
             $ achievement_get("rps_game")
+            show alonso a_brow_sad a_mouth_serious
             i "I win."
 
             if only_scissors >= 3:
@@ -690,16 +693,18 @@ label start:
             
             i "Take that!"
             if only_paper >=3 or only_rock >=3 or only_scissors >=3:
-                alonso "Yeah yeah, rub it in. That was pure luck."
+                alonso a_mouth_slightopen a_eyes_closed"Yeah yeah, rub it in. That was pure luck."
             else:
-                alonso "I'll get you next time..."
+                alonso a_mouth_slightopen a_eyes_closed "I'll get you next time..."
             jump afterwards
         else:
             i "Aww, I lost."
-            alonso "Bow to me!"
+            alonso a_mouth_open a_brow_serious"Bow to me!"
             jump afterwards
 
     label afterwards:
+        hide alonso
+        show alonso
         hide screen scoring with Dissolve(0.25)
         stop music fadeout 10.0
         play sound "audio/sfx/announce.mp3" volume 0.3
@@ -708,15 +713,30 @@ label start:
         "{i}\"Passengers are reminded to mind the gap between the train and the platform edge when unboarding.\"{/i}"
         "{i}\"Thank you and have a nice day.\"{/i}"
         if played_rps == True:
+            show raymon r_eyes_closed r_mouth_slightopen r_brow_sad:
+                offscreenright
+                ease 0.5 xalign 1.2
+            show lucy l_eyes_closed l_brow_sad:
+                offscreenright
+                ease 0.5 xalign 0.8
+            show alonso a_mouth_slightopen:
+                ease 0.5 xalign 0.2
             raymon "While you guys are playing your game, me and Lucy have packed your things up, thank you very much."
-            alonso "Whoops, thanks."
+            alonso -a_mouth_slightopen a_eyes_look a_brow_sad"Whoops, thanks."
+            show lucy:
+                ease 0.5 offscreenright
+            show raymon:
+                ease 0.5 offscreenright
+            show alonso -a_eyes_look -a_brow_sad at gocenter_transform
         else:
             alonso "Whaddya know. We're here."
         alonso "Do you have everything with you, [Main]?"
         "I'm not sure if I left anything at the seat I was sleeping in..."
         "If there's anything I left behind, so be it."
         i "I guess I'm all good now."
-        alonso "Great! Let's go."
+        alonso a_eyes_closedhappy a_mouth_open"Great! Let's go."
+        hide alonso
+        show alonso
         stop ambient fadeout 6.0
         play sound trainstop
         window hide
@@ -733,7 +753,8 @@ label start:
             xalign 1.0
             easein 3.0 xalign 0.0
         pause 10.0
-        
+        show alonso:
+            ease 1.0 offscreenright
         window auto
         scene bg trainstation with wipeleft_scene
         play ambient forest loop fadein 2.5
@@ -751,20 +772,27 @@ label start:
         show lucy l_brow_sad l_eyes_closedhappy at centertoleft_transform
         show alonso a_eyes_closedhappy a_mouth_open a_brow_serious at right with Dissolve(0.2)
         alonso "Adventure awaits us!" with vpunch
+        show alonso -a_eyes_closedhappy -a_mouth_open:
+            ease 0.4 zoom 2 xalign 0.45 blur 2 yalign 0.25
         "Alonso comes near me, and reaches his hand to me."
-        alonso "Come along, my companion."
+        alonso a_eyes_closedhappy a_mouth_open a_brow_serious"Come along, my companion."
         i "What's up with that attitude of yours?"
-        alonso "Aw, can you just appreciate my enthusiasm?"
+        alonso a_brow_sad -a_eyes_closedhappy a_mouth_serious"Aw, can you just appreciate my enthusiasm?"
         alonso "I'm trying to make this trip a bit fun."
         "This trip is going to be the end of me."
         i "Do you even know where're we going?"
-        alonso "Err... no?"
+        alonso a_eyes_look a_mouth_open"Err... no?"
+        show alonso:
+            ease 0.4 zoom 1 xalign 1.0 blur 0 yalign 1.0
         "I {bt=1}sighed{/bt}."
         raymon "Why don't we let Lucy lead the way?"
         raymon "She WAS assigned to this mission after all."
         i "That would make more sense."
         alonso "R-right."
+        show lucy l_base2 l_mouth_open l_eyes_closedhappy -l_brow_sad
         "Lucy goes in front of us and giggles as she takes the lead."
+        show lucy:
+            ease 1.0 offscreenright
         scene bg forest1 with wipeleft_scene:
             yalign 1.0
             linear 300 yalign 0.0
@@ -832,11 +860,16 @@ label start:
         "As we walked deeper into the forest, the atmosphere began to change."
         "The air grew cooler, and the sunlight filtered through the trees in an eerie way."
         "I could hear strange noises in the distance, and the rustling of leaves seemed to follow us."
-        show alonso a_eyes_closed
-        show expression AlphaMask("images/others/forest_foliage.png", At("alonso a_eyes_closed", center)) as a_mask
+        show alonso a_eyes_closed a_brow_sad a_mouth_serious
+        show expression AlphaMask("images/others/forest_foliage.png", At("alonso", center)) as a_mask
+        with Dissolve(0.2)
         alonso "Are we there yet already?"
+        show alonso -a_eyes_closed at centertoleft_transform
+        show expression AlphaMask("images/others/forest_foliage.png", At("alonso", centertoleft_transform)) as a_mask
+        show lucy l_brow_serious l_mouth_slightopen at easeright_transform
+        show expression AlphaMask("images/others/forest_foliage.png", At("lucy", easeright_transform)) as l_mask
         lucy "Yes. Just a bit more."
-        lucy "It should be right around the corner."
+        lucy l_mouth_serious"It should be right around the corner."
         "..."
         $ renpy.music.set_pause(True, channel="sound")
         "Lucy pauses for a moment and points out in the distance."

@@ -256,6 +256,12 @@ layeredimage lucy:
         attribute l_base4:
             "lucy 2l_1r"
 
+    group water:
+        attribute l_sweat:
+            "images/characters/lucy/face/sweat.png"
+        attribute l_cry:
+            "images/characters/lucy/face/cry.png"
+
     group eyes:
         attribute l_eyes default:
             "images/characters/lucy/face/eyes_normal.png"
@@ -308,6 +314,14 @@ layeredimage raymon:
             "images/characters/raymon/face/eyes_closed.png"
         attribute r_eyes_closedhappy:
             "images/characters/raymon/face/eyes_closedhappy.png"
+        attribute r_eyes_anxious:
+            "images/characters/raymon/face/eyes_anxious.png"
+    
+    group water:
+        attribute r_sweat:
+            "images/characters/raymon/face/sweat.png"
+        attribute r_cry:
+            "images/characters/raymon/face/cry.png"
 
     group brows:
         attribute r_brow default:
@@ -333,6 +347,12 @@ layeredimage alonso:
         attribute a_base default:
             "images/characters/alonso/alonso_base.png"
 
+    group water:
+        attribute a_sweat:
+            "images/characters/alonso/face/sweat.png"
+        attribute a_cry:
+            "images/characters/alonso/face/cry.png"
+
     group eyes:
         attribute a_eyes default:
             "images/characters/alonso/face/eyes_normal.png"
@@ -342,6 +362,8 @@ layeredimage alonso:
             "images/characters/alonso/face/eyes_closed.png"
         attribute a_eyes_closedhappy:
             "images/characters/alonso/face/eyes_closedhappy.png"
+        attribute a_eyes_anxious:
+            "images/characters/alonso/face/eyes_anxious.png"
 
     group brows:
         attribute a_brow default:

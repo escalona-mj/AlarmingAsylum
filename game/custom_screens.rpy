@@ -191,8 +191,8 @@ screen asylum_map():
                 size gui.text_size
         
 
-    add "particle"
-    add "particle_blur"
+    # add "particle"
+    # add "particle_blur"
 
     $ tooltip = GetTooltip()
 

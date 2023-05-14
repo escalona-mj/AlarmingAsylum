@@ -18,6 +18,8 @@ image hang = ("images/others/hanged_person.png")
 image white = Solid("#ffffff18")
 
 label act2_hanging:
+    hide particle_blur onlayer front
+    hide particle onlayer front
     scene bg office
     show black:
         alpha 0.8
@@ -44,6 +46,8 @@ label act2_hanging:
     $ config.skipping = False
     play sound "audio/sfx/scare.mp3"
     play music "audio/bgm/act2.mp3" loop
+    show particle_blur onlayer front
+    show particle onlayer front
     show hang at swing
     show expression AlphaMask("white", At("hang", swing)) as mask
     show expression AlphaMask("flashlight", At("hang", swing)) as mask2
@@ -96,6 +100,8 @@ label act2_hanging:
             "I can't move."
             "I am completely frozen from the scene unfolding towards us."
             raymon "You know what? Fuck it!"
+            hide particle_blur onlayer front
+            hide particle onlayer front
             hide flashlight onlayer transient
             show black:
                 alpha 0.8
