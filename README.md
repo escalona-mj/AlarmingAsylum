@@ -1,7 +1,12 @@
-# AlarmingAsylum
-A horror visual novel game based on RenPy. Focused on mobile version.
+![logo](android-presplash.jpg)
+<p align="center">A horror visual novel game based on RenPy. Focused on mobile version.</p>
 
 
-<b>Author:</b> Jhon Alonso Gernale, Luigi Cabrera, Aron John Caballe, Mark John Escalona<br>
-<b>UI Designer/Art:</b> Mark John Escalona<br>
-<b>Programming:</b> Mark John Escalona
+<h3>Author</h3>
+Jhon Alonso Gernale<br>
+Luigi Cabrera<br>
+Aron John Caballe<br>
+Mark John Escalona
+
+<h3>UI Designer/Art/Programming</h3>
+Mark John Escalona
