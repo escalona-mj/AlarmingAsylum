@@ -9,7 +9,7 @@ transform swing:
     repeat
 
 transform jumpscare:
-    linear .2 zoom 15.0
+    linear .3 zoom 15.0
 
 image jumpscare1 = ("images/others/jump.jpg")
 image jumpscare2 = ("images/others/scare.png")
@@ -188,6 +188,6 @@ label room3:
         "The"
     else:
         $ room3_checked = True
-        "Seems like there's something blocking the way."
-        "I think I'll go check out the other rooms first."
+        call screen dialog (message="Seems like there's something blocking the way.", ok_action=Return())
+        # "I think I'll go check out the other rooms first."
     jump asylum_mapping

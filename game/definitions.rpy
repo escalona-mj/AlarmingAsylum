@@ -32,11 +32,11 @@ transform truecenter_blur:
 #transforms for characters
 transform easeleft_transform:
     offscreenleft
-    ease 1.0 left
+    ease 0.5 left
      
 transform easeright_transform:
     offscreenright
-    ease 1.0 right
+    ease 0.5 right
      
 transform gocenter_transform:
     ease 0.5 center

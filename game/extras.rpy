@@ -44,7 +44,11 @@ default locked_achievement = len(persistent.achievement_list)
 
 if not persistent.achievement_list:
     default persistent.achievement_list = {
-        # "KeyName": [_("Achievement Name"), _("Achievement Description"), Achievement Type],
+        # "ach_id": [
+            #_("ach[0]"),
+            #_("ach[1]"),
+            #],
+            
         "start": [
             _("New Beginnings"),
             _("Start a new game for the very first time.")
@@ -86,8 +90,8 @@ if not persistent.achievement_list:
             ],
 
         "wall_break": [
-            _("Behind the Curtain"),
-            _("Uncover a 4th-wall-break joke within the game.")
+            _("Just [Main]."),
+            _("Will you promise to spend the most time with me?")
             ],
         
         "all_bad_end": [
