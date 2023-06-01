@@ -52,6 +52,7 @@ label scene_2:
     "I don't blame Alonso. The air was heavy with the stench of decay."
     "Despite the grim atmosphere, I carefully look at my surroundings to see if I can find something that can help Lucy on her mission."
     play sound "audio/sfx/camera.mp3" volume 0.5
+    show camera_flash
     "{bt=2}*click*{/bt}{fast}"
     raymon r_mouth_slightopen"This place looks straight out from a movie."
     raymon "Oh, and there're some empty rooms over there."
@@ -104,11 +105,11 @@ label asylum_mapping:
     if room1_2_done == False and room1_done == True and room2_done == True:
         $ room1_2_done = True
         show lucy l_mouth_serious at center
-        show raymon at right
-        show alonso at left
-        show expression AlphaMask("images/others/asylum_mask.png", At("alonso", left)) as a_mask
-        show expression AlphaMask("images/others/asylum_mask.png", At("raymon", right)) as r_mask
         show expression AlphaMask("images/others/asylum_mask.png", At("lucy", center)) as l_mask
+        show raymon r_mouth_serious at right
+        show expression AlphaMask("images/others/asylum_mask.png", At("raymon", right)) as r_mask
+        show alonso a_mouth_serious at left
+        show expression AlphaMask("images/others/asylum_mask.png", At("alonso", left)) as a_mask
         with Dissolve(0.2)
         i "So far, we've only collected some clothes and papers."
         show lucy l_eyes_look
@@ -117,21 +118,20 @@ label asylum_mapping:
         else:
             i "The only room we haven't explored is the room across the hallway."
         alonso a_brow_sad"I really hope Lucy's finding the clues she needs."
-        alonso a_mouth_serious"Are you okay, Lucy?"
+        alonso "Are you okay, Lucy?"
         lucy "..."
-        show lucy l_eyes_closed
         "Lucy seems like she's got a lot on her mind."
-        show lucy -l_eyes_closed l_mouth_slightopen
+        show lucy l_mouth_slightopen -l_eyes_look
         "It took her a few seconds to reply back to Alonso."
         lucy l_eyes_look l_sweat l_brow_sad l_mouth_open"Y-Yes."
-        lucy "Fortunately, all of the items we have collected are directly aiding my mission."
+        lucy -l_mouth_open"Fortunately, all of the items we have collected are directly aiding my mission."
         raymon r_brow_sad"That's... good news, I hope."
         show lucy -l_mouth_open
         lucy "..."
-        alonso "Lucy, are you hiding something?"
+        alonso a_brow_serious"Lucy, are you hiding something?"
         $ config.skipping = False
-        alonso "You've been awfully quiet since-{nw}"
-        show alonso a_eyes_anxious -a_brow_sad a_mouth_slightopen
+        alonso "You've been awfully quiet since{nw}"
+        show alonso a_eyes_anxious -a_brow_serious a_mouth_slightopen
         show lucy l_eyes_anxious -l_brow_sad l_mouth_serious -l_sweat
         show raymon r_eyes_anxious -r_brow_sad r_mouth_serious
         window hide(None)
@@ -143,12 +143,12 @@ label asylum_mapping:
         "Suddenly, I felt a chill sensation as the sound echoes throughout the room."
         i "The atmosphere got a little bit colder. It's not just me, right?"
         show lucy -l_eyes_anxious
-        raymon r_eyes_look r_mouth_slightopen r_brow_sad"M-must've been the wind."
+        raymon r_eyes_look r_mouth_slightopen r_brow_sad r_sweat "M-must've been the wind."
         show raymon -r_mouth_slightopen
         "Lucy trying to regain her composure from the sudden noise, tries to calm Alonso."
         lucy "It sounds like something fell in the office, Sire..."
         "Nope, nope, nope."
-        raymon r_sweat r_mouth_open"Maybe it's the rats again."
+        raymon r_mouth_open"Maybe it's the rats again."
         lucy l_eyes_closed l_mouth_slightopen"Alright, alright. Let us all calm down."
         show raymon -r_sweat -r_eyes_look -r_mouth_open
         lucy -l_eyes_closed l_mouth_serious"I will check out the source of the noise."
@@ -157,14 +157,14 @@ label asylum_mapping:
         alonso a_eyes_closed"If you're going to die, we might as well die together."
         show alonso -a_eyes_closed
         raymon r_eyes_look r_sweat"..."
-        i "..."
         lucy l_eyes_look l_sweat l_brow_sad -l_mouth_serious"..."
+        i "..."
         "That's..."
         "I've got no words to describe what just Alonso said."
         show lucy l_eyes_closedhappy l_mouth_open
         show raymon r_eyes_closedhappy r_mouth_open
         show alonso a_brow_sad
-        "Fortunately, Lucy chuckles from the awkwardness that formed between us."
+        "Lucy just chuckled from the awkwardness that formed between us."
         lucy "I see. If you say so, Sire."
         show raymon -r_eyes_closedhappy -r_brow_sad -r_mouth_open -r_sweat
         show lucy -l_brow_sad -l_mouth_open -l_sweat -l_eyes_closedhappy
@@ -211,6 +211,7 @@ label room1:
         "Books are scattered across the floor along with desks that are almost unrecognizable due to its state."
         "There's also a marking on the wall that says \"School sucks!\"."
         play sound "audio/sfx/camera.mp3" volume 0.5
+        show camera_flash
         "{bt=2}*click*{/bt}{fast}"
         alonso "This must be the office."
         raymon "Let's look around."
@@ -346,6 +347,8 @@ label room1:
                     play sound "audio/sfx/rats.mp3" loop volume 0.5
                     show raymon r_eyes_anxious r_brow_sad
                     "However, when opened, Raymon had unleashed two small creatures that darted out from the file cabinet."
+                    show raymon at hop
+                    show expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
                     raymon "{sc}AHHH! GET IT OFF ME!{/sc}" with vpunch
                     "The rats are small and scraggly, with matted fur and beady eyes that seem to follow Raymon's every move."
                     show raymon r_eyes_closed r_sweat
@@ -363,7 +366,7 @@ label room1:
                     raymon -r_brow_sad r_mouth_slightopen "Oh, you want this?"
                     "Raymon pulls out a snack bar from his pocket."
                     show raymon -r_mouth_slightopen
-                    "He opens it and gives it to the rats."
+                    "He opens it and throws it away from us, in which the rats moved away from Raymon."
                     i "I guess they were only searching for food."
                     raymon r_brow_sad"They must have been trapped in that file cabinet."
                     stop sound fadeout 1.5
@@ -377,6 +380,7 @@ label room1:
                     "We opened the cabinet."
                     "The drawers are filled with old files and papers, with the edges yellowed and brittle with age."
                     play sound "audio/sfx/camera.mp3" volume 0.5
+                    show camera_flash
                     "{bt=2}*click*{/bt}{fast}"
                     show raymon r_mouth_serious
                     "Raymon sifts through the folders and runs his fingers over the documents."
@@ -702,7 +706,7 @@ transform under_bed:
 transform rise_bed:
     xalign 0.5
     yalign 7.0
-    easein 0.7 yalign 1.0
+    easein 0.3 yalign 1.0
 
 label room2:
     $ wentBed = False
@@ -720,6 +724,7 @@ label room2:
         "The room was mostly empty at this point."
         "There's nothing here but a hospital bed and a locker across the room."
         play sound "audio/sfx/camera.mp3" volume 0.5
+        show camera_flash
         "{bt=2}*click*{/bt}{fast}"
         raymon "Bed and a locker."
         if room1_done == False:
@@ -734,6 +739,7 @@ label room2:
                     "The thin mattress is torn and stained, and the pillow discolored with age."
                     "The bed seem to have been slept on by animals, judging from it."
                     play sound "audio/sfx/camera.mp3" volume 0.5
+                    show camera_flash
                     "{bt=2}*click*{/bt}{fast}"
                     "I can't help but wonder how many patients have laid on this bed in the past."
                     show alonso
@@ -803,7 +809,7 @@ label room2:
                     lucy "We might disturb unwanted spirits."
                     alonso a_eyes_look a_sweat a_mouth_open a_brow_sad "Oh, right... Of course."
                     "I try to open the locker but as expected, it's locked tight."
-                    show lucy -l_eyes_closedhappy -l_brow_sad -l_sweat
+                    show lucy -l_eyes_closedhappy -l_brow_sad -l_sweat l_mouth_serious
                     show alonso -a_eyes_look a_mouth_serious -a_sweat -a_brow_sad
                     raymon "Look at the locker door."
                     "There's a paper hanging from the side of the door gap."
@@ -817,23 +823,53 @@ label room2:
                     show expression AlphaMask("images/others/flashlight.png", At("alonso", right)) as a_mask
                     if room1_done == True:
                         i "Hmm..."
+                        hide alonso
+                        hide expression AlphaMask("images/others/flashlight.png", At("alonso")) as a_mask
+                        with Dissolve(0.2)
+                        show lucy at gocenter_transform
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy", gocenter_transform)) as l_mask
                         i "Lucy, give me the papers."
-                        lucy "What do you need them for?"
+                        lucy l_base3"What do you need them for?"
+                        show lucy l_mouth_serious
                         i "There's gotta be some sort clue we aren't seeing."
+                        show lucy l_mouth_slightopen at centertoleft_transform
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", centertoleft_transform)) as l_mask
+                        show raymon r_mouth_serious at easeright_transform
+                        show expression AlphaMask("images/others/flashlight.png", At("raymon", easeright_transform)) as r_mask
                         raymon "What would be the correlation of random papers that we found on the previous room to the locker code?"
+                        show alonso a_brow_sad a_mouth_serious
+                        show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+                        with Dissolve(0.2)
                         alonso "Don't you have something in your bag that can open it?"
-                        raymon "As a matter of fact, I do."
-                        raymon "Let me grab my crowbar."
+                        show lucy -l_base3 -l_mouth_slightopen l_brow_sad
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy -l_base3", left)) as l_mask
+                        show alonso -a_mouth_serious
+                        raymon -r_mouth_serious"As a matter of fact, I do."
+                        raymon r_eyes_closedhappy"Let me grab my crowbar."
+                        hide lucy
+                        hide raymon
+                        hide alonso
+                        hide expression AlphaMask("images/others/flashlight.png", At("alonso", centertoleft_transform)) as a_mask
+                        hide expression AlphaMask("images/others/flashlight.png", At("raymon", easeright_transform)) as r_mask
+                        hide expression AlphaMask("images/others/flashlight.png", At("lucy", centertoleft_transform)) as l_mask
+                        with Dissolve(0.2)
                         play ambient "audio/sfx/crowbar.mp3" loop volume 0.7
                         "Raymon starts to open the locker with a crowbar."
                         "The sound of the clang echoes throughout the room."
                         "With that thick rust in the locker, I don't think it's going to give in."
                         "Nor the lock itself."
+                        $ renpy.notify("Lucy gave you the papers.")
+                        show lucy l_base3 l_brow_sad
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", center)) as l_mask
+                        with Dissolve(0.2)
                         lucy "Here, [Main]."
-                        "Lucy gives the papers we collected."
                         call room2_locker_choices
                         lucy "Do you have something in your mind?"
+                        show lucy l_eyes_closedhappy -l_brow_sad
                         i "I think I might have."
+                        hide lucy
+                        hide expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", center)) as l_mask
+                        with Dissolve(0.2)
                         i "Raymon, can I try the lock code?"
                         raymon "Have you found something? We've been trying to open this to no avail."
                         alonso "At this point, I'm hoping if [Main] can actually open this."
@@ -944,6 +980,7 @@ label room2_locker_choices:
     menu:
         "Let's see..."
         "Locker code." if room2_done == True:
+            $ seenLocker = True
             $ entry("locker_paper")
             jump room2_locker_choices
         "Alonso's paper." if seenAlonso == False or True:

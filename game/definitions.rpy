@@ -5,11 +5,34 @@ transform textdissolve:
     alpha 0
     ease 0.25 alpha 1
 
+transform hop:
+    easein .1 yoffset -20
+    easeout .1 yoffset 0
+
+transform shaking:
+    truecenter zoom 1.01
+    choice:
+        linear 0.1 xoffset -2 yoffset 2 
+    choice:
+        linear 0.1 xoffset 3 yoffset -3 
+    choice:
+        linear 0.1 xoffset 2 yoffset -2
+    choice:
+        linear 0.1 xoffset -3 yoffset 3
+    choice:
+        linear 0.1 xoffset 0 yoffset 0
+    repeat
+
 # Transform that blurs the background when opening screens.
 transform withBlur:
     blur 15
 transform noBlur:
     blur 0
+
+transform fromrighttocenter_transform:
+    right yalign 1.0
+    ease 0.5 center
+
 
 transform rewind:
     truecenter
@@ -30,23 +53,32 @@ transform truecenter_blur:
     blur 5
 
 #transforms for characters
+transform offscreenleft_transform:
+    yalign 1.0
+    ease 0.5 offscreenleft
+
+transform offscreenright_transform:
+    yalign 1.0
+    ease 0.5 offscreenright
+
 transform easeleft_transform:
-    offscreenleft
+    offscreenleft yalign 1.0
     ease 0.5 left
      
 transform easeright_transform:
-    offscreenright
+    offscreenright yalign 1.0
     ease 0.5 right
      
 transform gocenter_transform:
+    yalign 1.0
     ease 0.5 center
      
 transform centertoleft_transform:
-    center
+    center yalign 1.0
     ease 0.5 left
      
 transform centertoright_transform:
-    center
+    center yalign 1.0
     ease 0.5 right
 
 
@@ -115,10 +147,12 @@ define noise_splash = ImageDissolve("images/transitions/noise.png", 0.75, rample
 #     Solid("#000"), ImageDissolve("images/transitions/noise.png", 0.5, reverse=True, ramplen=64),
 #     True])
 
-# define camera_flash = MultipleTransition([
-#     False, Dissolve(0.15),
-#     Solid("#FFF"), Pause(0.0),
-#     True])
+define noise_window = ImageDissolve("images/transitions/noise.png", 0.25, ramplen=256)
+
+image camera_flash:
+    Solid("#ffffff2c")
+    pause 0.1
+    Solid("#00000000")
 
 #############################
 #      DYNAMIC SCENES       #
@@ -163,6 +197,9 @@ image bg bed:
 
 image bg locker:
     im.Blur("images/bgs/bg locker.jpg", 5.0)
+
+image bg stairBasement:
+    im.Blur("images/bgs/bg stairBasement.jpg", 5.0)
 
 image bg basement:
     im.Blur("images/bgs/bg basement.jpg", 5.0)

@@ -51,8 +51,8 @@ label act2_hanging:
     show hang at swing
     show expression AlphaMask("white", At("hang", swing)) as mask
     show expression AlphaMask("flashlight", At("hang", swing)) as mask2
-    show flashlight onlayer transient
     hide black
+    show flashlight onlayer transient
     window hide(None)
     $ seenSuicide = True
     pause 4.5
@@ -90,27 +90,35 @@ label act2_hanging:
         "\"...\"":
             $ config.skipping = False
             "..."
+            show raymon r_eyes_anxious r_mouth_slightopen r_brow_sad at rise_bed
+            show expression AlphaMask("images/others/flashlight.png", At("raymon", rise_bed)) as r_mask
             raymon "[Main]?"
+            show raymon at hop
             raymon "[Main]?!"
-            raymon "[Main!u]!!?"
+            raymon "[Main!u]!!?" with vpunch
             "..."
-            raymon "[Main], we've got to go!"
+            camera at shaking
+            raymon r_mouth_serious"[Main], we've got to go!"
             "Raymon looks completely worried whilst shaking me."
             raymon "..."
             "I can't move."
             "I am completely frozen from the scene unfolding towards us."
-            raymon "You know what? Fuck it!"
+            camera
+            raymon r_brow_serious "You know what? Fuck it!"
+            play sound "audio/sfx/flashlight.mp3"
+            pause 0.5
+            show raymon:
+                easeout 0.1 offscreenright
             hide particle_blur onlayer front
             hide particle onlayer front
             hide flashlight onlayer transient
             show black:
                 alpha 0.8
-            play sound "audio/sfx/flashlight.mp3"
             hide hang
             hide expression AlphaMask("white", At("hang", swing)) as mask
             hide expression AlphaMask("flashlight", At("hang", swing)) as mask2
             stop music
-            "Raymon leaves."
+            "Raymon runs towards the entrance, leaving me."
             "For a moment, darkness covered the room once more."
             "I'm left alone with the lifeless body here behind me."
             "I try to look back to see if it's still there."
@@ -128,6 +136,7 @@ label act2_hanging:
                 linear 3.8 alpha 1.0
             "I suddenly feel something moving closer on my front."
             "What in the fuc-{nw}"
+            window hide(None)
             play sound "audio/sfx/jumpscare.mp3"
             hide jumpscare1
             show jumpscare2 at jumpscare:
@@ -139,53 +148,103 @@ label act2_hanging:
             $ achievement_get("bad_end")
             play sound "audio/sfx/game_over.mp3"
             call screen game_over(message="I'd leave the premises if I were you.") with dissolve
+            window auto
+            ###GAME OVER###
 
 label act2:
     scene bg asylum with wipeleft_scene
     i "I'm officially freaked out. Let's get out of here!"
     "I rushed through the entrance."
     "However, we were met with a terrible fate."
+    show alonso a_brow_sad a_mouth_serious a_cry a_eyes_closed at left
+    show expression AlphaMask("images/others/asylum_mask.png", At("alonso", left)) as a_mask
+    show lucy l_brow_sad l_mouth_serious at right
+    show expression AlphaMask("images/others/asylum_mask.png", At("lucy", right)) as l_mask
+    with Dissolve(0.2)
     "I see Alonso banging the door while Lucy is trying to maintain his temper."
     alonso "{sc}Who locked the damn door?!{/sc}" with vpunch
+    show lucy l_base3 l_eyes_closed behind alonso at gocenter_transform
+    show expression AlphaMask("images/others/asylum_mask.png", At("lucy l_base3", fromrighttocenter_transform)) as l_mask behind alonso
+    #TODO: angry mouth expression for alonso
+    show alonso -a_eyes_closed
     lucy "Banging the door will do no good, Sire."
-    lucy "I suggest that you calm down while we think this situation together."
+    lucy -l_eyes_closed"I suggest that you calm down while we think this situation together."
     stop music fadeout 3.5
     alonso "Okay... okay..."
-    alonso "I'm calm..."
+    alonso a_eyes_closed "I'm calm..."
+    show alonso -a_cry
     "Alonso takes deep breaths in and out several times."
-    alonso "I'm sorry, but everything was just new to me."
-    alonso "I mean I've seen dead people in my life, but those were in coffins!"
-    alonso "What we saw was just..."
+    alonso -a_eyes_closed "I'm sorry, but everything was just new to me."
+    alonso a_sweat a_eyes_look"I mean I've seen dead people in my life, but those were in coffins!"
+    alonso -a_sweat a_eyes_closed"What we saw was just..."
+    show alonso -a_eyes_closed
+    show raymon r_brow_sad r_mouth_serious at easeright_transform
+    show expression AlphaMask("images/others/asylum_mask.png", At("raymon", easeright_transform)) as r_mask
     raymon "Unexpected..."
+    show lucy -l_base3
+    show expression AlphaMask("images/others/asylum_mask.png", At("lucy", center)) as l_mask behind alonso
     raymon "Who even hunged the corpse?"
-    raymon "The body was still fresh..."
+    raymon r_eyes_closed r_sweat"The body was still fresh..."
     raymon "I'm still confused."
-    raymon "Did someone recently die here and hunged the corpse?"
-    lucy "I am also confused as well..."
+    raymon r_eyes_look"Did someone recently die here and hunged the corpse?"
+    lucy -l_eyes_closed l_sweat"I am also confused as well..."
+    show raymon -r_eyes_look -r_sweat
     i "Lucy, how were you so calm and emotionless when you witnessed that?"
+    show lucy -l_mouth_serious -l_sweat
     "Lucy looks at me with a concerned face."
-    lucy "I have seen far worse things than these.{nw}"
-    raymon "*cough*"
+    lucy l_mouth_slightopen"I have seen far worse things than these{nw}"
+    show lucy l_mouth_serious
+    raymon r_brow_serious"{i}*cough*{/i}"
     raymon "Hello? We have more important matters to deal with!"
-    raymon "How are we even going to get out of here?"
-    lucy "Right, my apologies. It slipped from my mind."
+    raymon r_mouth_slightopen"How are we even going to get out of here?"
+    show raymon r_mouth_serious
+    lucy l_sweat l_eyes_closedhappy -l_mouth_serious"Right, my apologies. It slipped from my mind."
     lucy "..."
+    show lucy -l_sweat -l_eyes_closedhappy -l_brow_sad l_mouth_serious
     "Lucy examines the hallway."
+    show lucy l_mouth_slightopen
     if room3_checked:
         lucy "The blockage in the room across the hallway seems to have subsided."
     else:
         lucy "There are no more rooms to explore besides the room across the hallway."
+    show lucy l_mouth_serious
     lucy "Let us see if we can find an exit there."
     play music asylum
     jump asylum_mapping
+
+image basement_mask:
+    Solid ('#000000bf')
 
 label room3:
     $ config.skipping = False
     if act2 == True and seenSuicide == True:
         $ room3_done = True
-        scene bg basement with wipeleft_scene
+        scene bg stairBasement with wipeleft_scene
+        "We cautiously made our way down a dark and musty stairwell."
+        "..."
+        "The scene I saw earlier still lingers in my thoughts."
+        "It's still fresh..."
+        "..."
+        "No."
+        "I have to keep myself together."
+        "Right now, getting out of here is our first priority."
+        "Anomaly or not, we're in this together."
+        "With the flashlights illuminating the way, we eventually reached the bottom."
+        window show
+        scene bg basement with wipeleft
+        window auto
         "It's a basement?"
-        "The"
+        "Obviously."
+        "The basement is in a damp and eerie state, surrounded by decaying and withering walls."
+        "Adding to the ominous atmosphere, the sound of dripping water echoes in the background."
+        show lucy
+        show expression AlphaMask("basement_mask", At("lucy", center)) as l_mask
+        show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}{i}Get out...{/i}{/bt}")
+        "..."
+        hide screen slow_text_center with Dissolve(0.2)
+        
+
+
     else:
         $ room3_checked = True
         call screen dialog (message="Seems like there's something blocking the way.", ok_action=Return())

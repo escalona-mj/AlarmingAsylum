@@ -83,7 +83,8 @@ style frame:
 ################################################################################
 
 screen dialog(message, ok_action):
-
+    on "show" action Function(renpy.show_layer_at, withBlur, layer="master")
+    on "hide" action Function(renpy.show_layer_at, noBlur, layer="master")
     modal True
 
     zorder 200
@@ -194,7 +195,7 @@ style say_dialogue:
     line_spacing 10
 
 image ctc:
-    xalign 0.975 yalign 0.95 alpha 0.0 subpixel True
+    xalign 0.9 yalign 0.95 alpha 0.0 subpixel True
     "gui/ctc/ctc.png"
     block:
         easeout 0.25 alpha 1.0 yoffset 0
@@ -383,7 +384,7 @@ style quick_button_text:
 transform menu_appear:
     on show:
         alpha 0 yoffset 500
-        pause 3.0
+        pause 2.0
         easein 1.5 alpha 1 yoffset 0
         
 screen navigation():

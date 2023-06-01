@@ -16,7 +16,7 @@ label start:
     with noise
     
     window auto
-    "…"
+    "..."
     show text _("{i}\"Wake up.\"{/i}") at truecenter_blur with noise
     "An inaudible voice murmurs towards me."
     "..."
@@ -105,11 +105,11 @@ label start:
     "I scoffed then gave him a disapproval look."
     # "He isn't that bad, he just looks after my wellbeing."
     # "I mean, that's what friends do, right?"
-    alonso a_eyes_closed"You know, I'm having second thoughts about going on this trip..."
+    alonso a_eyes_closed a_sweat"You know, I'm having second thoughts about going on this trip..."
     i "What?"
     alonso a_eyes_look a_mouth_open "W-wait! I-it's not like that or anything..."
     "I can see right through him. Typical Alonso."
-    show alonso a_mouth_serious -a_eyes_look
+    show alonso a_mouth_serious -a_eyes_look -a_sweat
     i "We're only there to discover the mystery of the asylum, according to your butler."
     i "It was supposedly to be her mission, but I don't know why you had to bring yourself and us as well."
     i "Heck, why did you even disclose this information to us?"
@@ -414,7 +414,7 @@ label start:
         i "Thanks Lucy."
         show lucy l_brow_sad -l_mouth_slightopen
         extend "\nFor everything."
-        i "Realizing your state, I guess you we should thank you for looking after us."
+        i "Realizing your state, I guess we should thank you for looking after us."
         show lucy l_eyes_closedhappy -l_brow_sad
         "Lucy smiles genuinely at me as she continues cleaning up. I smile back naturally, leaving her."
         hide lucy with Dissolve(0.2)
@@ -716,7 +716,7 @@ label start:
             show raymon r_eyes_closed r_mouth_slightopen r_brow_sad:
                 offscreenright
                 ease 0.5 xalign 1.2
-            show lucy l_eyes_closed l_brow_sad:
+            show lucy l_eyes_look l_brow_sad:
                 offscreenright
                 ease 0.5 xalign 0.8
             show alonso a_mouth_slightopen:
@@ -893,6 +893,7 @@ label start:
         alonso "My stuff's here."
         alonso "How about you, Raymon?"
         play sound "audio/sfx/camera.mp3" volume 0.5
+        show camera_flash
         "{bt=2}*click*{/bt}{fast}"
         "I see Raymon waving a plastic film, taken by his camera."
         # raymon "I can almost hear the deafening souls..."

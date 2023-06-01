@@ -12,7 +12,7 @@ label splashscreen:
                 show skip_overlay
                 with Dissolve(2.0)
                 $ quick_menu = False
-                disclaimer "Warning: This game contains elements including themes of cruelty, horror, blood, and other graphic content that are not suitable for all ages."
+                disclaimer "Warning: This game mentions elements including themes of cruelty, horror, blood, and other graphic content that are not suitable for all ages."
                 disclaimer "It should be played with caution by those who are sensitive to these types of topics."
                 disclaimer "Please be aware that playing this game may cause distress, anxiety, or other negative emotions."
                 $ in_splash = True
@@ -23,7 +23,7 @@ label splashscreen:
                         $ renpy.pause(1.0, hard=True)
                         hide skip_overlay
                         hide bwAsylum
-                        with Dissolve(1.5)
+                        with Dissolve(0.2)
                         $ in_splash = False
                     "I would like to stop playing immediately.":
                         $ renpy.quit()
