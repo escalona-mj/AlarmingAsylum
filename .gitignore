@@ -3,6 +3,7 @@
 ########################################
 cache/
 saves/
+*.save
 
 
 # Compiled source #
