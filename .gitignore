@@ -1,9 +1,10 @@
 ### Renpy ###
 # Don't track content of these folders #
 ########################################
-cache/
-saves/
-*.save
+game/cache/
+game/saves/
+*saves
+
 
 
 # Compiled source #
