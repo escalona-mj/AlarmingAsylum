@@ -1,8 +1,8 @@
 ### Renpy ###
 # Don't track content of these folders #
 ########################################
-game/cache/
-game/saves/
+cache/
+saves/
 *.saves
 
 
@@ -26,3 +26,5 @@ log.txt
 errors.txt
 traceback.txt
 files.txt
+android.keystore
+bundle.keystore
