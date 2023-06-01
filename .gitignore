@@ -3,7 +3,7 @@
 ########################################
 game/cache/
 game/saves/
-*saves
+*.saves
 
 
 
