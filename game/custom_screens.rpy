@@ -129,6 +129,12 @@ screen slow_text_center(txt):
     fixed:
         add Text(txt, slow_cps=2, text_align=0.5) xalign 0.5 yalign 0.5
 
+screen whisper(txt):
+    fixed:
+        add Text(txt, slow_cps=10, text_align=0.5, color=u'#910303') xalign 0.5 yalign 0.5:
+            at transform:
+                alpha 0.25
+
 ################    ASYLUM MAP     ##########################
 transform blink_blur:
     blur 3

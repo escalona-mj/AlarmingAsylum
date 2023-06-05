@@ -9,8 +9,4 @@ Aron John Caballe<br>
 Mark John Escalona
 
 <h3>UI Designer/Art/Programming</h3>
-<<<<<<< Updated upstream
 Mark John Escalona
-=======
-Mark John Escalona
->>>>>>> Stashed changes

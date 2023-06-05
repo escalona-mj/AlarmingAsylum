@@ -212,9 +212,6 @@ label act2:
     play music asylum
     jump asylum_mapping
 
-image basement_mask:
-    Solid ('#000000bf')
-
 label room3:
     $ config.skipping = False
     if act2 == True and seenSuicide == True:
@@ -237,10 +234,25 @@ label room3:
         "Obviously."
         "The basement is in a damp and eerie state, surrounded by decaying and withering walls."
         "Adding to the ominous atmosphere, the sound of dripping water echoes in the background."
-        show lucy
-        show expression AlphaMask("basement_mask", At("lucy", center)) as l_mask
-        show screen slow_text_center("{bt=h5-p2.0-s0.5}{size=+35}{i}Get out...{/i}{/bt}")
-        "..."
+        show alonso a_brow_sad a_mouth_serious
+        show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+        with Dissolve(0.2)
+        $ speak = renpy.random.choice(['Why are they here...?', 'You all shouldn\'t be here.', 'Get out...', 'It\'s not your fault.'])
+        show screen whisper(speak)
+        alonso "..."
+        "Alonso comes closer to me discreetly."
+        alonso "You know..."
+        alonso a_mouth_slightopen "I should make up for the times I've been an asshole and a coward."
+        hide screen whisper
+        $ speak = renpy.random.choice(['Why are they here...?', 'You all shouldn\'t be here.', 'Get out...', 'It\'s not your fault.'])
+        show screen whisper(speak)
+        alonso a_mouth_serious a_eyes_closed "I've been nothing but just a burden to everyone."
+        "What?"
+        "Alonso..."
+        i "You were never a burden."
+        i "In fact, I think we should" #we were wrong, we've been teasing yopu
+        i "I feel like we've been just teasing you."
+        hide screen whisper
         hide screen slow_text_center with Dissolve(0.2)
         
 

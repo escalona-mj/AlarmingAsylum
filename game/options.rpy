@@ -42,7 +42,10 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
-This game uses free assets. Background images are taken from {a=https://www.pexels.com}Pexels{/a}, background music are taken from {a=https://dova-s.jp/EN/}DOVA-SYNDROME{/a}, sound effects are taken from {a=https://www.pixabay.com}Pixabay{/a}, and fonts are taken from {a=https://www.fontspace.com}FontSpace{/a}. We have compiled all the terms and conditions of the respective websites in this link here. We do not claim ownership of any of the assets used in this game.""")
+This game uses free assets. Background images are taken from {a=https://www.pexels.com}Pexels{/a}, background music are taken from {a=https://dova-s.jp/EN/}DOVA-SYNDROME{/a}, sound effects are taken from {a=https://www.pixabay.com}Pixabay{/a}, and fonts are taken from {a=https://www.fontspace.com}FontSpace{/a}. We do not claim ownership of any of the assets used in this game except for the art.
+
+Certain effects such as {bt}"Kinetic Text Tags"{/bt} and {gtext}"renpyChromaGlitch"{/gtext} are made by {a=https://github.com/SoDaRa/Kinetic-Text-Tags}SoDaRa{/a} and {a=https://github.com/Gouvernathor/renpy-ChromaGlitch}Gouvernathor{/a} respectively.""")
+# We have compiled all the terms and conditions of the respective websites in this link here. 
 # FONTS
 
 # Suicide Squadron made by {a=https://www.fontspace.com/heaven-castro}heaven castro{/a}

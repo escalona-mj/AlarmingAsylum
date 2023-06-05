@@ -104,7 +104,7 @@ label asylum_mapping:
     scene bg asylum with dissolve
     if room1_2_done == False and room1_done == True and room2_done == True:
         $ room1_2_done = True
-        show lucy l_mouth_serious at center
+        show lucy l_mouth_serious l_eyes_look at center
         show expression AlphaMask("images/others/asylum_mask.png", At("lucy", center)) as l_mask
         show raymon r_mouth_serious at right
         show expression AlphaMask("images/others/asylum_mask.png", At("raymon", right)) as r_mask
@@ -112,7 +112,6 @@ label asylum_mapping:
         show expression AlphaMask("images/others/asylum_mask.png", At("alonso", left)) as a_mask
         with Dissolve(0.2)
         i "So far, we've only collected some clothes and papers."
-        show lucy l_eyes_look
         if room3_checked == True:
             i "And the room across the hallway is blocked."
         else:
@@ -755,7 +754,8 @@ label room2:
                     show expression AlphaMask("images/others/flashlight.png", At("alonso", rise_bed)) as a_mask
                     alonso a_brow_sad a_mouth_serious"A doll."
                     "The doll is ragged, with loose strings on each arm and its clothes."
-                    "Upon taking a closer look, the doll has a pocket on its apron. In there lies a paper that's been folded to fit into the small pocket."
+                    "Upon taking a closer look, the doll has a pocket on its apron."
+                    "In there lies a paper that's been folded to fit into the small pocket."
                     $ entry("doll_paper")
                     "I paused."
                     "..."
@@ -906,8 +906,10 @@ label room2:
                         show expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
                         with Dissolve(0.2)
                         raymon "Looks like it's shut tight."
-                        raymon r_eyes_look"We may have to resort to unlocking it using the code."
-                        raymon -r_eyes_look -r_mouth_serious"Alright, let's look around to see if we can find some clues to open it."
+                        if wentBed == False:
+                            raymon -r_eyes_closed -r_brow_sad"Alright, let's look around to see if we can find some clues to open it."
+                        else:
+                            raymon r_eyes_look "We may have to resort to unlocking it using the code."
                         hide raymon
                         hide expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
                         with Dissolve(0.2)
@@ -921,9 +923,9 @@ label room2:
                 alonso "Uhuh."
                 "Raymon nodded."
             else:
-                alonso "Well, we didn't find anything."
+                # alonso "Well, we didn't find anything."
                 lucy "Why don't we take a look at the other rooms?"
-                raymon "Good idea."
+                i "Good idea."
             "We leave the room."
             jump asylum_mapping
     else:
