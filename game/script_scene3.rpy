@@ -218,14 +218,6 @@ label room3:
         $ room3_done = True
         scene bg stairBasement with wipeleft_scene
         "We cautiously made our way down a dark and musty stairwell."
-        "..."
-        "The scene I saw earlier still lingers in my thoughts."
-        "It's still fresh..."
-        "..."
-        "No."
-        "I have to keep myself together."
-        "Right now, getting out of here is our first priority."
-        "Anomaly or not, we're in this together."
         "With the flashlights illuminating the way, we eventually reached the bottom."
         window show
         scene bg basement with wipeleft
@@ -234,26 +226,92 @@ label room3:
         "Obviously."
         "The basement is in a damp and eerie state, surrounded by decaying and withering walls."
         "Adding to the ominous atmosphere, the sound of dripping water echoes in the background."
-        show alonso a_brow_sad a_mouth_serious
-        show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
-        with Dissolve(0.2)
-        $ speak = renpy.random.choice(['Why are they here...?', 'You all shouldn\'t be here.', 'Get out...', 'It\'s not your fault.'])
-        show screen whisper(speak)
-        alonso "..."
-        "Alonso comes closer to me discreetly."
-        alonso "You know..."
-        alonso a_mouth_slightopen "I should make up for the times I've been an asshole and a coward."
+        "With that, we started to look for any tools or ways that might help us escape."
+        "It's not that hard to escape after seeing a dead body appearing out of nowhere, right?"
+        "..."
+        "The scene I saw earlier still lingers in my thoughts."
+        "It's still fresh..."
+        "..."
+        "No."
+        "I have to keep myself together."
+        "Right now, getting out of here is our first priority."
+        "Anomaly or not, we're all in this together."
+        stop music fadeout 1.5
+        if likeAlonso == 3: #if u went with alonso in the train, play rps, and went investigating with alonso
+            show alonso a_brow_sad a_mouth_serious
+            show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+            with Dissolve(0.2)
+            show screen whisper("It's not your fault.")
+            alonso "..."
+            "Alonso comes closer to me discreetly."
+            alonso "You know..."
+            play music windowdrops
+            alonso a_mouth_slightopen "I should make up for the times I've been an asshole."
+            alonso "And... I've been thinking I should mature."
+            alonso "I've noticed how I'm always aided by Lucy, always by my side..."
+            alonso "I have to face the moment if she disappears in my life, you know?"
+            alonso "She can't be with me forever, she has a life after all."
+            alonso "This is the reason why I went in this mission of hers."
+            alonso "Just to have one last moment with her..."
+            alonso "Tell me [Main]..."
+            alonso "Should I become independent?"
+            menu:
+                "Yes.":
+                    i "Yes. You should be."
+                    i "But you'll have to face it alone."
+                    i "Facing independence as a person can be challenging..."
+                    i "I think for starters, it's all about self-discovery."
+                    i "What are you, without Lucy?"
+                    i "Who is Alonso?"
+                    i "Who are you?"
+                    i "Understand who you are as an individual and what matters to you."
+                    i "I think you should try and talk things with Lucy."
+                    i "Say something that will make her feel pride towards you."
+                "No.":
+                    i "No. Lucy needs you as much as you need her."
+                    i "You both have some sort have a synergy, something that can't be replicated."
+                    i "If you consider her as family, I think you should let her stay."
+                    i "The bond that you formed with her is something irreplaceable."
+
+            i "I mean, I'm already proud of you."
+            i "Back then, you only see your butler, Lucy, as your extension of aid."
+            i "But something changed, and now you've developed empathy towards her."
+            i "You've matured already."
+            hide screen whisper
+
+            # alonso a_mouth_serious a_eyes_closed "I've been nothing but just a burden to everyone."
+            # "What?"
+            # "Alonso..."
+            # "I paused to think about the moments we had."
+            # # "I never really considered Alonso's feelings in the first place."
+            # i "You were never a burden."
+            # show alonso -a_eyes_closed
+            # i "I was wrong for most of the part, I didn't consider your feelings in the first place."
+
+        elif likeRaymon == 3: #if u ignored alonso in the train, not play rps, and went investigating with raymon
+            show raymon r_brow_sad r_mouth_serious
+            show expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
+            with Dissolve(0.2)
+            raymon "..."
+            "Raymon comes closer to me discreetly."
+            play music windowdrops
+            raymon "You know..."
+            raymon r_mouth_slightopen "I should make up for the times I've been an asshole and a coward."
+            raymon r_mouth_serious r_eyes_closed "I've been nothing but just a burden to everyone."
+            "What?"
+            "Raymon..."
+            "I paused to think about the moments we had."
+            "I never really considered Raymon's feelings in the first place."
+            i "You were never a burden."
+            i "In fact, I think we should be clean."
+            show raymon -r_eyes_closed
+            i "We were wrong for most of the part, we didn't consider your feelings in the first place."
+            i "To be honest, I think after all this time..."
+            i "We've been just teasing you."
+        else:
+            "Lucy's moment goes here."
+
         hide screen whisper
-        $ speak = renpy.random.choice(['Why are they here...?', 'You all shouldn\'t be here.', 'Get out...', 'It\'s not your fault.'])
-        show screen whisper(speak)
-        alonso a_mouth_serious a_eyes_closed "I've been nothing but just a burden to everyone."
-        "What?"
-        "Alonso..."
-        i "You were never a burden."
-        i "In fact, I think we should" #we were wrong, we've been teasing yopu
-        i "I feel like we've been just teasing you."
-        hide screen whisper
-        hide screen slow_text_center with Dissolve(0.2)
         
 
 

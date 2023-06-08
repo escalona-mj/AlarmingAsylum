@@ -227,6 +227,7 @@ label room1:
                 "Help Alonso." if wentAlonso == False:
                     $ menuchoice += 1
                     $ wentAlonso = True
+                    $ likeAlonso += 1
                     "I proceeded to help Alonso."
                     "I see him wandering aimlessly at the corner of the room."
                     "He seems to be looking for something."
@@ -318,6 +319,7 @@ label room1:
                 "Help Raymon." if wentRaymon == False:
                     $ menuchoice += 1
                     $ wentRaymon = True
+                    $ likeRaymon += 1
                     "I proceeded to help Raymon."
                     "I see him fully delved into the scattered books, searching for any relevant information we might pick up."
                     show raymon r_mouth_open

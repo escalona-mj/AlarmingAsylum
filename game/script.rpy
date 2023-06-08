@@ -10,6 +10,9 @@ default only_scissors = 0
 
 default played_rps = False
 
+default likeAlonso = 0
+default likeRaymon = 0
+
 label start:
     $ quick_menu = True
     show black
@@ -157,6 +160,7 @@ label start:
     menu:
         "Err..."
         "\"Sure.\"":
+            $ likeAlonso += 1
             alonso "Okay. Right this way."
             "We left the current passenger wagon onto the other one."
             window hide
@@ -428,6 +432,7 @@ label start:
         "Suddenly, my eye caught a person; fully immersed in their book."
 
         $ m2_name = '???'
+        $ likeRaymon += 1
         show raymon with Dissolve(0.2)
         raymon "Oh, hi [Main]."
         $ m2_name = 'Raymon'
@@ -546,10 +551,12 @@ label start:
             menu:
                 alonso "Best of 3?"
                 "\"Sure, we're almost there anyway.\"":
+                    $ likeAlonso += 1
                     $ played_rps = True
                     alonso "Alright!"
                     jump rps
                 "\"No thanks.\"":
+                    $ likeRaymon += 1
                     alonso a_eyes_closed a_brow_sad a_mouth_serious "Aww."
                     jump afterwards
                 "\"What are you, a kid?\"" if persistent.easter_egg1 == None:

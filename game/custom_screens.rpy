@@ -94,7 +94,6 @@ screen name_input(message, ok_action, back_action):
     key "K_RETURN" action [ok_action]
     
     frame:
-        yalign 0.25
         has vbox:
             xalign .5
             yalign .5
@@ -112,7 +111,7 @@ screen name_input(message, ok_action, back_action):
     
     hbox:
             xalign 0.97
-            yalign 0.35
+            yalign 0.40
             spacing 10
 
             textbutton _("OK") action ok_action
@@ -131,9 +130,10 @@ screen slow_text_center(txt):
 
 screen whisper(txt):
     fixed:
-        add Text(txt, slow_cps=10, text_align=0.5, color=u'#910303') xalign 0.5 yalign 0.5:
+        add Text(txt, slow_cps=10, text_align=0.5, color=u'#808080') xalign 0.5 yalign 0.5:
             at transform:
-                alpha 0.25
+                alpha 0.0
+                linear 100 alpha 0.25
 
 ################    ASYLUM MAP     ##########################
 transform blink_blur:

@@ -437,3 +437,5 @@ define audio.asylum = "<loop 105.970 to 203.363>audio/bgm/brokenclock.mp3"
 define audio.merrygoround = "<loop 24.171>audio/bgm/merrygoround.mp3"
 
 define audio.merrygoround2 = "<loop 24.162>audio/bgm/merrygoround2.mp3"
+
+define audio.windowdrops = "<loop 43.330 to 117.347>audio/bgm/windowdrops.mp3"
