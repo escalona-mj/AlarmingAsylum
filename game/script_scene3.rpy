@@ -295,19 +295,10 @@ label room3:
             raymon "..."
             "Raymon comes closer to me discreetly."
             play music windowdrops
-            raymon "You know..."
-            raymon r_mouth_slightopen "I should make up for the times I've been an asshole and a coward."
-            raymon r_mouth_serious r_eyes_closed "I've been nothing but just a burden to everyone."
-            "What?"
-            "Raymon..."
-            "I paused to think about the moments we had."
-            "I never really considered Raymon's feelings in the first place."
-            i "You were never a burden."
-            i "In fact, I think we should be clean."
-            show raymon -r_eyes_closed
-            i "We were wrong for most of the part, we didn't consider your feelings in the first place."
-            i "To be honest, I think after all this time..."
-            i "We've been just teasing you."
+            raymon "I really appreciate that you took the time and hang out with me..."
+            raymon "I enjoyed the times we read back in the train."
+            raymon "Though, I was hoping that you'd be a bookworm or some sort."
+            raymon "We"
         else:
             "Lucy's moment goes here."
 
