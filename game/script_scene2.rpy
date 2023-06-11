@@ -29,7 +29,7 @@ label scene_2:
     pause 4.0
     window auto
     scene bg asylum with wipeleft_scene
-    play music asylum volume 0.7
+    play music asylum
     show particle_blur onlayer front
     show particle onlayer front
     "As I entered the asylum, I saw the remnants of its dark history."
@@ -661,7 +661,9 @@ label secret_lucy:
     i "So this mission of yours was to find your mother all along?"
     lucy -l_eyes_look -l_mouth_serious"Yes. My father was the one who assigned me to this mission."
     lucy "He asked me to find any traces of her and retrieve her body."
+    stop music fadeout 1.5
     lucy l_eyes_closed l_mouth_serious"..."
+    play music windowdrops
     show lucy l_cry
     "She pauses for a moment as tears stream down her face."
     lucy l_eyes_look"I am sure my mother is dead right now."
@@ -691,12 +693,14 @@ label secret_lucy:
     lucy -l_eyes_look"Really?"
     lucy l_eyes_look -l_mouth_serious "I am glad to have such a master who also looks after my wellbeing."
     i "Yeah..."
+    stop music fadeout 1.5
     lucy l_eyes_closedhappy l_mouth_open"Alright, that is enough drama for one day, ahaha."
     "For a butler, I thought she's emotionless; an expert."
     "But I guess she's still human, with feelings..."
     lucy -l_eyes_closedhappy -l_mouth_open"Shall we?"
     show lucy -l_brow_sad
     "I nod."
+    play music asylum
     return
 
 transform under_bed:

@@ -246,15 +246,15 @@ label room3:
             "Alonso comes closer to me discreetly."
             alonso "You know..."
             play music windowdrops
-            alonso a_mouth_slightopen "I should make up for the times I've been an asshole."
-            alonso "And... I've been thinking I should mature."
-            alonso "I've noticed how I'm always aided by Lucy, always by my side..."
-            alonso "I have to face the moment if she disappears in my life, you know?"
-            alonso "She can't be with me forever, she has a life after all."
+            alonso a_mouth_slightopen "I should make up for the times I've been such an asshole."
+            alonso a_mouth_serious a_sweat a_eyes_closed"And... I've been thinking I should mature."
+            alonso a_eyes_look"I've noticed how I'm always aided by Lucy, always by my side..."
+            alonso -a_eyes_look -a_sweat"I have to face the moment if she disappears in my life, you know?"
             alonso "This is the reason why I went in this mission of hers."
-            alonso "Just to have one last moment with her..."
+            alonso a_eyes_closed"Just to have one last moment with her..."
             alonso "Tell me [Main]..."
-            alonso "Should I become independent?"
+            alonso -a_eyes_closed"Should I leave her alone?"
+
             menu:
                 "Yes.":
                     i "Yes. You should be."
@@ -265,6 +265,7 @@ label room3:
                     i "Who is Alonso?"
                     i "Who are you?"
                     i "Understand who you are as an individual and what matters to you."
+                    i "She can't be with us forever, she has a life after all."
                     i "I think you should try and talk things with Lucy."
                     i "Say something that will make her feel pride towards you."
                 "No.":
@@ -276,17 +277,50 @@ label room3:
             i "I mean, I'm already proud of you."
             i "Back then, you only see your butler, Lucy, as your extension of aid."
             i "But something changed, and now you've developed empathy towards her."
+            show alonso -a_mouth_serious
             i "You've matured already."
+            show alonso a_cry
+            "Alonso wasn't able to keep his emotions stable."
+            show alonso a_eyes_closed
+            "As a result, he cries in front of me."
+            "Wow. I guess he has a soft spot after all-{nw}"
+            show alonso -a_eyes_closed:
+                ease 0.2 xalign 0.45 blur 25 subpixel True yalign 0.25 zoom 7
+            show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask:
+                ease 0.2 xalign 0.45 blur 25 subpixel True yalign 0.25 zoom 7
+            pause 0.1
+            show black
+            hide particle_blur onlayer front
+            hide particle onlayer front
+            with vpunch
+            "!!!{fast}"
+            "Unexpectedly, Alonso hugs me."
+            alonso "Thanks [Main]. I needed that."
+            "I caress his back while he's buried in my shoulder, sniffing."
+            "{i}There, there...{/i}"
+            "He's crushing me... but at the cost of comforting him, I'd say it's worth being crushed."
+            "We stayed like this for a couple of seconds."
+            "But all things must come to an end."
+            show alonso:
+                xalign 0.5 yalign 1.0 zoom 1.0 blur 0
+            show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask:
+                xalign 0.5 yalign 1.0 zoom 1.0 blur 0
+            hide black
+            show particle_blur onlayer front
+            show particle onlayer front
+            with dissolve
+            "Alonso lets me go from his embrace."
+            show alonso a_eyes_closed
+            "Truth to be told, I was really enjoying the company."
+            show alonso -a_cry
+            "I've never been hugged for the past few years..."
+            "So this was relieving."
+            show alonso -a_eyes_closed
+            "Relieving enough to make us feel less anxious about our current situation."
+            hide alonso
+            hide expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+            with Dissolve(0.2)
             hide screen whisper
-
-            # alonso a_mouth_serious a_eyes_closed "I've been nothing but just a burden to everyone."
-            # "What?"
-            # "Alonso..."
-            # "I paused to think about the moments we had."
-            # # "I never really considered Alonso's feelings in the first place."
-            # i "You were never a burden."
-            # show alonso -a_eyes_closed
-            # i "I was wrong for most of the part, I didn't consider your feelings in the first place."
 
         elif likeRaymon == 3: #if u ignored alonso in the train, not play rps, and went investigating with raymon
             show raymon r_brow_sad r_mouth_serious
@@ -294,11 +328,40 @@ label room3:
             with Dissolve(0.2)
             raymon "..."
             "Raymon comes closer to me discreetly."
+            i "Oh, hey, Raymon."
+            i "You seem distant lately. Is something the matter?"
+            raymon "..."
+            raymon "You know how I'm always prepared most of the time?"
+            raymon "That scene earlier..."
             play music windowdrops
+            raymon "I'm really sorry. I was supposed to be the brains of this group."
+            raymon "Help everyone out... Solve everyone's problems."
+            raymon "Right now, I feel as useless as the clues we found earlier."
+
+            menu:
+                "Comfort him.":
+                    "I take a moment and placed my comforting hand on his."
+                    i "Nothing in the world could have prepared us eariler."
+                    i "It's normal to feel that."
+                    i "And besides, you've already helped us."
+                    i "Without you, we wouldn't have made it this far."
+                    i "So please... stop crying."
+                    "Raymon smiles back through an incredibly pained expression."
+                    "His tears began to subside."
+                    "And for a moment, his body gesture welcomes me to hug him."
+                    "..."
+                    "It's only natural to give back a hug, right?"
+                "Talk some sense to him.":
+                    i "You aren't expecting us to look down on you after failing to please us, right?"
+                    raymon "I was..."
+                    "Poor thing. He must've been pent up from preparing too much."
+                    i "Oh, Raymon. It's okay to fail."
+                    i "Nothing in the world could have prepared us eariler."
+                    
+
             raymon "I really appreciate that you took the time and hang out with me..."
             raymon "I enjoyed the times we read back in the train."
-            raymon "Though, I was hoping that you'd be a bookworm or some sort."
-            raymon "We"
+            raymon "Does the defeaning silence make you feel remorse or not?"
         else:
             "Lucy's moment goes here."
 
