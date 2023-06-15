@@ -94,7 +94,7 @@ define room2_done = False
 define room1_2_done = False
 define room3_done = False
 define room3_checked = False
-define LucySecret = False
+define LucySecret = None
 
 define act2 = False
 define seenSuicide = False
@@ -478,12 +478,18 @@ label room1:
                     lucy l_base2 -l_eyes_look"Would you like to know a secret?"
                     menu:
                         "\"Sure.\"":
-                            lucy"If you must know, it is a family secret."
-                            "Family?"
                             show lucy -l_base2
                             show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask
                             call secret_lucy
+                            lucy l_eyes_closedhappy l_mouth_open"Alright, that is enough drama for one day, ahaha."
+                            "For a butler, I thought she's emotionless; an expert."
+                            "But I guess she's still human, with feelings..."
+                            lucy -l_eyes_closedhappy -l_mouth_open"Shall we?"
+                            show lucy -l_brow_sad
+                            "I nod."
+                            play music asylum
                         "\"I don't think I'm suppose to know about it...\"":
+                            $ LucySecret = False
                             lucy l_eyes_look l_mouth_serious"I see."
                             show lucy -l_base2 -l_eyes_look
                             show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask
@@ -493,7 +499,7 @@ label room1:
                         lucy "I finally found it!"
                         lucy "My mother's documents."
                         show lucy l_brow_sad
-                        "Lucy gives me the file."
+                        "Lucy hands me over the file."
                         "Surpisingly, the document is still intact with complete information."
                         $ entry("lucy_paper")
                         "Alice. That's a nice name."
@@ -627,6 +633,8 @@ label room1:
     
 label secret_lucy:
     $ LucySecret = True
+    lucy "If you must know, this is a family secret."
+    "Family?"
     show expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", center)) as l_mask
     lucy l_base3 l_eyes_closed"My mother used to work in this very asylum as a nurse."
     i "Wait what?"
@@ -639,6 +647,7 @@ label secret_lucy:
     lucy -l_mouth_slightopen"My father told me she was an astounding nurse."
     show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask
     lucy -l_base3"She was the only nurse who has been able to discharge a patient; a moment where no one has achieved before."
+    stop music fadeout 1.5
     lucy l_eyes_look l_mouth_serious"But one fateful day, Mother never returned home."
     lucy "My father went to the asylum and looked for her..."
     lucy "But they told him that she had already left, the day when she went missing."
@@ -661,10 +670,10 @@ label secret_lucy:
     i "So this mission of yours was to find your mother all along?"
     lucy -l_eyes_look -l_mouth_serious"Yes. My father was the one who assigned me to this mission."
     lucy "He asked me to find any traces of her and retrieve her body."
-    stop music fadeout 1.5
     lucy l_eyes_closed l_mouth_serious"..."
     play music windowdrops
-    show lucy l_cry
+    show lucy l_cry l_base3
+    show expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", center)) as l_mask
     "She pauses for a moment as tears stream down her face."
     lucy l_eyes_look"I am sure my mother is dead right now."
     lucy -l_eyes_look"And it would be nice if we can get this mission done as soon as possible."
@@ -678,29 +687,24 @@ label secret_lucy:
     lucy -l_eyes_closed"I would also like to apologize for lying to Alonso about this mission."
     "..."
     lucy l_eyes_look"You see, after my father tasked me to do this mission, Alonso was at the door already, listening I presume."
-    lucy -l_eyes_look -l_mouth_serious"He asked me a ton of questions about the mission, so I fabricated it."
-    lucy "I told him it was a silly little exploration in the abandoned asylum."
+    lucy -l_eyes_look -l_mouth_serious "He asked me a ton of questions about the mission, so I fabricated it."
+    lucy l_sweat "I told him it was a silly little exploration in the abandoned asylum."
+    show lucy -l_base3
+    show expression AlphaMask("images/others/flashlight.png", At("lucy -l_base3", center)) as l_mask
     lucy l_eyes_look"He then offered to join you and Raymon."
     lucy l_eyes_closedhappy"As much as I want to do this mission alone, I guess bringing a little bit of support would not mind."
     "So that's the story behind the mission..."
     "Alonso shouldn't really be snooping around other people's business."
     "Man."
     "But then again, Alonso doesn't want Lucy to go through this alone."
-    lucy l_eyes_look l_mouth_serious "I do not want him to feel the sadness I am currently facing."
+    lucy l_eyes_look l_mouth_serious -l_sweat "I do not want him to feel the sadness I am currently facing."
     i "I understand the weight of your situation..."
     i "But I think Alonso will understand if you reach out to him."
     i "Something tells me that he also wants to protect you."
-    lucy -l_eyes_look"Really?"
+    lucy -l_eyes_look"Is that so?"
     lucy l_eyes_look -l_mouth_serious "I am glad to have such a master who also looks after my wellbeing."
     i "Yeah..."
     stop music fadeout 1.5
-    lucy l_eyes_closedhappy l_mouth_open"Alright, that is enough drama for one day, ahaha."
-    "For a butler, I thought she's emotionless; an expert."
-    "But I guess she's still human, with feelings..."
-    lucy -l_eyes_closedhappy -l_mouth_open"Shall we?"
-    show lucy -l_brow_sad
-    "I nod."
-    play music asylum
     return
 
 transform under_bed:
@@ -888,6 +892,9 @@ label room2:
                             "How would a uniform alone help?"
                         raymon "Is that all?"
                         lucy "I believe so."
+                        hide lucy
+                        hide expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask
+                        with Dissolve(0.2)
                         jump room2_choices
                     else:
                         alonso -a_eyes_closed "Would a crowbar open the locker?"

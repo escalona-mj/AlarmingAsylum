@@ -59,9 +59,9 @@ if not persistent.achievement_list:
             _("Complete the story normally.")
             ],
         
-        "no_time": [
-            _("Bad Things Come To Those Who Wait."),
-            _("Fail to catch up with the quick time events.")
+        "quick": [
+            _("Perfect Timing"),
+            _("Phew, you almost missed it.")
             ],
         
         "rps_game": [
@@ -92,13 +92,7 @@ if not persistent.achievement_list:
         "wall_break": [
             _("Just [Main]."),
             _("Will you promise to spend the most time with me?")
-            ],
-        
-        "all_bad_end": [
-            _("Failure is Not an Option"),
-            _("Achieve all bad endings.")
-            ],
-
+            ]
         }
 
 define lockaname = "Achievement Locked."

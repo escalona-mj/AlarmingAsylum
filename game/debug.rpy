@@ -35,14 +35,13 @@ label achievement_test:
         "Grant all achievements":
             $ achievement_get("start")
             $ achievement_get("end")
-            $ achievement_get("no_time")
+            $ achievement_get("quick")
             $ achievement_get("rps_game")
             $ achievement_get("rps_game_rock")
             $ achievement_get("rps_game_paper")
             $ achievement_get("rps_game_scissors")
             $ achievement_get("bad_end")
             $ achievement_get("wall_break")
-            $ achievement_get("all_bad_end")
             jump achievement_test
         "Clear achievements":
             $ achievement.clear_all()

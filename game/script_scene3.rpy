@@ -81,75 +81,82 @@ label act2_hanging:
     lucy "Sire, we have to stick together!"
     "Lucy follows him outside."
     raymon "W-what do we do now, [Main]!?"
+    label qte_menu:
+        $ time = 0.25
+        $ timer_range = 0.25
+        $ timer_jump = 'bad_end'
+        show screen countdown
     menu:
         "\"Obviously, let's follow them!\"":
+            $ achievement_get("quick")
+            hide screen countdown
             raymon "Good idea!"
             raymon "I am NOT staying near that body!"
             "We follow the rest outside."
             jump act2
-        "\"...\"":
-            $ config.skipping = False
-            "..."
-            show raymon r_eyes_anxious r_mouth_slightopen r_brow_sad at rise_bed
-            show expression AlphaMask("images/others/flashlight.png", At("raymon", rise_bed)) as r_mask
-            raymon "[Main]?"
-            show raymon at hop
-            raymon "[Main]?!"
-            raymon "[Main!u]!!?" with vpunch
-            "..."
-            camera at shaking
-            raymon r_mouth_serious"[Main], we've got to go!"
-            "Raymon looks completely worried whilst shaking me."
-            raymon "..."
-            "I can't move."
-            "I am completely frozen from the scene unfolding towards us."
-            camera
-            raymon r_brow_serious "You know what? Fuck it!"
-            play sound "audio/sfx/flashlight.mp3"
-            pause 0.5
-            show raymon:
-                easeout 0.1 offscreenright
-            hide particle_blur onlayer front
-            hide particle onlayer front
-            hide flashlight onlayer transient
-            show black:
-                alpha 0.8
-            hide hang
-            hide expression AlphaMask("white", At("hang", swing)) as mask
-            hide expression AlphaMask("flashlight", At("hang", swing)) as mask2
-            stop music
-            "Raymon runs towards the entrance, leaving me."
-            "For a moment, darkness covered the room once more."
-            "I'm left alone with the lifeless body here behind me."
-            "I try to look back to see if it's still there."
-            show black:
-                alpha 1.0
-            with wipeleft
-            "..."
-            "I reach out my hand into the void to confirm if the body is still there."
-            "..."
-            "It's not there anymore."
-            $ quick_menu = False
-            $ config.skipping = False
-            show jumpscare1:
-                alpha 0.0
-                linear 3.8 alpha 1.0
-            "I suddenly feel something moving closer on my front."
-            "What in the fuc-{nw}"
-            window hide(None)
-            play sound "audio/sfx/jumpscare.mp3"
-            hide jumpscare1
-            show jumpscare2 at jumpscare:
-                xalign 0.5
-                yalign 0.5
-            pause 0.2
-            hide jumpscare2
-            pause 1.5
-            $ achievement_get("bad_end")
-            play sound "audio/sfx/game_over.mp3"
-            call screen game_over(message="I'd leave the premises if I were you.") with dissolve
-            window auto
-            ###GAME OVER###
+
+    label bad_end:
+        $ quick_menu = False
+        $ config.skipping = False
+        "..."
+        show raymon r_eyes_anxious r_mouth_slightopen r_brow_sad at rise_bed
+        show expression AlphaMask("images/others/flashlight.png", At("raymon", rise_bed)) as r_mask
+        raymon "[Main]?"
+        show raymon at hop
+        raymon "[Main]?!"
+        raymon "[Main!u]!!?" with vpunch
+        "..."
+        camera at shaking
+        raymon r_mouth_serious"[Main], we've got to go!"
+        "Raymon looks completely worried whilst shaking me."
+        raymon "..."
+        "I can't move."
+        "I am completely frozen from the scene unfolding towards us."
+        camera
+        raymon r_brow_serious "You know what? Fuck it!"
+        play sound "audio/sfx/flashlight.mp3"
+        pause 0.5
+        show raymon:
+            easeout 0.1 offscreenright
+        hide particle_blur onlayer front
+        hide particle onlayer front
+        hide flashlight onlayer transient
+        show black:
+            alpha 0.8
+        hide hang
+        hide expression AlphaMask("white", At("hang", swing)) as mask
+        hide expression AlphaMask("flashlight", At("hang", swing)) as mask2
+        stop music
+        "Raymon runs towards the entrance, leaving me."
+        "For a moment, darkness covered the room once more."
+        "I'm left alone with the lifeless body here behind me."
+        "I try to look back to see if it's still there."
+        show black:
+            alpha 1.0
+        with wipeleft
+        "..."
+        "I reach out my hand into the void to confirm if the body is still there."
+        "..."
+        "It's not there anymore."
+        show jumpscare1:
+            alpha 0.0
+            linear 3.8 alpha 1.0
+        "I suddenly feel something moving closer on my front."
+        "What in the fuc-{nw}"
+        window hide(None)
+        play sound "audio/sfx/jumpscare.mp3"
+        hide jumpscare1
+        show jumpscare2 at jumpscare:
+            xalign 0.5
+            yalign 0.5
+        pause 0.2
+        hide jumpscare2
+        pause 1.5
+        $ achievement_get("bad_end")
+        play sound "audio/sfx/game_over.mp3"
+        call screen game_over(message="I'd leave the premises if I were you.") with dissolve
+        window auto
+        ###GAME OVER###
 
 label act2:
     scene bg asylum with wipeleft_scene
@@ -212,6 +219,8 @@ label act2:
     play music asylum
     jump asylum_mapping
 
+default SussyLucy = False
+
 label room3:
     $ config.skipping = False
     if act2 == True and seenSuicide == True:
@@ -236,12 +245,12 @@ label room3:
         "I have to keep myself together."
         "Right now, getting out of here is our first priority."
         "Anomaly or not, we're all in this together."
-        stop music fadeout 1.5
         if likeAlonso == 3: #if u went with alonso in the train, play rps, and went investigating with alonso
+            stop music fadeout 1.5
             show alonso a_brow_sad a_mouth_serious
             show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
             with Dissolve(0.2)
-            show screen whisper("It's not your fault.")
+            show screen slow_fade_txt("It's not your fault.")
             alonso "..."
             "Alonso comes closer to me discreetly."
             alonso "You know..."
@@ -257,6 +266,7 @@ label room3:
 
             menu:
                 "Yes.":
+                    $ renpy.notify("Alonso will remember that.")
                     i "Yes. You should be."
                     i "But you'll have to face it alone."
                     i "Facing independence as a person can be challenging..."
@@ -269,6 +279,7 @@ label room3:
                     i "I think you should try and talk things with Lucy."
                     i "Say something that will make her feel pride towards you."
                 "No.":
+                    $ renpy.notify("Alonso will remember that.")
                     i "No. Lucy needs you as much as you need her."
                     i "You both have some sort have a synergy, something that can't be replicated."
                     i "If you consider her as family, I think you should let her stay."
@@ -299,8 +310,7 @@ label room3:
             "I caress his back while he's buried in my shoulder, sniffing."
             "{i}There, there...{/i}"
             "He's crushing me... but at the cost of comforting him, I'd say it's worth being crushed."
-            "We stayed like this for a couple of seconds."
-            "But all things must come to an end."
+            "We stayed like this for a few seconds."
             show alonso:
                 xalign 0.5 yalign 1.0 zoom 1.0 blur 0
             show expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask:
@@ -309,7 +319,7 @@ label room3:
             show particle_blur onlayer front
             show particle onlayer front
             with dissolve
-            "Alonso lets me go from his embrace."
+            "After a few moments of shared silence, Alonso lets me go from his embrace."
             show alonso a_eyes_closed
             "Truth to be told, I was really enjoying the company."
             show alonso -a_cry
@@ -319,53 +329,144 @@ label room3:
             "Relieving enough to make us feel less anxious about our current situation."
             hide alonso
             hide expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+            hide screen slow_fade_txt
             with Dissolve(0.2)
-            hide screen whisper
 
         elif likeRaymon == 3: #if u ignored alonso in the train, not play rps, and went investigating with raymon
-            show raymon r_brow_sad r_mouth_serious
+            stop music fadeout 1.5
+            show raymon r_brow_sad r_mouth_serious 
             show expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
             with Dissolve(0.2)
+            show screen slow_fade_txt("It's not your fault.")
             raymon "..."
             "Raymon comes closer to me discreetly."
             i "Oh, hey, Raymon."
             i "You seem distant lately. Is something the matter?"
-            raymon "..."
-            raymon "You know how I'm always prepared most of the time?"
-            raymon "That scene earlier..."
+            raymon r_eyes_look "..."
+            raymon r_mouth_slightopen -r_eyes_look"You know how I'm always prepared most of the time?"
+            raymon r_eyes_closed r_mouth_serious r_sweat"That scene earlier..."
             play music windowdrops
-            raymon "I'm really sorry. I was supposed to be the brains of this group."
-            raymon "Help everyone out... Solve everyone's problems."
-            raymon "Right now, I feel as useless as the clues we found earlier."
+            raymon r_eyes_look -r_sweat"I'm really sorry. I was supposed to be the brains of this group."
+            raymon r_cry"Help everyone out... Solve everyone's problems."
+            raymon r_eyes_closed "Right now, I feel as useless as the clues we found earlier."
 
             menu:
                 "Comfort him.":
+                    $ renpy.notify("Raymon will remember that.")
+                    show raymon -r_eyes_closed
                     "I take a moment and placed my comforting hand on his."
-                    i "Nothing in the world could have prepared us eariler."
-                    i "It's normal to feel that."
-                    i "And besides, you've already helped us."
-                    i "Without you, we wouldn't have made it this far."
-                    i "So please... stop crying."
-                    "Raymon smiles back through an incredibly pained expression."
-                    "His tears began to subside."
-                    "And for a moment, his body gesture welcomes me to hug him."
-                    "..."
-                    "It's only natural to give back a hug, right?"
                 "Talk some sense to him.":
+                    $ renpy.notify("Raymon will remember that.")
                     i "You aren't expecting us to look down on you after failing to please us, right?"
                     raymon "I was..."
                     "Poor thing. He must've been pent up from preparing too much."
                     i "Oh, Raymon. It's okay to fail."
-                    i "Nothing in the world could have prepared us eariler."
-                    
 
+            i "Nothing in the world could have prepared us eariler."            
+            i "It's normal to feel that."
+            i "And besides, you've already helped us."
+            i "Without you, we wouldn't have made it this far."
+            i "So please... stop-{nw}"
+            show raymon -r_mouth_serious r_eyes_closedhappy
+            "Raymon smiles back through an incredibly pained expression."
+            "And for a moment, his body gesture welcomes me to hug him."
+            "..."
+            "It's only natural to give back a hug, right?"
+            show black
+            hide particle_blur onlayer front
+            hide particle onlayer front
+            with dissolve
+            "I instinctively went closer and wrapped my hands around Raymon."
+            "He does the same thing back to me."
+            "There was a brief silence, but that silence means everything to him."
+            raymon "Thank you [Main]."
+            raymon "I needed someone to lend their ears while I vent out..."
+            "I caress his back while he's buried in my shoulder, sniffing."
+            "{i}There, there...{/i}"
             raymon "I really appreciate that you took the time and hang out with me..."
             raymon "I enjoyed the times we read back in the train."
-            raymon "Does the defeaning silence make you feel remorse or not?"
+            raymon "It was short... yet meaningful."
+            raymon "You're a good listener."
+            raymon "You empathize me."
+            raymon "You understood me."
+            "I did...?"
+            "..."
+            show raymon -r_eyes_closedhappy:
+                xalign 0.5 yalign 1.0 zoom 1.0 blur 0
+            show expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask:
+                xalign 0.5 yalign 1.0 zoom 1.0 blur 0
+            hide black
+            show particle_blur onlayer front
+            show particle onlayer front
+            with dissolve
+            "After a few moments of shared silence, Raymon lets me go from his embrace."
+            show raymon r_eyes_closed
+            "Truth to be told, I was really enjoying the company."
+            show raymon -r_cry
+            "Am I that of a good-hearted person?"
+            "Hah... Feels like I'm being comforted instead of him."
+            "This must be what it feels like taking a compliment."
+            "This was relieving."
+            show raymon -r_eyes_closed
+            "Relieving enough to make us feel less anxious about our current situation."
+            hide raymon
+            hide expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
+            hide screen slow_fade_txt
+            with Dissolve(0.2)  
         else:
-            "Lucy's moment goes here."
-
-        hide screen whisper
+            if LucySecret == None or LucySecret == False:
+                $ l1_name = "???"
+                lucy "{i}[Main]?"
+                "Huh?"
+                $ l1_name = "Lucy"
+                show lucy l_mouth_serious
+                show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask
+                with Dissolve(0.2)
+                i "Oh, Lucy..."
+                show lucy l_base3 l_brow_sad l_mouth_serious
+                show expression AlphaMask("images/others/flashlight.png", At("lucy l_base3", center)) as l_mask
+                lucy l_eyes_look "..."
+                lucy "I... noticed that you..."
+                lucy "Y-you..."
+                "That's weird..."
+                "I've never seen Lucy this nervous nor stutter like this before..."
+                lucy l_mouth_slightopen l_sweat l_eyes_closed "{bt=2}*cough*{/bt}{fast}"
+                stop music fadeout 1.5
+                lucy l_brow_serious -l_eyes_look -l_sweat -l_eyes_closed l_mouth_serious "I noticed that you seem curious about my actions earlier."
+                lucy "And I believe that you should know about something."
+                if LucySecret == False:
+                    lucy "I wanted to tell you earlier about my secret."
+                    i "Oh right, the secret..."
+                    i "Is this something Alonso should know about?"
+                    lucy l_eyes_closed"No. At least, not yet."
+                    lucy -l_eyes_closed"I think you are the right one that should know about this."
+                    lucy "You are not as prepared or smart as Raymon..."
+                    lucy "Nor as Alonso's underdeveloped maturity..."
+                lucy "Would you like to know?"
+                menu:
+                    "\"Okay, okay. I'm listening.\"":
+                        call secret_lucy
+                        "Lucy regains her composure, wiping any tears left on her face."
+                    "\"Lucy, you're acting suspicious...\"" if LucySecret == False:
+                        $ SussyLucy = True
+                        lucy "I..."
+                        lucy "..."
+                        "Time stood still between us."
+                        "I know Lucy's a great caretaker... but her acting a bit aggressive seems way out of her."
+                        "It feels like she's not Lucy anymore."
+                        lucy "I seem to have misunderstood you."
+                        lucy "Sorry, I must have drawn the line..."
+                        lucy "Let us pretend we never had this conversation again."
+                        "Lucy leaves me be, without a word."
+                        "What whas that?"
+                    "\"I don't think I'm suppose to know about it...\"" if LucySecret == None:
+                        lucy "I-I see..."
+                        lucy "I seem to have misunderstood you."
+                    
+            
+            lucy "Okay everyone, let us look for any passages."
+            lucy "Surely an asylum as this old should have some sort of emergency exit..."
+        
         
 
 
