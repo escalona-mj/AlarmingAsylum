@@ -1,26 +1,14 @@
-image poem_end = "images/poem_end.png"
 label credits:
-    $ quick_menu = False
-    $ config.skipping = False
-    $ config.allow_skipping = False
+    hide screen slow_fade_txt
+    hide particle_blur onlayer front
+    hide particle onlayer front
     scene black
-    show poem_end at truecenter
+    show text "{i}{size=+35}\"To be continued...\"{/i}"
+    with long_dissolve
     $ _dismiss_pause = True
+    $ achievement_get("end")
     pause
     $ _dismiss_pause = False
-    $ renpy.block_rollback()
-    play sound "audio/sfx/warning.mp3"
-    $ achievement.grant("Better Luck Next Time!")
-    call screen dialog(message="Error: The script.rpy is missing or corrupted.\nPlease reinstall the game.", ok_action=Quit(confirm=False))
-    return
-
-label not_for_big_screens:
-    $ quick_menu = False
-    $ config.skipping = False
-    $ config.allow_skipping = False
-    scene black
-    $ _dismiss_pause = False
-    $ renpy.block_rollback()
-    play sound "audio/sfx/warning.mp3"
-    call screen dialog(message="This game is meant to be played in Android devices.\nPlease install it there.", ok_action=Quit(confirm=False))
+    stop music fadeout 2.0
+    hide text with Dissolve(2.0)
     return

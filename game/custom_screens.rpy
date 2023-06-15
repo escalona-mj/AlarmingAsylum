@@ -138,7 +138,7 @@ screen slow_fade_txt(txt):
 screen countdown:
     timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
         ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
-    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 1920
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 1300
 
 ################    ASYLUM MAP     ##########################
 transform blink_blur:

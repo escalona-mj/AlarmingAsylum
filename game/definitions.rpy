@@ -122,11 +122,11 @@ define raymon = DynamicCharacter(
 #############################
 define wipeleft = ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64)
 
-# define dissolve_scene_full = MultipleTransition([
-#     False, Dissolve(1.0),
-#     Solid("#000"), Pause(1.0),
-#     Solid("#000"), Dissolve(1.0),
-#     True])
+define long_dissolve = MultipleTransition([
+    False, Dissolve(1.5),
+    Solid("#000"), Pause(1.5),
+    Solid("#000"), Dissolve(1.5),
+    True])
 
 define wipeleft_scene = MultipleTransition([
     False, ImageDissolve("images/transitions/wipeleft.png", 0.5, ramplen=64),

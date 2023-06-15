@@ -56,7 +56,7 @@ if not persistent.achievement_list:
 
         "end": [
             _("Closure"),
-            _("Complete the story normally.")
+            _("The story ends here.")
             ],
         
         "quick": [

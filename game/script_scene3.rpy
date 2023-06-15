@@ -79,7 +79,7 @@ label act2_hanging:
     alonso "I'll tell you what's even better!"
     "Alonso rushes outside of the room."
     lucy "Sire, we have to stick together!"
-    "Lucy follows him outside."
+    "Lucy rushes and follows him outside."
     raymon "W-what do we do now, [Main]!?"
     label qte_menu:
         $ time = 0.25
@@ -87,7 +87,7 @@ label act2_hanging:
         $ timer_jump = 'bad_end'
         show screen countdown
     menu:
-        "\"Obviously, let's follow them!\"":
+        "{size=+35}\"Let's get out of here!\"":
             $ achievement_get("quick")
             hide screen countdown
             raymon "Good idea!"
@@ -327,10 +327,10 @@ label room3:
             "So this was relieving."
             show alonso -a_eyes_closed
             "Relieving enough to make us feel less anxious about our current situation."
-            hide alonso
-            hide expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
-            hide screen slow_fade_txt
-            with Dissolve(0.2)
+            jump credits
+            # hide alonso
+            # hide expression AlphaMask("images/others/flashlight.png", At("alonso", center)) as a_mask
+            # with Dissolve(0.2)
 
         elif likeRaymon == 3: #if u ignored alonso in the train, not play rps, and went investigating with raymon
             stop music fadeout 1.5
@@ -349,17 +349,18 @@ label room3:
             raymon r_eyes_look -r_sweat"I'm really sorry. I was supposed to be the brains of this group."
             raymon r_cry"Help everyone out... Solve everyone's problems."
             raymon r_eyes_closed "Right now, I feel as useless as the clues we found earlier."
-
+            raymon "Maybe I should just drop the facade."
+            "...Facade?"
             menu:
                 "Comfort him.":
                     $ renpy.notify("Raymon will remember that.")
                     show raymon -r_eyes_closed
                     "I take a moment and placed my comforting hand on his."
                 "Talk some sense to him.":
-                    $ renpy.notify("Raymon will remember that.")
                     i "You aren't expecting us to look down on you after failing to please us, right?"
-                    raymon "I was..."
+                    raymon -r_eyes_closed "I was..."
                     "Poor thing. He must've been pent up from preparing too much."
+                    $ renpy.notify("Raymon will remember that.")
                     i "Oh, Raymon. It's okay to fail."
 
             i "Nothing in the world could have prepared us eariler."            
@@ -404,15 +405,12 @@ label room3:
             "Truth to be told, I was really enjoying the company."
             show raymon -r_cry
             "Am I that of a good-hearted person?"
+            show raymon -r_eyes_closed
             "Hah... Feels like I'm being comforted instead of him."
             "This must be what it feels like taking a compliment."
-            "This was relieving."
-            show raymon -r_eyes_closed
+            "Very relieving."
             "Relieving enough to make us feel less anxious about our current situation."
-            hide raymon
-            hide expression AlphaMask("images/others/flashlight.png", At("raymon", center)) as r_mask
-            hide screen slow_fade_txt
-            with Dissolve(0.2)  
+            jump credits
         else:
             if LucySecret == None or LucySecret == False:
                 $ l1_name = "???"
@@ -441,34 +439,44 @@ label room3:
                     lucy l_eyes_closed"No. At least, not yet."
                     lucy -l_eyes_closed"I think you are the right one that should know about this."
                     lucy "You are not as prepared or smart as Raymon..."
-                    lucy "Nor as Alonso's underdeveloped maturity..."
+                    lucy l_eyes_look l_sweat"Nor as Sire's underdeveloped maturity..."
+                    "That somehow hurt."
+                    show lucy -l_eyes_look -l_sweat
                 lucy "Would you like to know?"
                 menu:
                     "\"Okay, okay. I'm listening.\"":
                         call secret_lucy
+                        show lucy l_eyes_closed
                         "Lucy regains her composure, wiping any tears left on her face."
                     "\"Lucy, you're acting suspicious...\"" if LucySecret == False:
                         $ SussyLucy = True
-                        lucy "I..."
-                        lucy "..."
+                        lucy l_brow_sad l_mouth_slightopen"I..."
+                        lucy l_mouth_serious l_sweat"..."
+                        show lucy l_eyes_look
                         "Time stood still between us."
-                        "I know Lucy's a great caretaker... but her acting a bit aggressive seems way out of her."
+                        show lucy l_eyes_closed
+                        "I know Lucy's a great caretaker... but her acting a bit aggressive seems way out of her character."
                         "It feels like she's not Lucy anymore."
-                        lucy "I seem to have misunderstood you."
-                        lucy "Sorry, I must have drawn the line..."
-                        lucy "Let us pretend we never had this conversation again."
+                        lucy l_eyes_look"Sorry, I must have drawn the line..."
+                        lucy l_eyes_closed"I seem to have misunderstood you."
+                        lucy -l_eyes_closed l_brow_serious -l_sweat "Let us pretend we never had this conversation again."
+                        show lucy l_brow_sad l_eyes_closed l_cry at offscreenleft_transform
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask at offscreenleft_transform
                         "Lucy leaves me be, without a word."
-                        "What whas that?"
+                        "What was that?"
+                        
                     "\"I don't think I'm suppose to know about it...\"" if LucySecret == None:
-                        lucy "I-I see..."
-                        lucy "I seem to have misunderstood you."
-                    
-            
-            lucy "Okay everyone, let us look for any passages."
-            lucy "Surely an asylum as this old should have some sort of emergency exit..."
+                        lucy l_eyes_look l_brow_sad"I-I see..."
+                        lucy l_eyes_closed "Let us pretend we never had this conversation again."
+                        show lucy l_cry at offscreenleft_transform
+                        show expression AlphaMask("images/others/flashlight.png", At("lucy", center)) as l_mask at offscreenleft_transform
+                        "Lucy leaves me be, without a word."
+                        "What was that?"
         
-        
-
+        jump credits
+        # lucy "Okay everyone."
+        # lucy "Let us look for any passages."
+        # lucy "Surely an asylum as this old should have some sort of emergency exit..."
 
     else:
         $ room3_checked = True

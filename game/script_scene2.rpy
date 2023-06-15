@@ -704,7 +704,8 @@ label secret_lucy:
     lucy -l_eyes_look"Is that so?"
     lucy l_eyes_look -l_mouth_serious "I am glad to have such a master who also looks after my wellbeing."
     i "Yeah..."
-    stop music fadeout 1.5
+    if not room3_done == True:
+        stop music fadeout 1.5
     return
 
 transform under_bed:
